@@ -1,5 +1,5 @@
 ﻿Public Class Combobox
-
+    Private database As Server = New Server
     Private parking_add As Parking_Add
     Private button As Bunifu.Framework.UI.BunifuFlatButton
     Private panel As Panel
@@ -51,7 +51,6 @@
 
     End Property
 
-
     Public Property table As Bunifu.Framework.UI.BunifuCustomDataGrid
         Get
             Return data_combobox
@@ -64,6 +63,7 @@
     End Property
 
     Private Sub data_combobox_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles data_combobox.CellMouseClick
+
         Dim index As Integer
         index = e.RowIndex
         Dim selectedRow As DataGridViewRow
@@ -77,20 +77,11 @@
             input_dialog.table = table
             input_dialog.ShowDialog()
 
-
-        Else
-
-            button.Text = selected_row_value
-
         End If
-
+        button.Text = selected_row_value
         panel.Hide()
         ishowing = False
 
-        ' Me.Close()
     End Sub
 
-    Private Sub Combobox_Load(sender As Object, e As EventArgs) Handles Me.Load
-        table.Rows.Add("Add New Item")
-    End Sub
 End Class

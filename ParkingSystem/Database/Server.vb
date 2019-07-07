@@ -316,16 +316,12 @@ Public Class Server
 
     Public Function Parking_Table(ByVal table1 As Bunifu.Framework.UI.BunifuCustomDataGrid, ByVal text As String) As Boolean
         table1.Rows.Clear()
-        MessageBox.Show(text)
         Dim query As String
-        'If (text = "Available") Then
-        query = "SELECT * FROM PARKING_AREA;"
-
-        'Else
-        'query = "SELECT * FROM PARKING_AREA WHERE " + text
-
-        '        End If
-
+        If Not (text.Equals("")) Then
+            query = "SELECT * FROM PARKING_AREA WHERE PARKING_NAME LIKE '" + text + "%' OR PARKING_LEVEL LIKE '" + text + "%' OR PARKING_RATE LIKE '" + text + "%' OR PARKING_STATUS LIKE'" + text + "%' ORDER BY PARKING_NAME ASC"
+        Else
+            query = "SELECT * FROM PARKING_AREA  ORDER BY PARKING_NAME ASC"
+        End If
         Using con As New SQLiteConnection(connectionString)
 
             con.Open()
@@ -342,23 +338,14 @@ Public Class Server
                     Dim parking_level As String = reader.GetString(2)
                     Dim parking_rate As String = reader.GetString(3)
                     Dim status As String = reader.GetString(4)
-
-                    MessageBox.Show(id)
+                    'MessageBox.Show(id)
                     table1.Rows.Add(id, parking_name, parking_level, parking_rate, status)
-
                 End While
-
             End Using
-            MessageBox.Show("Im excuted")
             con.Close()
         End Using
-
-
         Return False
     End Function
-
     'End of Parking Query Query'
     '------------------------------------------------------------------------------------------------------------'
-
-
 End Class

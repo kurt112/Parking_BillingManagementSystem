@@ -1,4 +1,6 @@
-﻿Public Class Parking_Add
+﻿Imports Bunifu.Framework.UI
+
+Public Class Parking_Add
 
     Private database As Server = New Server
 
@@ -9,6 +11,7 @@
     Private combobox_fee As Combobox = New Combobox
     Private level_showing As Boolean = False
     Private fee_showing As Boolean = False
+    Private table As Bunifu.Framework.UI.BunifuCustomDataGrid
 
     Public Property button_level As Bunifu.Framework.UI.BunifuFlatButton
         Get
@@ -27,6 +30,15 @@
 
         Set(ByVal my_button As Bunifu.Framework.UI.BunifuFlatButton)
             parking_fee_button = my_button
+        End Set
+    End Property
+
+    Public Property My_Table As BunifuCustomDataGrid
+        Get
+            Return table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            table = value
         End Set
     End Property
 
@@ -73,10 +85,10 @@
 
         database.Add_Parking_Level_Combobox(item_level)
         database.Add_Parking_Price_Combobox(item_price)
-
         List_to_Combobox(combobox_fee.table, item_price)
         List_to_Combobox(combobox_level.table, item_level)
-
+        combobox_fee.table.Rows.Add("Add New Item")
+        combobox_level.table.Rows.Add("Add New Item")
 
 
     End Sub
@@ -132,7 +144,6 @@
         combobox_fee.my_panel = parking_fee
         combobox_fee.showing = fee_showing
         combobox_level.showing = level_showing
-
         dropdown_add()
     End Sub
 
@@ -149,6 +160,7 @@
                     Else
                         '  Dim parking As Parking_Area =
                         database.Add_ParkingArea(New Parking_Area("12312", Parking_name.Text, button_level.Text, button_fee.Text, "Available"))
+                        database.Parking_Table(My_Table, "")
                     End If
                 Catch ex As Exception
                     MessageBox.Show("Invalid Value")

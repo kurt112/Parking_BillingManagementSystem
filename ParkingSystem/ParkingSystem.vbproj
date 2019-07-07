@@ -179,6 +179,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Database\Server.vb" />
+    <Compile Include="Report\Report.Designer.vb">
+      <DependentUpon>Report.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Report.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transaction.Designer.vb">
       <DependentUpon>Transaction.vb</DependentUpon>
     </Compile>
