@@ -160,7 +160,7 @@ Public Class Parking_Add
                     Else
                         '  Dim parking As Parking_Area =
                         database.Add_ParkingArea(New Parking_Area("12312", Parking_name.Text, button_level.Text, button_fee.Text, "Available"))
-                        database.Parking_Table(My_Table, "")
+                        database.Parking_Table("")
                     End If
                 Catch ex As Exception
                     MessageBox.Show("Invalid Value")

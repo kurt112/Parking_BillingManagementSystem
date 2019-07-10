@@ -10,11 +10,7 @@ c:\users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSy
 c:\users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.xml
 c:\users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.pdb
 C:\Users\orioque35\Documents\Visual Studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking.resources
-C:\Users\orioque35\Documents\Visual Studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem._Transaction.resources
-C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking_List.resources
-C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Membership.resources
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Pricing.resources
-C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_History.resources
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Login.resources
 C:\Users\orioque35\Documents\Visual Studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking_Add.resources
 C:\Users\orioque35\Documents\Visual Studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.User_Register.resources
@@ -33,3 +29,7 @@ C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSy
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\bin\Debug\System.Data.SQLite.xml
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.InputBox.resources
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Combobox.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Park_List.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_List.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Membership_List.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_Histroy_List.resources

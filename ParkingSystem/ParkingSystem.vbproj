@@ -107,6 +107,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Entities\Parking_Area.vb" />
+    <Compile Include="Entities\Promo.vb" />
     <Compile Include="Entities\User_History.vb" />
     <Compile Include="Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
@@ -114,19 +115,18 @@
     <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Membership.Designer.vb">
-      <DependentUpon>Membership.vb</DependentUpon>
+    <Compile Include="MemberShip\Membership_List.Designer.vb">
+      <DependentUpon>Membership_List.vb</DependentUpon>
     </Compile>
-    <Compile Include="Membership.vb">
+    <Compile Include="MemberShip\Membership_List.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Member_Register.Designer.vb">
+    <Compile Include="MemberShip\Member_Register.Designer.vb">
       <DependentUpon>Member_Register.vb</DependentUpon>
     </Compile>
-    <Compile Include="Member_Register.vb">
+    <Compile Include="MemberShip\Member_Register.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -142,16 +142,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Parking_Add.Designer.vb">
+    <Compile Include="Parking_Function\Parking_Add.Designer.vb">
       <DependentUpon>Parking_Add.vb</DependentUpon>
     </Compile>
-    <Compile Include="Parking_Add.vb">
+    <Compile Include="Parking_Function\Parking_Add.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Parking_List.Designer.vb">
-      <DependentUpon>Parking_List.vb</DependentUpon>
+    <Compile Include="Parking_Function\Park_List.Designer.vb">
+      <DependentUpon>Park_List.vb</DependentUpon>
     </Compile>
-    <Compile Include="Parking_List.vb">
+    <Compile Include="Parking_Function\Park_List.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pop_up\Combobox.Designer.vb">
@@ -166,16 +166,16 @@
     <Compile Include="Pop_up\InputBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pricing.Designer.vb">
+    <Compile Include="Promo\Pricing.Designer.vb">
       <DependentUpon>Pricing.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pricing.vb">
+    <Compile Include="Promo\Pricing.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pricing_Promo.Designer.vb">
+    <Compile Include="Promo\Pricing_Promo.Designer.vb">
       <DependentUpon>Pricing_Promo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pricing_Promo.vb">
+    <Compile Include="Promo\Pricing_Promo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Database\Server.vb" />
@@ -185,40 +185,40 @@
     <Compile Include="Report\Report.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transaction.Designer.vb">
-      <DependentUpon>Transaction.vb</DependentUpon>
+    <Compile Include="Transaction\Transaction_Histroy_List.Designer.vb">
+      <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transaction.vb">
+    <Compile Include="Transaction\Transaction_Histroy_List.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transaction_History.Designer.vb">
-      <DependentUpon>Transaction_History.vb</DependentUpon>
+    <Compile Include="Transaction\Transaction_List.Designer.vb">
+      <DependentUpon>Transaction_List.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transaction_History.vb">
+    <Compile Include="Transaction\Transaction_List.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transaction_Register.Designer.vb">
+    <Compile Include="Transaction\Transaction_Register.Designer.vb">
       <DependentUpon>Transaction_Register.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transaction_Register.vb">
+    <Compile Include="Transaction\Transaction_Register.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_List.Designer.vb">
+    <Compile Include="User\User_List.Designer.vb">
       <DependentUpon>User_List.vb</DependentUpon>
     </Compile>
-    <Compile Include="User_List.vb">
+    <Compile Include="User\User_List.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Log.Designer.vb">
+    <Compile Include="User\User_Log.Designer.vb">
       <DependentUpon>User_Log.vb</DependentUpon>
     </Compile>
-    <Compile Include="User_Log.vb">
+    <Compile Include="User\User_Log.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User_Register.Designer.vb">
+    <Compile Include="User\User_Register.Designer.vb">
       <DependentUpon>User_Register.vb</DependentUpon>
     </Compile>
-    <Compile Include="User_Register.vb">
+    <Compile Include="User\User_Register.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -229,10 +229,10 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Membership.resx">
-      <DependentUpon>Membership.vb</DependentUpon>
+    <EmbeddedResource Include="MemberShip\Membership_List.resx">
+      <DependentUpon>Membership_List.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Member_Register.resx">
+    <EmbeddedResource Include="MemberShip\Member_Register.resx">
       <DependentUpon>Member_Register.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -241,11 +241,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Parking_Add.resx">
+    <EmbeddedResource Include="Parking_Function\Parking_Add.resx">
       <DependentUpon>Parking_Add.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Parking_List.resx">
-      <DependentUpon>Parking_List.vb</DependentUpon>
+    <EmbeddedResource Include="Parking_Function\Park_List.resx">
+      <DependentUpon>Park_List.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pop_up\Combobox.resx">
       <DependentUpon>Combobox.vb</DependentUpon>
@@ -253,32 +253,33 @@
     <EmbeddedResource Include="Pop_up\InputBox.resx">
       <DependentUpon>InputBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pricing.resx">
+    <EmbeddedResource Include="Promo\Pricing.resx">
       <DependentUpon>Pricing.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pricing_Promo.resx">
+    <EmbeddedResource Include="Promo\Pricing_Promo.resx">
       <DependentUpon>Pricing_Promo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction.resx">
-      <DependentUpon>Transaction.vb</DependentUpon>
+    <EmbeddedResource Include="Transaction\Transaction_Histroy_List.resx">
+      <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction_History.resx">
-      <DependentUpon>Transaction_History.vb</DependentUpon>
+    <EmbeddedResource Include="Transaction\Transaction_List.resx">
+      <DependentUpon>Transaction_List.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction_Register.resx">
+    <EmbeddedResource Include="Transaction\Transaction_Register.resx">
       <DependentUpon>Transaction_Register.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_List.resx">
+    <EmbeddedResource Include="User\User_List.resx">
       <DependentUpon>User_List.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Log.resx">
+    <EmbeddedResource Include="User\User_Log.resx">
       <DependentUpon>User_Log.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User_Register.resx">
+    <EmbeddedResource Include="User\User_Register.resx">
       <DependentUpon>User_Register.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -291,9 +292,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EntityFramework\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

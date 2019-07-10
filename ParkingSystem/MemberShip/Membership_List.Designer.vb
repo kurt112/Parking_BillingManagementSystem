@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class _Transaction
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Membership_List
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,115 +20,35 @@ Partial Class _Transaction
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(_Transaction))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Membership_List))
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.BunifuFlatButton1 = New Bunifu.Framework.UI.BunifuFlatButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.Transaction_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Register_Button = New Bunifu.Framework.UI.BunifuFlatButton()
         CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1035, 75)
-        Me.Panel1.TabIndex = 9
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.BunifuFlatButton1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(247, 75)
+        Me.Panel2.Size = New System.Drawing.Size(247, 76)
         Me.Panel2.TabIndex = 3
-        '
-        'BunifuFlatButton1
-        '
-        Me.BunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.BunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.BunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BunifuFlatButton1.BorderRadius = 0
-        Me.BunifuFlatButton1.ButtonText = "Have Transaction"
-        Me.BunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.AppStarting
-        Me.BunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray
-        Me.BunifuFlatButton1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent
-        Me.BunifuFlatButton1.Iconimage = CType(resources.GetObject("BunifuFlatButton1.Iconimage"), System.Drawing.Image)
-        Me.BunifuFlatButton1.Iconimage_right = Nothing
-        Me.BunifuFlatButton1.Iconimage_right_Selected = Nothing
-        Me.BunifuFlatButton1.Iconimage_Selected = Nothing
-        Me.BunifuFlatButton1.IconMarginLeft = 0
-        Me.BunifuFlatButton1.IconMarginRight = 0
-        Me.BunifuFlatButton1.IconRightVisible = True
-        Me.BunifuFlatButton1.IconRightZoom = 0R
-        Me.BunifuFlatButton1.IconVisible = True
-        Me.BunifuFlatButton1.IconZoom = 90.0R
-        Me.BunifuFlatButton1.IsTab = False
-        Me.BunifuFlatButton1.Location = New System.Drawing.Point(8, 14)
-        Me.BunifuFlatButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BunifuFlatButton1.Name = "BunifuFlatButton1"
-        Me.BunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.BunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.BunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.White
-        Me.BunifuFlatButton1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BunifuFlatButton1.selected = False
-        Me.BunifuFlatButton1.Size = New System.Drawing.Size(232, 50)
-        Me.BunifuFlatButton1.TabIndex = 1
-        Me.BunifuFlatButton1.Text = "Have Transaction"
-        Me.BunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BunifuFlatButton1.Textcolor = System.Drawing.Color.White
-        Me.BunifuFlatButton1.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.Search)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(743, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(292, 75)
-        Me.Panel3.TabIndex = 2
-        '
-        'Search
-        '
-        Me.Search.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Search.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Search.ForeColor = System.Drawing.Color.White
-        Me.Search.HintForeColor = System.Drawing.Color.Empty
-        Me.Search.HintText = ""
-        Me.Search.isPassword = False
-        Me.Search.LineFocusedColor = System.Drawing.Color.Gray
-        Me.Search.LineIdleColor = System.Drawing.Color.DimGray
-        Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
-        Me.Search.LineThickness = 4
-        Me.Search.Location = New System.Drawing.Point(6, 26)
-        Me.Search.Margin = New System.Windows.Forms.Padding(6)
-        Me.Search.Name = "Search"
-        Me.Search.Size = New System.Drawing.Size(280, 38)
-        Me.Search.TabIndex = 0
-        Me.Search.Text = "Search Anything"
-        Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
         'Transaction_Table
         '
@@ -167,7 +87,7 @@ Partial Class _Transaction
         Me.Transaction_Table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Transaction_Table.HeaderBgColor = System.Drawing.Color.Black
         Me.Transaction_Table.HeaderForeColor = System.Drawing.Color.White
-        Me.Transaction_Table.Location = New System.Drawing.Point(0, 76)
+        Me.Transaction_Table.Location = New System.Drawing.Point(0, 75)
         Me.Transaction_Table.Margin = New System.Windows.Forms.Padding(10, 3, 3, 3)
         Me.Transaction_Table.Name = "Transaction_Table"
         Me.Transaction_Table.ReadOnly = True
@@ -190,8 +110,8 @@ Partial Class _Transaction
         Me.Transaction_Table.RowTemplate.Height = 40
         Me.Transaction_Table.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.Transaction_Table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Transaction_Table.Size = New System.Drawing.Size(1035, 327)
-        Me.Transaction_Table.TabIndex = 8
+        Me.Transaction_Table.Size = New System.Drawing.Size(961, 359)
+        Me.Transaction_Table.TabIndex = 14
         '
         'DataGridViewTextBoxColumn1
         '
@@ -223,34 +143,88 @@ Partial Class _Transaction
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.ReadOnly = True
         '
-        '_Transaction
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(961, 76)
+        Me.Panel1.TabIndex = 13
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.Register_Button)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel3.Location = New System.Drawing.Point(669, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(292, 76)
+        Me.Panel3.TabIndex = 2
+        '
+        'Register_Button
+        '
+        Me.Register_Button.Activecolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Register_Button.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Register_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Register_Button.BorderRadius = 0
+        Me.Register_Button.ButtonText = "Register"
+        Me.Register_Button.Cursor = System.Windows.Forms.Cursors.AppStarting
+        Me.Register_Button.DisabledColor = System.Drawing.Color.Gray
+        Me.Register_Button.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Register_Button.Iconcolor = System.Drawing.Color.Transparent
+        Me.Register_Button.Iconimage = CType(resources.GetObject("Register_Button.Iconimage"), System.Drawing.Image)
+        Me.Register_Button.Iconimage_right = Nothing
+        Me.Register_Button.Iconimage_right_Selected = Nothing
+        Me.Register_Button.Iconimage_Selected = Nothing
+        Me.Register_Button.IconMarginLeft = 0
+        Me.Register_Button.IconMarginRight = 0
+        Me.Register_Button.IconRightVisible = True
+        Me.Register_Button.IconRightZoom = 0R
+        Me.Register_Button.IconVisible = True
+        Me.Register_Button.IconZoom = 170.0R
+        Me.Register_Button.IsTab = False
+        Me.Register_Button.Location = New System.Drawing.Point(73, 14)
+        Me.Register_Button.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Register_Button.Name = "Register_Button"
+        Me.Register_Button.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Register_Button.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Register_Button.OnHoverTextColor = System.Drawing.Color.White
+        Me.Register_Button.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Register_Button.selected = False
+        Me.Register_Button.Size = New System.Drawing.Size(206, 49)
+        Me.Register_Button.TabIndex = 5
+        Me.Register_Button.Text = "Register"
+        Me.Register_Button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Register_Button.Textcolor = System.Drawing.Color.White
+        Me.Register_Button.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        '
+        'Membership_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(1035, 398)
-        Me.Controls.Add(Me.Panel1)
+        Me.ClientSize = New System.Drawing.Size(961, 433)
         Me.Controls.Add(Me.Transaction_Table)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "_Transaction"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Transaction"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
+        Me.Name = "Membership_List"
+        Me.Text = "Membership_List"
         CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Panel1 As Panel
+
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents BunifuFlatButton1 As Bunifu.Framework.UI.BunifuFlatButton
     Friend WithEvents Transaction_Table As Bunifu.Framework.UI.BunifuCustomDataGrid
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Register_Button As Bunifu.Framework.UI.BunifuFlatButton
 End Class

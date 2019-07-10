@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SQLite
+Imports Bunifu.Framework.UI
 
 Public Class Server
 
@@ -8,6 +9,16 @@ Public Class Server
     Dim fullPath As String = System.IO.Path.Combine(location, fileName)
 
     Public connectionString As String = String.Format("Data Source = {0}", fullPath)
+    Private table As BunifuCustomDataGrid = New Bunifu.Framework.UI.BunifuCustomDataGrid
+
+    Public Property Table1 As BunifuCustomDataGrid
+        Get
+            Return table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            table = value
+        End Set
+    End Property
 
     Dim Create_User_Table_Statement As String = "CREATE TABLE 'USER'(
 	                                          'USER_ID'	TEXT Not NULL UNIQUE,
@@ -33,6 +44,19 @@ Public Class Server
 	                                              'TIME_OUT' TEXT,
 	                                              'SESSION'	 TEXT,
 	                                              'Date'	 TEXT);"
+
+    Dim Create_Promo_Table_Statemet As String = "CREATE TABLE 'PROMO' (
+                                            	'ID'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	                                            'NAME'	TEXT,
+	                                            'DURATION'	TEXT,
+	                                            'DESCRIPTION'	TEXT,
+	                                            'PROMOEND'	TEXT,
+	                                            'PRICE'	TEXT,
+	                                            'STATUS'	TEXT
+                                                );"
+
+
+
 
 
     Private Function duplicateDataBase(fullPath As String) As Boolean
@@ -61,6 +85,7 @@ Public Class Server
             Connection_Query(Create_User_Table_Statement)
             Connection_Query(Create_User_History_Table_Statment)
             Connection_Query(Create_Area_Table_Statement)
+            Connection_Query(Create_Promo_Table_Statemet)
 
         End If
     End Sub
@@ -250,7 +275,6 @@ Public Class Server
 
     'Start of Parking Query'
     '------------------------------------------------------------------------------------------------------------'
-
     Public Function Add_ParkingArea(ByVal parking As Parking_Area) As Boolean
 
         Dim add_query As String = "INSERT INTO PARKING_AREA (PARKING_NAME, PARKING_LEVEL, PARKING_RATE, PARKING_STATUS) VALUES('" + parking.Parking_name1 + "' , '" + parking.Parking_level1 + "' , '" +
@@ -314,11 +338,11 @@ Public Class Server
 
     End Sub
 
-    Public Function Parking_Table(ByVal table1 As Bunifu.Framework.UI.BunifuCustomDataGrid, ByVal text As String) As Boolean
-        table1.Rows.Clear()
+    Public Sub Parking_Table(ByVal text As String)
+        Table1.Rows.Clear()
         Dim query As String
         If Not (text.Equals("")) Then
-            query = "SELECT * FROM PARKING_AREA WHERE PARKING_NAME LIKE '" + text + "%' OR PARKING_LEVEL LIKE '" + text + "%' OR PARKING_RATE LIKE '" + text + "%' OR PARKING_STATUS LIKE'" + text + "%' ORDER BY PARKING_NAME ASC"
+            query = "SELECT * FROM PARKING_AREA WHERE PARKING_NAME LIKE '%" + text + "%' OR PARKING_LEVEL LIKE '%" + text + "%' OR PARKING_RATE LIKE '%" + text + "%' OR PARKING_STATUS LIKE'%" + text + "%' ORDER BY PARKING_NAME ASC"
         Else
             query = "SELECT * FROM PARKING_AREA  ORDER BY PARKING_NAME ASC"
         End If
@@ -339,13 +363,67 @@ Public Class Server
                     Dim parking_rate As String = reader.GetString(3)
                     Dim status As String = reader.GetString(4)
                     'MessageBox.Show(id)
-                    table1.Rows.Add(id, parking_name, parking_level, parking_rate, status)
+                    table.Rows.Add(id, parking_name, parking_level, parking_rate, status)
                 End While
             End Using
             con.Close()
         End Using
-        Return False
-    End Function
-    'End of Parking Query Query'
+    End Sub
+    'End of Parking Query '
     '------------------------------------------------------------------------------------------------------------'
+
+    'Start of Promo Query'
+    '------------------------------------------------------------------------------------------------------------'
+    Public Sub InsertPromo(ByVal promo As Promo)
+        Dim add_query As String = "INSERT INTO PROMO (NAME,DURATION,DESCRIPTION,PROMOEND,PRICE,STATUS) VALUES('" + promo.Name1 + "' , '" + promo.Duration1 + "' , '" +
+             promo.Description1 + "' , '" + promo.Ends1 + "', '" + promo.Price1 + "', 'ACTIVE')"
+
+        Connection_Query(add_query)
+
+        MessageBox.Show("Succesful Added")
+    End Sub
+
+    Public Sub Promo_Table(ByVal text As String)
+
+        Table1.Rows.Clear()
+        Dim query As String
+
+        If Not (text.Equals("")) Then
+            query = "SELECT * FROM PROMO WHERE NAME LIKE '%" + text + "%' OR DURATION LIKE '%" + text + "%' OR DESCRIPTION LIKE '" + text + "%' OR PROMOEND LIKE'" + text + "%' OR PRICE LIKE '%" + text + "%' OR STATUS LIKE '%" + text + "%' ORDER BY NAME ASC"
+        Else
+            query = "SELECT * FROM PROMO  ORDER BY NAME ASC"
+        End If
+        Using con As New SQLiteConnection(connectionString)
+
+            con.Open()
+
+            Using cmd As New SQLiteCommand(query, con)
+
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+
+                While (reader.Read())
+
+                    Dim id As String = reader.GetInt64(0).ToString
+                    Dim name As String = reader.GetString(1)
+                    Dim duration As String = reader.GetString(2)
+                    Dim description As String = reader.GetString(3)
+                    Dim promoend As String = reader.GetString(4)
+                    Dim price As String = reader.GetString(5)
+                    Dim status As String = reader.GetString(6)
+
+                    'MessageBox.Show(id)
+                    table.Rows.Add(id, name, duration, description, promoend, price, status)
+                End While
+            End Using
+            con.Close()
+        End Using
+    End Sub
+
+
+    'End of Promo Query'
+    '------------------------------------------------------------------------------------------------------------'
+
+
+
 End Class

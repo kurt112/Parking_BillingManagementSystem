@@ -177,7 +177,7 @@ Partial Class User_List
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(539, 75)
+        Me.Panel2.Size = New System.Drawing.Size(451, 75)
         Me.Panel2.TabIndex = 3
         '
         'Add_User
@@ -202,7 +202,7 @@ Partial Class User_List
         Me.Add_User.IconVisible = True
         Me.Add_User.IconZoom = 170.0R
         Me.Add_User.IsTab = False
-        Me.Add_User.Location = New System.Drawing.Point(319, 21)
+        Me.Add_User.Location = New System.Drawing.Point(234, 21)
         Me.Add_User.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Add_User.Name = "Add_User"
         Me.Add_User.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -258,9 +258,9 @@ Partial Class User_List
         '
         Me.Panel3.Controls.Add(Me.Search)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(668, 0)
+        Me.Panel3.Location = New System.Drawing.Point(745, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(292, 75)
+        Me.Panel3.Size = New System.Drawing.Size(215, 75)
         Me.Panel3.TabIndex = 2
         '
         'Search
@@ -275,7 +275,7 @@ Partial Class User_List
         Me.Search.LineIdleColor = System.Drawing.Color.DimGray
         Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
         Me.Search.LineThickness = 4
-        Me.Search.Location = New System.Drawing.Point(95, 21)
+        Me.Search.Location = New System.Drawing.Point(21, 21)
         Me.Search.Margin = New System.Windows.Forms.Padding(6)
         Me.Search.Name = "Search"
         Me.Search.Size = New System.Drawing.Size(182, 38)
