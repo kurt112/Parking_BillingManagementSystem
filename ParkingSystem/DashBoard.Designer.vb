@@ -49,18 +49,12 @@ Partial Class Parking
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
-        Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.Users = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.User_Button = New System.Windows.Forms.PictureBox()
         Me.Transaction_History = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Transaction_HistoryButton = New System.Windows.Forms.PictureBox()
-        Me.Membership = New System.Windows.Forms.Panel()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Membership_button = New System.Windows.Forms.PictureBox()
         Me.Promo = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Promo_Button = New System.Windows.Forms.PictureBox()
@@ -72,6 +66,12 @@ Partial Class Parking
         Me.Transaction_Button = New System.Windows.Forms.PictureBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me._Date = New System.Windows.Forms.Label()
+        Me.Membership = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Membership_button = New System.Windows.Forms.PictureBox()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Lost_Receipt = New System.Windows.Forms.PictureBox()
         Me.Panel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -88,14 +88,10 @@ Partial Class Parking
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel13.SuspendLayout()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Users.SuspendLayout()
         CType(Me.User_Button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Transaction_History.SuspendLayout()
         CType(Me.Transaction_HistoryButton, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Membership.SuspendLayout()
-        CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Promo.SuspendLayout()
         CType(Me.Promo_Button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Parking_List.SuspendLayout()
@@ -103,6 +99,10 @@ Partial Class Parking
         Me.Transaction.SuspendLayout()
         CType(Me.Transaction_Button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel5.SuspendLayout()
+        Me.Membership.SuspendLayout()
+        CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel13.SuspendLayout()
+        CType(Me.Lost_Receipt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -317,12 +317,12 @@ Partial Class Parking
         '
         'Panel7
         '
+        Me.Panel7.Controls.Add(Me.Panel13)
+        Me.Panel7.Controls.Add(Me.Membership)
         Me.Panel7.Controls.Add(Me.Panel15)
         Me.Panel7.Controls.Add(Me.Panel14)
-        Me.Panel7.Controls.Add(Me.Panel13)
         Me.Panel7.Controls.Add(Me.Users)
         Me.Panel7.Controls.Add(Me.Transaction_History)
-        Me.Panel7.Controls.Add(Me.Membership)
         Me.Panel7.Controls.Add(Me.Promo)
         Me.Panel7.Controls.Add(Me.Parking_List)
         Me.Panel7.Controls.Add(Me.Transaction)
@@ -333,123 +333,87 @@ Partial Class Parking
         '
         'Panel15
         '
+        Me.Panel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Panel15.Controls.Add(Me.Label12)
         Me.Panel15.Controls.Add(Me.PictureBox10)
-        Me.Panel15.Location = New System.Drawing.Point(187, 172)
+        Me.Panel15.Location = New System.Drawing.Point(95, 180)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(86, 68)
+        Me.Panel15.Size = New System.Drawing.Size(86, 84)
         Me.Panel15.TabIndex = 8
         '
         'Label12
         '
-        Me.Label12.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(0, 56)
+        Me.Label12.Location = New System.Drawing.Point(0, 62)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(86, 12)
+        Me.Label12.Size = New System.Drawing.Size(86, 22)
         Me.Label12.TabIndex = 1
-        Me.Label12.Text = "Transaction"
+        Me.Label12.Text = "Logout"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PictureBox10
         '
         Me.PictureBox10.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox10.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox10.Dock = System.Windows.Forms.DockStyle.Top
         Me.PictureBox10.Image = CType(resources.GetObject("PictureBox10.Image"), System.Drawing.Image)
         Me.PictureBox10.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(86, 53)
+        Me.PictureBox10.Size = New System.Drawing.Size(86, 59)
         Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox10.TabIndex = 0
         Me.PictureBox10.TabStop = False
         '
         'Panel14
         '
+        Me.Panel14.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Panel14.Controls.Add(Me.Label11)
         Me.Panel14.Controls.Add(Me.PictureBox9)
-        Me.Panel14.Location = New System.Drawing.Point(93, 172)
+        Me.Panel14.Location = New System.Drawing.Point(185, 180)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(86, 68)
+        Me.Panel14.Size = New System.Drawing.Size(86, 84)
         Me.Panel14.TabIndex = 7
         '
         'Label11
         '
-        Me.Label11.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label11.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(0, 56)
+        Me.Label11.Location = New System.Drawing.Point(0, 62)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(86, 12)
+        Me.Label11.Size = New System.Drawing.Size(88, 22)
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "Transaction"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PictureBox9
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox9.Dock = System.Windows.Forms.DockStyle.Top
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
         Me.PictureBox9.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(86, 53)
+        Me.PictureBox9.Size = New System.Drawing.Size(86, 59)
         Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox9.TabIndex = 0
         Me.PictureBox9.TabStop = False
         '
-        'Panel13
-        '
-        Me.Panel13.Controls.Add(Me.Label10)
-        Me.Panel13.Controls.Add(Me.PictureBox8)
-        Me.Panel13.Location = New System.Drawing.Point(1, 172)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(86, 68)
-        Me.Panel13.TabIndex = 6
-        '
-        'Label10
-        '
-        Me.Label10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label10.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(0, 56)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(86, 12)
-        Me.Label10.TabIndex = 1
-        Me.Label10.Text = "Transaction"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
-        Me.PictureBox8.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(86, 53)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 0
-        Me.PictureBox8.TabStop = False
-        '
         'Users
         '
+        Me.Users.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Users.Controls.Add(Me.Label9)
         Me.Users.Controls.Add(Me.User_Button)
-        Me.Users.Location = New System.Drawing.Point(187, 82)
+        Me.Users.Location = New System.Drawing.Point(185, 90)
         Me.Users.Name = "Users"
-        Me.Users.Size = New System.Drawing.Size(86, 68)
+        Me.Users.Size = New System.Drawing.Size(86, 84)
         Me.Users.TabIndex = 5
         '
         'Label9
         '
-        Me.Label9.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(0, 56)
+        Me.Label9.Location = New System.Drawing.Point(-1, 63)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(86, 12)
+        Me.Label9.Size = New System.Drawing.Size(86, 21)
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Users"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -458,32 +422,31 @@ Partial Class Parking
         '
         Me.User_Button.BackColor = System.Drawing.Color.Transparent
         Me.User_Button.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.User_Button.Dock = System.Windows.Forms.DockStyle.Top
         Me.User_Button.Image = CType(resources.GetObject("User_Button.Image"), System.Drawing.Image)
         Me.User_Button.Location = New System.Drawing.Point(0, 0)
         Me.User_Button.Name = "User_Button"
-        Me.User_Button.Size = New System.Drawing.Size(86, 53)
+        Me.User_Button.Size = New System.Drawing.Size(86, 60)
         Me.User_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.User_Button.TabIndex = 0
         Me.User_Button.TabStop = False
         '
         'Transaction_History
         '
+        Me.Transaction_History.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Transaction_History.Controls.Add(Me.Label8)
         Me.Transaction_History.Controls.Add(Me.Transaction_HistoryButton)
-        Me.Transaction_History.Location = New System.Drawing.Point(93, 82)
+        Me.Transaction_History.Location = New System.Drawing.Point(95, 90)
         Me.Transaction_History.Name = "Transaction_History"
-        Me.Transaction_History.Size = New System.Drawing.Size(86, 68)
+        Me.Transaction_History.Size = New System.Drawing.Size(86, 84)
         Me.Transaction_History.TabIndex = 4
         '
         'Label8
         '
-        Me.Label8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(0, 56)
+        Me.Label8.Location = New System.Drawing.Point(0, 63)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(86, 12)
+        Me.Label8.Size = New System.Drawing.Size(86, 21)
         Me.Label8.TabIndex = 1
         Me.Label8.Text = "History"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -492,66 +455,31 @@ Partial Class Parking
         '
         Me.Transaction_HistoryButton.BackColor = System.Drawing.Color.Transparent
         Me.Transaction_HistoryButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Transaction_HistoryButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.Transaction_HistoryButton.Image = CType(resources.GetObject("Transaction_HistoryButton.Image"), System.Drawing.Image)
         Me.Transaction_HistoryButton.Location = New System.Drawing.Point(0, 0)
         Me.Transaction_HistoryButton.Name = "Transaction_HistoryButton"
-        Me.Transaction_HistoryButton.Size = New System.Drawing.Size(86, 53)
+        Me.Transaction_HistoryButton.Size = New System.Drawing.Size(86, 60)
         Me.Transaction_HistoryButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Transaction_HistoryButton.TabIndex = 0
         Me.Transaction_HistoryButton.TabStop = False
         '
-        'Membership
-        '
-        Me.Membership.Controls.Add(Me.Label7)
-        Me.Membership.Controls.Add(Me.Membership_button)
-        Me.Membership.Location = New System.Drawing.Point(1, 82)
-        Me.Membership.Name = "Membership"
-        Me.Membership.Size = New System.Drawing.Size(86, 68)
-        Me.Membership.TabIndex = 3
-        '
-        'Label7
-        '
-        Me.Label7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(0, 56)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(86, 12)
-        Me.Label7.TabIndex = 1
-        Me.Label7.Text = "Membership"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Membership_button
-        '
-        Me.Membership_button.BackColor = System.Drawing.Color.Transparent
-        Me.Membership_button.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Membership_button.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Membership_button.Image = CType(resources.GetObject("Membership_button.Image"), System.Drawing.Image)
-        Me.Membership_button.Location = New System.Drawing.Point(0, 0)
-        Me.Membership_button.Name = "Membership_button"
-        Me.Membership_button.Size = New System.Drawing.Size(86, 53)
-        Me.Membership_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Membership_button.TabIndex = 0
-        Me.Membership_button.TabStop = False
-        '
         'Promo
         '
+        Me.Promo.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Promo.Controls.Add(Me.Label6)
         Me.Promo.Controls.Add(Me.Promo_Button)
         Me.Promo.Location = New System.Drawing.Point(185, 0)
         Me.Promo.Name = "Promo"
-        Me.Promo.Size = New System.Drawing.Size(86, 68)
+        Me.Promo.Size = New System.Drawing.Size(86, 84)
         Me.Promo.TabIndex = 2
         '
         'Label6
         '
-        Me.Label6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(0, 56)
+        Me.Label6.Location = New System.Drawing.Point(0, 62)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(86, 12)
+        Me.Label6.Size = New System.Drawing.Size(86, 22)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Promo"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -560,32 +488,31 @@ Partial Class Parking
         '
         Me.Promo_Button.BackColor = System.Drawing.Color.Transparent
         Me.Promo_Button.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Promo_Button.Dock = System.Windows.Forms.DockStyle.Top
         Me.Promo_Button.Image = CType(resources.GetObject("Promo_Button.Image"), System.Drawing.Image)
         Me.Promo_Button.Location = New System.Drawing.Point(0, 0)
         Me.Promo_Button.Name = "Promo_Button"
-        Me.Promo_Button.Size = New System.Drawing.Size(86, 53)
+        Me.Promo_Button.Size = New System.Drawing.Size(86, 60)
         Me.Promo_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Promo_Button.TabIndex = 0
         Me.Promo_Button.TabStop = False
         '
         'Parking_List
         '
+        Me.Parking_List.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Parking_List.Controls.Add(Me.Label3)
         Me.Parking_List.Controls.Add(Me.Parking_List_Button)
-        Me.Parking_List.Location = New System.Drawing.Point(93, 1)
+        Me.Parking_List.Location = New System.Drawing.Point(95, 1)
         Me.Parking_List.Name = "Parking_List"
-        Me.Parking_List.Size = New System.Drawing.Size(86, 67)
+        Me.Parking_List.Size = New System.Drawing.Size(86, 83)
         Me.Parking_List.TabIndex = 1
         '
         'Label3
         '
-        Me.Label3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(0, 55)
+        Me.Label3.Location = New System.Drawing.Point(0, 61)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(86, 12)
+        Me.Label3.Size = New System.Drawing.Size(86, 22)
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Parking List"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -594,45 +521,44 @@ Partial Class Parking
         '
         Me.Parking_List_Button.BackColor = System.Drawing.Color.Transparent
         Me.Parking_List_Button.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Parking_List_Button.Dock = System.Windows.Forms.DockStyle.Top
         Me.Parking_List_Button.Image = CType(resources.GetObject("Parking_List_Button.Image"), System.Drawing.Image)
-        Me.Parking_List_Button.Location = New System.Drawing.Point(0, 0)
+        Me.Parking_List_Button.Location = New System.Drawing.Point(0, -1)
         Me.Parking_List_Button.Name = "Parking_List_Button"
-        Me.Parking_List_Button.Size = New System.Drawing.Size(86, 54)
+        Me.Parking_List_Button.Size = New System.Drawing.Size(86, 61)
         Me.Parking_List_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Parking_List_Button.TabIndex = 0
         Me.Parking_List_Button.TabStop = False
         '
         'Transaction
         '
+        Me.Transaction.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Transaction.Controls.Add(Me.Label2)
         Me.Transaction.Controls.Add(Me.Transaction_Button)
-        Me.Transaction.Location = New System.Drawing.Point(1, 0)
+        Me.Transaction.Location = New System.Drawing.Point(5, 0)
         Me.Transaction.Name = "Transaction"
-        Me.Transaction.Size = New System.Drawing.Size(86, 68)
+        Me.Transaction.Size = New System.Drawing.Size(86, 84)
         Me.Transaction.TabIndex = 0
         '
         'Label2
         '
-        Me.Label2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(0, 56)
+        Me.Label2.Location = New System.Drawing.Point(0, 62)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 12)
+        Me.Label2.Size = New System.Drawing.Size(87, 20)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Transaction"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Transaction_Button
         '
         Me.Transaction_Button.BackColor = System.Drawing.Color.Transparent
         Me.Transaction_Button.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Transaction_Button.Dock = System.Windows.Forms.DockStyle.Top
         Me.Transaction_Button.Image = CType(resources.GetObject("Transaction_Button.Image"), System.Drawing.Image)
         Me.Transaction_Button.Location = New System.Drawing.Point(0, 0)
         Me.Transaction_Button.Name = "Transaction_Button"
-        Me.Transaction_Button.Size = New System.Drawing.Size(86, 53)
+        Me.Transaction_Button.Size = New System.Drawing.Size(86, 61)
         Me.Transaction_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Transaction_Button.TabIndex = 0
         Me.Transaction_Button.TabStop = False
@@ -663,6 +589,72 @@ Partial Class Parking
         Me._Date.Text = "Date"
         Me._Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'Membership
+        '
+        Me.Membership.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Membership.Controls.Add(Me.Label7)
+        Me.Membership.Controls.Add(Me.Membership_button)
+        Me.Membership.Location = New System.Drawing.Point(5, 90)
+        Me.Membership.Name = "Membership"
+        Me.Membership.Size = New System.Drawing.Size(86, 84)
+        Me.Membership.TabIndex = 9
+        '
+        'Label7
+        '
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.Label7.ForeColor = System.Drawing.Color.White
+        Me.Label7.Location = New System.Drawing.Point(-4, 63)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(90, 21)
+        Me.Label7.TabIndex = 1
+        Me.Label7.Text = "Members"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Membership_button
+        '
+        Me.Membership_button.BackColor = System.Drawing.Color.Transparent
+        Me.Membership_button.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Membership_button.Image = CType(resources.GetObject("Membership_button.Image"), System.Drawing.Image)
+        Me.Membership_button.Location = New System.Drawing.Point(0, 0)
+        Me.Membership_button.Name = "Membership_button"
+        Me.Membership_button.Size = New System.Drawing.Size(86, 60)
+        Me.Membership_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Membership_button.TabIndex = 0
+        Me.Membership_button.TabStop = False
+        '
+        'Panel13
+        '
+        Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Panel13.Controls.Add(Me.Label10)
+        Me.Panel13.Controls.Add(Me.Lost_Receipt)
+        Me.Panel13.Location = New System.Drawing.Point(5, 180)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(86, 84)
+        Me.Panel13.TabIndex = 10
+        '
+        'Label10
+        '
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.Label10.ForeColor = System.Drawing.Color.White
+        Me.Label10.Location = New System.Drawing.Point(0, 62)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(86, 22)
+        Me.Label10.TabIndex = 1
+        Me.Label10.Text = "Lost Receipt"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Lost_Receipt
+        '
+        Me.Lost_Receipt.BackColor = System.Drawing.Color.Transparent
+        Me.Lost_Receipt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Lost_Receipt.Image = CType(resources.GetObject("Lost_Receipt.Image"), System.Drawing.Image)
+        Me.Lost_Receipt.Location = New System.Drawing.Point(0, 0)
+        Me.Lost_Receipt.Name = "Lost_Receipt"
+        Me.Lost_Receipt.Size = New System.Drawing.Size(86, 59)
+        Me.Lost_Receipt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Lost_Receipt.TabIndex = 0
+        Me.Lost_Receipt.TabStop = False
+        '
         'Parking
         '
         Me.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar
@@ -692,21 +684,22 @@ Partial Class Parking
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel14.ResumeLayout(False)
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel13.ResumeLayout(False)
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Users.ResumeLayout(False)
         CType(Me.User_Button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Transaction_History.ResumeLayout(False)
         CType(Me.Transaction_HistoryButton, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Membership.ResumeLayout(False)
-        CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Promo.ResumeLayout(False)
         CType(Me.Promo_Button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Parking_List.ResumeLayout(False)
         CType(Me.Parking_List_Button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Transaction.ResumeLayout(False)
+        Me.Transaction.PerformLayout()
         CType(Me.Transaction_Button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel5.ResumeLayout(False)
+        Me.Membership.ResumeLayout(False)
+        CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel13.ResumeLayout(False)
+        CType(Me.Lost_Receipt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -736,18 +729,12 @@ Partial Class Parking
     Friend WithEvents Panel14 As Panel
     Friend WithEvents Label11 As Label
     Friend WithEvents PictureBox9 As PictureBox
-    Friend WithEvents Panel13 As Panel
-    Friend WithEvents Label10 As Label
-    Friend WithEvents PictureBox8 As PictureBox
     Friend WithEvents Users As Panel
     Friend WithEvents Label9 As Label
     Friend WithEvents User_Button As PictureBox
     Friend WithEvents Transaction_History As Panel
     Friend WithEvents Label8 As Label
     Friend WithEvents Transaction_HistoryButton As PictureBox
-    Friend WithEvents Membership As Panel
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Membership_button As PictureBox
     Friend WithEvents x_button As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
@@ -759,4 +746,10 @@ Partial Class Parking
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Lost_Receipt As PictureBox
+    Friend WithEvents Membership As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Membership_button As PictureBox
 End Class

@@ -76,7 +76,7 @@ Public Class Parking
     Private Sub User_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles User_Button.MouseClick
         switchPanel(User_List)
     End Sub
-    Private Sub Membership_button_Click(sender As Object, e As EventArgs) Handles Membership_button.Click
+    Private Sub Membership_button_Click(sender As Object, e As EventArgs)
         switchPanel(Membership_List)
     End Sub
     Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.Click
@@ -105,10 +105,10 @@ Public Class Parking
     Private Sub Promo_Button_Leave(sender As Object, e As EventArgs) Handles Promo_Button.MouseLeave
         Promo.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
-    Private Sub Membership_Button_Hover(sender As Object, e As EventArgs) Handles Membership_button.MouseHover
+    Private Sub Membership_Button_Hover(sender As Object, e As EventArgs)
         Membership.BackColor = Color.FromArgb(64, 64, 64)
     End Sub
-    Private Sub Membership_Button_Leave(sender As Object, e As EventArgs) Handles Membership_button.MouseLeave
+    Private Sub Membership_Button_Leave(sender As Object, e As EventArgs)
         Membership.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
     Private Sub History_Button_Hover(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.MouseHover

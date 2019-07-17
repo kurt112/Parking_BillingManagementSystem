@@ -31,7 +31,6 @@ Public Class Login
             Me.Hide()
             dashboard.Show()
 
-
         Else
 
             MessageBox.Show("No Account Found")

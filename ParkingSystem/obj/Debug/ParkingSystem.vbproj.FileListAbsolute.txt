@@ -33,3 +33,6 @@ C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSy
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_List.resources
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Membership_List.resources
 C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_Histroy_List.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_NonMember.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Transaction_Member.resources
+C:\Users\orioque35\documents\visual studio 2015\Projects\ParkingSystem\ParkingSystem\obj\Debug\ParkingSystem.Register2.resources

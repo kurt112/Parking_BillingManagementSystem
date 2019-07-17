@@ -22,23 +22,27 @@ Partial Class Transaction_List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Transaction_List))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Transaction_List))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.BunifuFlatButton2 = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.Member = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.Transaction_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BunifuFlatButton2 = New Bunifu.Framework.UI.BunifuFlatButton()
+        Me.Transaction_ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Membership_ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.First_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Last_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Middle_Nme = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Car_Brans = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Car = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Plate_Number = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Balance = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -65,6 +69,43 @@ Partial Class Transaction_List
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(507, 75)
         Me.Panel2.TabIndex = 3
+        '
+        'BunifuFlatButton2
+        '
+        Me.BunifuFlatButton2.Activecolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.BunifuFlatButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.BunifuFlatButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BunifuFlatButton2.BorderRadius = 0
+        Me.BunifuFlatButton2.ButtonText = "Non Member"
+        Me.BunifuFlatButton2.Cursor = System.Windows.Forms.Cursors.AppStarting
+        Me.BunifuFlatButton2.DisabledColor = System.Drawing.Color.Gray
+        Me.BunifuFlatButton2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BunifuFlatButton2.Iconcolor = System.Drawing.Color.Transparent
+        Me.BunifuFlatButton2.Iconimage = CType(resources.GetObject("BunifuFlatButton2.Iconimage"), System.Drawing.Image)
+        Me.BunifuFlatButton2.Iconimage_right = Nothing
+        Me.BunifuFlatButton2.Iconimage_right_Selected = Nothing
+        Me.BunifuFlatButton2.Iconimage_Selected = Nothing
+        Me.BunifuFlatButton2.IconMarginLeft = 0
+        Me.BunifuFlatButton2.IconMarginRight = 0
+        Me.BunifuFlatButton2.IconRightVisible = True
+        Me.BunifuFlatButton2.IconRightZoom = 0R
+        Me.BunifuFlatButton2.IconVisible = True
+        Me.BunifuFlatButton2.IconZoom = 90.0R
+        Me.BunifuFlatButton2.IsTab = False
+        Me.BunifuFlatButton2.Location = New System.Drawing.Point(248, 14)
+        Me.BunifuFlatButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BunifuFlatButton2.Name = "BunifuFlatButton2"
+        Me.BunifuFlatButton2.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.BunifuFlatButton2.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.BunifuFlatButton2.OnHoverTextColor = System.Drawing.Color.White
+        Me.BunifuFlatButton2.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BunifuFlatButton2.selected = False
+        Me.BunifuFlatButton2.Size = New System.Drawing.Size(232, 50)
+        Me.BunifuFlatButton2.TabIndex = 2
+        Me.BunifuFlatButton2.Text = "Non Member"
+        Me.BunifuFlatButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BunifuFlatButton2.Textcolor = System.Drawing.Color.White
+        Me.BunifuFlatButton2.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
         '
         'Member
         '
@@ -155,7 +196,7 @@ Partial Class Transaction_List
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Transaction_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.Transaction_Table.ColumnHeadersHeight = 35
-        Me.Transaction_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
+        Me.Transaction_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Transaction_ID, Me.Membership_ID, Me.First_Name, Me.Last_Name, Me.Middle_Nme, Me.Car_Brans, Me.Car, Me.Plate_Number, Me.Balance})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -195,72 +236,59 @@ Partial Class Transaction_List
         Me.Transaction_Table.Size = New System.Drawing.Size(880, 440)
         Me.Transaction_Table.TabIndex = 10
         '
-        'DataGridViewTextBoxColumn1
+        'Transaction_ID
         '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.Transaction_ID.HeaderText = "Transaction ID"
+        Me.Transaction_ID.Name = "Transaction_ID"
+        Me.Transaction_ID.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn2
+        'Membership_ID
         '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.Membership_ID.HeaderText = "Membership_ID"
+        Me.Membership_ID.Name = "Membership_ID"
+        Me.Membership_ID.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn3
+        'First_Name
         '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.First_Name.HeaderText = "First Name"
+        Me.First_Name.Name = "First_Name"
+        Me.First_Name.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn4
+        'Last_Name
         '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.Last_Name.HeaderText = "Last_Name"
+        Me.Last_Name.Name = "Last_Name"
+        Me.Last_Name.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn5
+        'Middle_Nme
         '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Address"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        Me.Middle_Nme.HeaderText = "Middle Name"
+        Me.Middle_Nme.Name = "Middle_Nme"
+        Me.Middle_Nme.ReadOnly = True
         '
-        'BunifuFlatButton2
+        'Car_Brans
         '
-        Me.BunifuFlatButton2.Activecolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.BunifuFlatButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.BunifuFlatButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BunifuFlatButton2.BorderRadius = 0
-        Me.BunifuFlatButton2.ButtonText = "Non Member"
-        Me.BunifuFlatButton2.Cursor = System.Windows.Forms.Cursors.AppStarting
-        Me.BunifuFlatButton2.DisabledColor = System.Drawing.Color.Gray
-        Me.BunifuFlatButton2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BunifuFlatButton2.Iconcolor = System.Drawing.Color.Transparent
-        Me.BunifuFlatButton2.Iconimage = CType(resources.GetObject("BunifuFlatButton2.Iconimage"), System.Drawing.Image)
-        Me.BunifuFlatButton2.Iconimage_right = Nothing
-        Me.BunifuFlatButton2.Iconimage_right_Selected = Nothing
-        Me.BunifuFlatButton2.Iconimage_Selected = Nothing
-        Me.BunifuFlatButton2.IconMarginLeft = 0
-        Me.BunifuFlatButton2.IconMarginRight = 0
-        Me.BunifuFlatButton2.IconRightVisible = True
-        Me.BunifuFlatButton2.IconRightZoom = 0R
-        Me.BunifuFlatButton2.IconVisible = True
-        Me.BunifuFlatButton2.IconZoom = 90.0R
-        Me.BunifuFlatButton2.IsTab = False
-        Me.BunifuFlatButton2.Location = New System.Drawing.Point(248, 14)
-        Me.BunifuFlatButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BunifuFlatButton2.Name = "BunifuFlatButton2"
-        Me.BunifuFlatButton2.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.BunifuFlatButton2.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.BunifuFlatButton2.OnHoverTextColor = System.Drawing.Color.White
-        Me.BunifuFlatButton2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BunifuFlatButton2.selected = False
-        Me.BunifuFlatButton2.Size = New System.Drawing.Size(232, 50)
-        Me.BunifuFlatButton2.TabIndex = 2
-        Me.BunifuFlatButton2.Text = "Non Member"
-        Me.BunifuFlatButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BunifuFlatButton2.Textcolor = System.Drawing.Color.White
-        Me.BunifuFlatButton2.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Car_Brans.HeaderText = "Car_Brand"
+        Me.Car_Brans.Name = "Car_Brans"
+        Me.Car_Brans.ReadOnly = True
+        '
+        'Car
+        '
+        Me.Car.HeaderText = "Model"
+        Me.Car.Name = "Car"
+        Me.Car.ReadOnly = True
+        '
+        'Plate_Number
+        '
+        Me.Plate_Number.HeaderText = "Plate Number"
+        Me.Plate_Number.Name = "Plate_Number"
+        Me.Plate_Number.ReadOnly = True
+        '
+        'Balance
+        '
+        Me.Balance.HeaderText = "Balance"
+        Me.Balance.Name = "Balance"
+        Me.Balance.ReadOnly = True
         '
         'Transaction_List
         '
@@ -286,10 +314,14 @@ Partial Class Transaction_List
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
     Friend WithEvents Transaction_Table As Bunifu.Framework.UI.BunifuCustomDataGrid
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
     Friend WithEvents BunifuFlatButton2 As Bunifu.Framework.UI.BunifuFlatButton
+    Friend WithEvents Transaction_ID As DataGridViewTextBoxColumn
+    Friend WithEvents Membership_ID As DataGridViewTextBoxColumn
+    Friend WithEvents First_Name As DataGridViewTextBoxColumn
+    Friend WithEvents Last_Name As DataGridViewTextBoxColumn
+    Friend WithEvents Middle_Nme As DataGridViewTextBoxColumn
+    Friend WithEvents Car_Brans As DataGridViewTextBoxColumn
+    Friend WithEvents Car As DataGridViewTextBoxColumn
+    Friend WithEvents Plate_Number As DataGridViewTextBoxColumn
+    Friend WithEvents Balance As DataGridViewTextBoxColumn
 End Class

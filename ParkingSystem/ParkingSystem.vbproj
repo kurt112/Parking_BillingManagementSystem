@@ -106,8 +106,15 @@
       <DependentUpon>DashBoard.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Entities\Membership.vb" />
     <Compile Include="Entities\Parking_Area.vb" />
     <Compile Include="Entities\Promo.vb" />
+    <Compile Include="MemberShip\Register2.Designer.vb">
+      <DependentUpon>Register2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MemberShip\Register2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Entities\User_History.vb" />
     <Compile Include="Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
@@ -185,6 +192,18 @@
     <Compile Include="Report\Report.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transaction\Member\Transaction_Member.Designer.vb">
+      <DependentUpon>Transaction_Member.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\Member\Transaction_Member.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\Non Member\Transaction_NonMember.Designer.vb">
+      <DependentUpon>Transaction_NonMember.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction\Non Member\Transaction_NonMember.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transaction\Transaction_Histroy_List.Designer.vb">
       <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>
     </Compile>
@@ -226,6 +245,9 @@
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MemberShip\Register2.resx">
+      <DependentUpon>Register2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Promo\Pricing_Promo.resx">
       <DependentUpon>Pricing_Promo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\Member\Transaction_Member.resx">
+      <DependentUpon>Transaction_Member.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\Non Member\Transaction_NonMember.resx">
+      <DependentUpon>Transaction_NonMember.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Transaction_Histroy_List.resx">
       <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>
