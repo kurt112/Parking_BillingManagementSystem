@@ -142,6 +142,7 @@ Public Class Server
     End Sub
 
 #End Region
+
 #Region "For users Query"
     Public Function Register_User(ByVal Id As String, ByVal first_name As String,
                               ByVal LastName As String, ByVal UserName As String,
@@ -327,47 +328,33 @@ Public Class Server
     '------------------------------------------------------------------------------------------------------------'
 
 #End Region
+
 #Region "For Parking Query"
 
     'Start of Parking Query'
 
+    Public Sub Update_location_Available(name As String, value As String)
+        Dim Update_Location_Status As String = "UPDATE PARKING_AREA SET PARKING_STATUS =  '" + value + "'WHERE PARKING_NAME ='" + name + "'"
 
-    Public Sub Update_location_Available(name As String)
-        Dim Update_Location_Status As String = "UPDATE PARKING_AREA SET PARKING_STATUS = 'Available' WHERE PARKING_NAME ='" + name + "'"
         Connection_Query(Update_Location_Status)
 
     End Sub
 
     Public Function location_price(name As String) As Integer
-
         Dim price As Integer = 0
-
         Dim query As String = "SELECT PARKING_AREA.PARKING_RATE FROM PARKING_AREA where PARKING_NAME = '" + name + "' LIMIT 1"
-
         Using con As New SQLiteConnection(connectionString)
-
             con.Open()
-
             Using cmd As New SQLiteCommand(query, con)
-
                 Dim reader As SQLiteDataReader = cmd.ExecuteReader
-
-
                 While (reader.Read())
-
                     price = CInt(reader.GetString(0))
-
                 End While
             End Using
             con.Close()
         End Using
-        Dim Update_Location_Status As String = "UPDATE PARKING_AREA SET PARKING_STATUS = 'Not Available' WHERE PARKING_NAME ='" + name + "'"
-        Connection_Query(Update_Location_Status)
         Return price
-
-
     End Function
-
     Public Function generate_Location() As String
         Dim location As String = ""
 
@@ -396,7 +383,7 @@ Public Class Server
 
     Public Function Parking_Location() As String
         Dim location As String = ""
-        Dim query As String = "SELECT PARKING_AREA.PARKING_NAME FROM PARKING_AREA  WHERE PARKING_AREA.PARKING_STATUS = 'Available'  ORDER By PARKING_AREA.PARKING_NAME LIMIT 1"
+        Dim query As String = "SELECT PARKING_AREA.PARKING_NAME FROM PARKING_AREA WHERE PARKING_AREA.PARKING_STATUS = 'Available'  ORDER By PARKING_AREA.PARKING_NAME LIMIT 1"
 
         Using con As New SQLiteConnection(connectionString)
 
@@ -518,10 +505,32 @@ Public Class Server
     '------------------------------------------------------------------------------------------------------------'
 
 #End Region
-     
+
 #Region "Promo Query"
     'Start of Promo Query'
     '------------------------------------------------------------------------------------------------------------'
+    Public Function Promo_ends(ByVal name As String) As Integer
+        Dim query_duration As String = "SELECT PROMO.DURATION FROM PROMO WHERE NAME = '" + name + "'"
+        Dim value As Integer = 0
+        Using con As New SQLiteConnection(connectionString)
+
+            con.Open()
+
+            Using cmd As New SQLiteCommand(query_duration, con)
+
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+                While (reader.Read())
+
+                    value = CInt(reader.GetString(0))
+
+                End While
+            End Using
+            con.Close()
+        End Using
+        Return value
+    End Function
+
     Public Sub InsertPromo(ByVal promo As Promo)
         Dim add_query As String = "INSERT INTO PROMO (NAME,DURATION,DESCRIPTION,PROMOEND,PRICE,STATUS) VALUES('" + promo.Name1 + "' , '" + promo.Duration1 + "' , '" +
              promo.Description1 + "' , '" + promo.Ends1 + "', '" + promo.Price1 + "', 'ACTIVE')"
@@ -570,7 +579,7 @@ Public Class Server
 
     Public Sub Promo_Combobox(ByVal combobox As Bunifu.Framework.UI.BunifuDropdown)
         combobox.Clear()
-        Dim query As String = "SELECT * FROM PROMO  ORDER BY NAME ASC"
+        Dim query As String = "SELECT * FROM PROMO WHERE STATUS = 'ACTIVE'"
 
         Using con As New SQLiteConnection(connectionString)
 
@@ -825,16 +834,12 @@ Public Class Server
 
 #Region "Promo History Query"
 
-    Public Sub Promo_history()
-
-    End Sub
-
 
     Public Function location_history(ByVal id As String) As String
 
         Dim location As String = ""
 
-        Dim query As String = "Select PROMO_HISTORY.LOCATION FROM PROMO_HISTORY WHERE PROMO_ACTIVE = 'ACTIVE' AND PROMO_HISTORY.MEMBER_ID = '" + id + "' LIMIT 1 "
+        Dim query As String = "Select PROMO_HISTORY.LOCATION FROM PROMO_HISTORY WHERE PROMO_ACTIVE = 'Active' AND PROMO_HISTORY.MEMBER_ID = '" + id + "' LIMIT 1 "
 
         Using con As New SQLiteConnection(connectionString)
 
@@ -846,7 +851,7 @@ Public Class Server
 
                 While (reader.Read())
 
-                    location = CInt(reader.GetString(0))
+                    location = (reader.GetString(0))
 
                 End While
             End Using
@@ -855,7 +860,19 @@ Public Class Server
         Return location
     End Function
 
+    Public Sub Insert_History_Promo(ByVal promo As Promo_History)
+        Try
 
+            Dim query_insert As String = "INSERT INTO PROMO_HISTORY(MEMBER_ID, PROMO_NAME, LOCATION, PROMO_REGISTERED, PROMO_ENDS, PROMO_ACTIVE) VALUES('" + promo.Member_id1.ToString + "', '" +
+            promo.Promo_name1.ToString + "', '" + promo.Location1.ToString + "', '" + promo.Promo_registered_date1.ToString + "', '" +
+            promo.Promo_ends1.ToString + "', '" + promo.Promo_active1.ToString + "')"
+
+            Connection_Query(query_insert)
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
 #End Region
 
 End Class

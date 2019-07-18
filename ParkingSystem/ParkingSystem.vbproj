@@ -109,6 +109,7 @@
     <Compile Include="Entities\Membership.vb" />
     <Compile Include="Entities\Parking_Area.vb" />
     <Compile Include="Entities\Promo.vb" />
+    <Compile Include="Entities\Promo_History.vb" />
     <Compile Include="MemberShip\Register2.Designer.vb">
       <DependentUpon>Register2.vb</DependentUpon>
     </Compile>
