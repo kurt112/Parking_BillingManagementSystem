@@ -24,10 +24,7 @@ Public Class Login
         If (database.User_Login(username.Text, password.Text, Me) = True) Then
             Dim dashboard As Parking = New Parking()
             dashboard.single_user = user
-
-            MessageBox.Show(user.Username1)
-            MessageBox.Show(user.Time_in1)
-            MessageBox.Show(user.Time_out1)
+            'Me.Opacity = 0
             Me.Hide()
             dashboard.Show()
 
@@ -38,6 +35,10 @@ Public Class Login
         End If
 
 
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
 
     End Sub
 End Class

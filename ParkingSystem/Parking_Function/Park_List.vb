@@ -27,8 +27,7 @@
 
     Private Sub Set_Parkingtable()
         Dim database As Server = New Server
-        database.Table1 = Parking_Area_Table
-        database.Parking_Table(Search.Text)
+        database.Parking_Table(Search.Text, Parking_Area_Table)
     End Sub
     'Simpy set the nod
     Private Sub Parking_List_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -45,8 +44,10 @@
 
     End Sub
 
+    Private Sub Add_Parking_Click_1(sender As Object, e As EventArgs) Handles Add_Parking.Click
+        Dim parking_add_ As Parking_Add = New Parking_Add
+        parking_add_.My_Table = Parking_Area_Table
+        parking_add_.ShowDialog()
 
-
-    ' I have hidden button on the lower left of the sort method
-
+    End Sub
 End Class

@@ -24,13 +24,13 @@ Partial Class Parking_Add
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Parking_Add))
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.parking_level = New System.Windows.Forms.Panel()
-        Me.parking_fee = New System.Windows.Forms.Panel()
         Me.Register_Button = New System.Windows.Forms.Button()
         Me.Exit_Button = New System.Windows.Forms.Button()
         Me.parking_fee_button = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.parking_level_button = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.Parking_name = New Bunifu.Framework.UI.BunifuMaterialTextbox()
+        Me.parking_fee = New System.Windows.Forms.Panel()
+        Me.parking_level = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -48,24 +48,6 @@ Partial Class Parking_Add
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(400, 318)
         Me.Panel1.TabIndex = 7
-        '
-        'parking_level
-        '
-        Me.parking_level.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
-        Me.parking_level.Location = New System.Drawing.Point(15, 103)
-        Me.parking_level.Name = "parking_level"
-        Me.parking_level.Size = New System.Drawing.Size(370, 135)
-        Me.parking_level.TabIndex = 19
-        Me.parking_level.Visible = False
-        '
-        'parking_fee
-        '
-        Me.parking_fee.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
-        Me.parking_fee.Location = New System.Drawing.Point(15, 163)
-        Me.parking_fee.Name = "parking_fee"
-        Me.parking_fee.Size = New System.Drawing.Size(370, 135)
-        Me.parking_fee.TabIndex = 18
-        Me.parking_fee.Visible = False
         '
         'Register_Button
         '
@@ -185,6 +167,24 @@ Partial Class Parking_Add
         Me.Parking_name.TabIndex = 0
         Me.Parking_name.Text = "Parking Name"
         Me.Parking_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        '
+        'parking_fee
+        '
+        Me.parking_fee.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.parking_fee.Location = New System.Drawing.Point(15, 163)
+        Me.parking_fee.Name = "parking_fee"
+        Me.parking_fee.Size = New System.Drawing.Size(370, 135)
+        Me.parking_fee.TabIndex = 18
+        Me.parking_fee.Visible = False
+        '
+        'parking_level
+        '
+        Me.parking_level.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.parking_level.Location = New System.Drawing.Point(15, 103)
+        Me.parking_level.Name = "parking_level"
+        Me.parking_level.Size = New System.Drawing.Size(370, 135)
+        Me.parking_level.TabIndex = 19
+        Me.parking_level.Visible = False
         '
         'Parking_Add
         '

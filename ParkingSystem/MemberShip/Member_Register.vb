@@ -1,5 +1,8 @@
 ﻿Public Class Member_Register
-    Private user As String
+    Private user As String = "asfa"
+    Private database As Server = New Server
+    Dim strFileName As String = ""
+
 
     Public Property User1 As String
         Get
@@ -11,18 +14,67 @@
     End Property
 
     Private Sub Register_Button_Click(sender As Object, e As EventArgs) Handles Register_Button.Click
-        Dim database As Server = New Server
-        '   Dim number As Integer = CInt(member_id.Text)
-        Dim number As Integer = 1
 
-        Dim member As Membership = New Membership(123123123, "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd",
-                                                  "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd", "dsfasd", "")
-        database.Membership_Register(member)
-        ' database.Membership_Register(New Membership(number, first_name.Text, last_name.Text, email_address.Text,
-        'cellphone_number.Text, Telephone_Number.Text, date_of_birth.Value.ToString, Place_of_Birth.Text,
-        'person_to_contact.Text, Person_to_contact_number.Text, "", initial_amount.Text, "0", "0", "Nan", "Nan", user, Date.Now.ToString("MM/dd/yyyy"), initial_amount.Text))
+        ' Dim member As Membership =
 
+        Try
 
+            If (member_id.Text.Length >= 10) Then
+                Try
+                    If Not (first_name.Text.Length = 0) Then
+                        Try
+                            If Not (last_name.Text.Length = 0) Then
+                                Try
+                                    If (email_address.Text.Contains("@")) Then
+                                        Try
+                                            If (cellphone_number.Text.Length >= 10) Then
+                                                Try
+                                                    If (Telephone_Number.Text >= 7 Or Telephone_Number.Text = "Nan") Then
+                                                        Dim points As Integer = CInt(initial_amount.Text) / 50
+                                                        database.Membership_Register(New Membership(member_id.Text, first_name.Text, last_name.Text, email_address.Text,
+                                                    cellphone_number.Text, Telephone_Number.Text, date_of_birth.Value.ToString("MM/dd/yyyy"), initial_amount.Text,
+                                                    "0", points.ToString, "", "", user, Date.Now.ToString("MM/dd/yyyy"), initial_amount.Text, "Not Activate", Place_of_Birth.Text,
+                                                    person_to_contact.Text, Person_to_contact_number.Text, strFileName, "INACTIVE"))
+
+                                                    Else
+                                                        Throw New Exception
+                                                    End If
+                                                Catch ex As Exception
+                                                    MessageBox.Show("Not a valid TelephoneNumber")
+                                                End Try
+                                            Else
+                                                Throw New Exception
+                                            End If
+
+                                        Catch ex As Exception
+                                            MessageBox.Show("Not a valid Cellphone number")
+                                        End Try
+                                    Else
+                                        Throw New Exception
+                                    End If
+
+                                Catch ex As Exception
+                                    MessageBox.Show("Not a valid Email`")
+                                End Try
+                            Else
+                                Throw New Exception
+                            End If
+                        Catch ex As Exception
+                            MessageBox.Show("Last Name is empty")
+                        End Try
+                    Else
+                        Throw New Exception
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("First name is empty")
+                End Try
+            Else
+                Throw New Exception
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Member id should have greater than 10 numbers")
+        End Try
 
     End Sub
     Private Sub Exit_Button_Click(sender As Object, e As EventArgs)
@@ -64,7 +116,7 @@
 
 
     Private Sub person_to_contact_TextChanged(sender As Object, e As EventArgs) Handles person_to_contact.TextChanged
-        If (Person_to_contact_number.Text = "") Then
+        If (person_to_contact.Text = "") Then
             label_show(person_contact_empty)
         Else
             label_hide(person_contact_empty)
@@ -110,4 +162,24 @@
         text.Visible = False
     End Sub
 
+    Private Sub Upload_Button_Click(sender As Object, e As EventArgs) Handles Upload_Button.Click
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+
+        fd.Title = "Open File Dialog"
+        fd.InitialDirectory = "C:\Users\orioque35\Pictures"
+        '"All files (*.*)|*.*|All files (*.*)|*.*"
+        fd.Filter = "Pictures (*.jpg *.jpeg *.png *.gif)| *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+
+        If (fd.ShowDialog = DialogResult.OK) Then
+            strFileName = fd.FileName
+            photo.Image = Image.FromFile(fd.FileName)
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+    End Sub
 End Class

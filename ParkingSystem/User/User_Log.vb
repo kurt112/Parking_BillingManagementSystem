@@ -10,7 +10,4 @@
         database.User_History_Table(UserLogs_Table, Search.Text)
     End Sub
 
-    Private Sub x_button_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
 End Class

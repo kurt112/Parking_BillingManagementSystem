@@ -38,8 +38,8 @@ Public Class Pricing_Promo
                                         database.InsertPromo(New Promo(1, Promo_Name.Text, Promo_Hours_int.ToString,
                                                                        Promo_Description.Text, promo_ends.Value.ToString("dd'/'MM'/'yyyy"),
                                                                        PromoPrice.Text, "Active"))
-                                        database.Table1 = table
-                                        database.Promo_Table("")
+
+                                        database.Promo_Table("", table)
                                     Catch ex As Exception
                                         MessageBox.Show("Price should number")
                                     End Try

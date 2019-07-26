@@ -104,7 +104,7 @@ Public Class InputBox
 
     Private Sub Ok_button_Click(sender As Object, e As EventArgs) Handles Ok_button.Click
         If (Top_Up = True) Then
-
+            Dim total As Integer = CInt(value) + CInt(value_text.Text)
             Database.Update_Amount(value_text, member, Update_TextBox, Points, total_spend)
             Me.Close()
 

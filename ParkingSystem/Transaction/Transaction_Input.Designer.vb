@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Register2
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Transaction_Input
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,8 +20,9 @@ Partial Class Register2
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Transaction_Input))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.register_promo_button = New System.Windows.Forms.Button()
         Me.Park = New System.Windows.Forms.Button()
@@ -44,6 +45,7 @@ Partial Class Register2
         Me.member_id = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.x_button = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.promo_value = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -68,6 +70,7 @@ Partial Class Register2
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.x_button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -83,8 +86,8 @@ Partial Class Register2
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1194, 537)
-        Me.Panel2.TabIndex = 12
+        Me.Panel2.Size = New System.Drawing.Size(625, 540)
+        Me.Panel2.TabIndex = 13
         '
         'register_promo_button
         '
@@ -107,7 +110,7 @@ Partial Class Register2
         Me.Park.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Park.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Park.ForeColor = System.Drawing.Color.White
-        Me.Park.Location = New System.Drawing.Point(540, 494)
+        Me.Park.Location = New System.Drawing.Point(519, 499)
         Me.Park.Name = "Park"
         Me.Park.Size = New System.Drawing.Size(90, 31)
         Me.Park.TabIndex = 41
@@ -313,7 +316,7 @@ Partial Class Register2
         Me.Panel4.Controls.Add(Me.Label1)
         Me.Panel4.Location = New System.Drawing.Point(10, 12)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(620, 78)
+        Me.Panel4.Size = New System.Drawing.Size(599, 78)
         Me.Panel4.TabIndex = 36
         '
         'member_id
@@ -342,15 +345,26 @@ Partial Class Register2
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.x_button)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Top_Up)
         Me.Panel1.Controls.Add(Me.initial_amount)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel1.Location = New System.Drawing.Point(639, 0)
+        Me.Panel1.Location = New System.Drawing.Point(623, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(397, 537)
-        Me.Panel1.TabIndex = 36
+        Me.Panel1.Size = New System.Drawing.Size(397, 540)
+        Me.Panel1.TabIndex = 43
+        '
+        'x_button
+        '
+        Me.x_button.Image = CType(resources.GetObject("x_button.Image"), System.Drawing.Image)
+        Me.x_button.Location = New System.Drawing.Point(359, 6)
+        Me.x_button.Name = "x_button"
+        Me.x_button.Size = New System.Drawing.Size(31, 28)
+        Me.x_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.x_button.TabIndex = 33
+        Me.x_button.TabStop = False
         '
         'Panel3
         '
@@ -606,17 +620,17 @@ Partial Class Register2
         Me.Label8.TabIndex = 29
         Me.Label8.Text = "Initial Amount"
         '
-        'Register2
+        'Transaction_Input
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1036, 537)
+        Me.ClientSize = New System.Drawing.Size(1020, 540)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "Register2"
+        Me.Name = "Transaction_Input"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = " "
+        Me.Text = "Transaction_Input"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel5.ResumeLayout(False)
@@ -625,6 +639,7 @@ Partial Class Register2
         Me.Panel4.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.x_button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
@@ -632,14 +647,31 @@ Partial Class Register2
     End Sub
 
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents register_promo_button As Button
+    Friend WithEvents Park As Button
+    Friend WithEvents Promo As Bunifu.Framework.UI.BunifuDropdown
+    Friend WithEvents Register_Promo As Label
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents parking_location As TextBox
+    Friend WithEvents Telephone As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents cellphone As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents email As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents last_name As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents firstname As TextBox
+    Friend WithEvents Label2 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents member_id As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Panel5 As Panel
-    Friend WithEvents firstname As TextBox
-    Friend WithEvents Label2 As Label
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents x_button As PictureBox
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents promo_value As Label
+    Friend WithEvents Label11 As Label
     Friend WithEvents date_registered_value As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents total_spend As Label
@@ -657,20 +689,4 @@ Partial Class Register2
     Friend WithEvents Top_Up As Button
     Friend WithEvents initial_amount As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents cellphone As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents email As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents last_name As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Telephone As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents parking_location As TextBox
-    Friend WithEvents Promo As Bunifu.Framework.UI.BunifuDropdown
-    Friend WithEvents Register_Promo As Label
-    Friend WithEvents Park As Button
-    Friend WithEvents register_promo_button As Button
-    Friend WithEvents promo_value As Label
-    Friend WithEvents Label11 As Label
 End Class

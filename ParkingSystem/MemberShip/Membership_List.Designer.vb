@@ -22,126 +22,151 @@ Partial Class Membership_List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Membership_List))
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Transaction_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
+        Me.Member_table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.firstname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lastname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.emailaddress = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cellphone_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lastparking = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.promo_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.status_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Register_Button = New Bunifu.Framework.UI.BunifuFlatButton()
-        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
+        Me.Panel2.SuspendLayout()
+        CType(Me.Member_table, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.Register_Button)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(247, 76)
         Me.Panel2.TabIndex = 3
         '
-        'Transaction_Table
+        'Member_table
         '
-        Me.Transaction_Table.AllowUserToAddRows = False
-        Me.Transaction_Table.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.Transaction_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.Transaction_Table.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.Member_table.AllowUserToAddRows = False
+        Me.Member_table.AllowUserToDeleteRows = False
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        Me.Member_table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.Member_table.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Transaction_Table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.Transaction_Table.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
-        Me.Transaction_Table.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.Transaction_Table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.Transaction_Table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Transaction_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.Transaction_Table.ColumnHeadersHeight = 35
-        Me.Transaction_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Transaction_Table.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Transaction_Table.DoubleBuffered = True
-        Me.Transaction_Table.EnableHeadersVisualStyles = False
-        Me.Transaction_Table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Transaction_Table.HeaderBgColor = System.Drawing.Color.Black
-        Me.Transaction_Table.HeaderForeColor = System.Drawing.Color.White
-        Me.Transaction_Table.Location = New System.Drawing.Point(0, 75)
-        Me.Transaction_Table.Margin = New System.Windows.Forms.Padding(10, 3, 3, 3)
-        Me.Transaction_Table.Name = "Transaction_Table"
-        Me.Transaction_Table.ReadOnly = True
-        Me.Transaction_Table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Transaction_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.Transaction_Table.RowHeadersVisible = False
-        Me.Transaction_Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.Transaction_Table.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
-        Me.Transaction_Table.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Transaction_Table.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White
-        Me.Transaction_Table.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
-        Me.Transaction_Table.RowTemplate.DividerHeight = 1
-        Me.Transaction_Table.RowTemplate.Height = 40
-        Me.Transaction_Table.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Transaction_Table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Transaction_Table.Size = New System.Drawing.Size(961, 359)
-        Me.Transaction_Table.TabIndex = 14
+        Me.Member_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Member_table.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.Member_table.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Member_table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.Member_table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Member_table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.Member_table.ColumnHeadersHeight = 35
+        Me.Member_table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.firstname, Me.lastname, Me.emailaddress, Me.cellphone_, Me.lastparking, Me.promo_, Me.status_})
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Member_table.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Member_table.DoubleBuffered = True
+        Me.Member_table.EnableHeadersVisualStyles = False
+        Me.Member_table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Member_table.HeaderBgColor = System.Drawing.Color.Black
+        Me.Member_table.HeaderForeColor = System.Drawing.Color.White
+        Me.Member_table.Location = New System.Drawing.Point(0, 75)
+        Me.Member_table.Margin = New System.Windows.Forms.Padding(10, 3, 3, 3)
+        Me.Member_table.Name = "Member_table"
+        Me.Member_table.ReadOnly = True
+        Me.Member_table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Member_table.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        Me.Member_table.RowHeadersVisible = False
+        Me.Member_table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.Member_table.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.Member_table.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Member_table.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.Member_table.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
+        Me.Member_table.RowTemplate.DividerHeight = 1
+        Me.Member_table.RowTemplate.Height = 40
+        Me.Member_table.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Member_table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.Member_table.Size = New System.Drawing.Size(961, 359)
+        Me.Member_table.TabIndex = 14
         '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Visible = False
         '
-        'DataGridViewTextBoxColumn2
+        'firstname
         '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.firstname.HeaderText = "First Name"
+        Me.firstname.Name = "firstname"
+        Me.firstname.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn3
+        'lastname
         '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.lastname.HeaderText = "Last Name"
+        Me.lastname.Name = "lastname"
+        Me.lastname.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn4
+        'emailaddress
         '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.emailaddress.HeaderText = "Email Address"
+        Me.emailaddress.Name = "emailaddress"
+        Me.emailaddress.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn5
+        'cellphone_
         '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Address"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        Me.cellphone_.HeaderText = "Cellphone"
+        Me.cellphone_.Name = "cellphone_"
+        Me.cellphone_.ReadOnly = True
+        '
+        'lastparking
+        '
+        Me.lastparking.HeaderText = "Last Parking"
+        Me.lastparking.Name = "lastparking"
+        Me.lastparking.ReadOnly = True
+        '
+        'promo_
+        '
+        Me.promo_.HeaderText = "Promo"
+        Me.promo_.Name = "promo_"
+        Me.promo_.ReadOnly = True
+        '
+        'status_
+        '
+        Me.status_.HeaderText = "Status"
+        Me.status_.Name = "status_"
+        Me.status_.ReadOnly = True
         '
         'Panel1
         '
@@ -156,7 +181,7 @@ Partial Class Membership_List
         '
         'Panel3
         '
-        Me.Panel3.Controls.Add(Me.Register_Button)
+        Me.Panel3.Controls.Add(Me.Search)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel3.Location = New System.Drawing.Point(669, 0)
         Me.Panel3.Name = "Panel3"
@@ -185,7 +210,7 @@ Partial Class Membership_List
         Me.Register_Button.IconVisible = True
         Me.Register_Button.IconZoom = 170.0R
         Me.Register_Button.IsTab = False
-        Me.Register_Button.Location = New System.Drawing.Point(73, 14)
+        Me.Register_Button.Location = New System.Drawing.Point(13, 18)
         Me.Register_Button.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Register_Button.Name = "Register_Button"
         Me.Register_Button.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -200,17 +225,39 @@ Partial Class Membership_List
         Me.Register_Button.Textcolor = System.Drawing.Color.White
         Me.Register_Button.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
+        'Search
+        '
+        Me.Search.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Search.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Search.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.Search.ForeColor = System.Drawing.Color.White
+        Me.Search.HintForeColor = System.Drawing.Color.Empty
+        Me.Search.HintText = ""
+        Me.Search.isPassword = False
+        Me.Search.LineFocusedColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.Search.LineIdleColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
+        Me.Search.LineThickness = 1
+        Me.Search.Location = New System.Drawing.Point(74, 29)
+        Me.Search.Margin = New System.Windows.Forms.Padding(6)
+        Me.Search.Name = "Search"
+        Me.Search.Size = New System.Drawing.Size(203, 38)
+        Me.Search.TabIndex = 7
+        Me.Search.Text = "Available"
+        Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        '
         'Membership_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 433)
-        Me.Controls.Add(Me.Transaction_Table)
+        Me.Controls.Add(Me.Member_table)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Membership_List"
         Me.Text = "Membership_List"
-        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        CType(Me.Member_table, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -218,13 +265,17 @@ Partial Class Membership_List
     End Sub
 
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Transaction_Table As Bunifu.Framework.UI.BunifuCustomDataGrid
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents Member_table As Bunifu.Framework.UI.BunifuCustomDataGrid
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Register_Button As Bunifu.Framework.UI.BunifuFlatButton
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents firstname As DataGridViewTextBoxColumn
+    Friend WithEvents lastname As DataGridViewTextBoxColumn
+    Friend WithEvents emailaddress As DataGridViewTextBoxColumn
+    Friend WithEvents cellphone_ As DataGridViewTextBoxColumn
+    Friend WithEvents lastparking As DataGridViewTextBoxColumn
+    Friend WithEvents promo_ As DataGridViewTextBoxColumn
+    Friend WithEvents status_ As DataGridViewTextBoxColumn
+    Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
 End Class

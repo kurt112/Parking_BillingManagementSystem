@@ -65,7 +65,7 @@ Partial Class Member_Register
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Person_to_contact_number = New System.Windows.Forms.TextBox()
         Me.photo = New System.Windows.Forms.PictureBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Upload_Button = New System.Windows.Forms.Button()
         Me.member_id_alert = New System.Windows.Forms.Label()
         Me.first_name_alert = New System.Windows.Forms.Label()
         Me.last_name_alert = New System.Windows.Forms.Label()
@@ -592,19 +592,19 @@ Partial Class Member_Register
         Me.photo.TabIndex = 44
         Me.photo.TabStop = False
         '
-        'Button3
+        'Upload_Button
         '
-        Me.Button3.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(564, 95)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(90, 31)
-        Me.Button3.TabIndex = 45
-        Me.Button3.Text = "Upload"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.Upload_Button.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.Upload_Button.FlatAppearance.BorderSize = 0
+        Me.Upload_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Upload_Button.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Upload_Button.ForeColor = System.Drawing.Color.White
+        Me.Upload_Button.Location = New System.Drawing.Point(564, 95)
+        Me.Upload_Button.Name = "Upload_Button"
+        Me.Upload_Button.Size = New System.Drawing.Size(90, 31)
+        Me.Upload_Button.TabIndex = 45
+        Me.Upload_Button.Text = "Upload"
+        Me.Upload_Button.UseVisualStyleBackColor = False
         '
         'member_id_alert
         '
@@ -726,7 +726,7 @@ Partial Class Member_Register
         Me.Panel2.Controls.Add(Me.last_name_alert)
         Me.Panel2.Controls.Add(Me.first_name_alert)
         Me.Panel2.Controls.Add(Me.member_id_alert)
-        Me.Panel2.Controls.Add(Me.Button3)
+        Me.Panel2.Controls.Add(Me.Upload_Button)
         Me.Panel2.Controls.Add(Me.photo)
         Me.Panel2.Controls.Add(Me.Person_to_contact_number)
         Me.Panel2.Controls.Add(Me.Label25)
@@ -820,7 +820,7 @@ Partial Class Member_Register
     Friend WithEvents Label25 As Label
     Friend WithEvents Person_to_contact_number As TextBox
     Friend WithEvents photo As PictureBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents Upload_Button As Button
     Friend WithEvents member_id_alert As Label
     Friend WithEvents first_name_alert As Label
     Friend WithEvents last_name_alert As Label

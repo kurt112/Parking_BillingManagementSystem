@@ -148,19 +148,19 @@ Public Class Parking_Add
     End Sub
 
     Private Sub Register_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Register_Button.MouseClick
+
         Try
 
             If (button_fee.Text = "Parking Fee") Then
                 Throw New Exception
             Else
                 Try
-
                     If (button_level.Text = "Parking Level") Then
                         Throw New Exception
                     Else
                         '  Dim parking As Parking_Area =
                         database.Add_ParkingArea(New Parking_Area("12312", Parking_name.Text, button_level.Text, button_fee.Text, "Available"))
-                        database.Parking_Table("")
+                        database.Parking_Table("", table)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("Invalid Value")

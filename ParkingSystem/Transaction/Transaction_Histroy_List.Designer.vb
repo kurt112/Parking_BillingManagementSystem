@@ -26,22 +26,116 @@ Partial Class Transaction_Histroy_List
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.Transaction_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.BunifuDatepicker1 = New Bunifu.Framework.UI.BunifuDatepicker()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
-        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.BunifuDatepicker1 = New Bunifu.Framework.UI.BunifuDatepicker()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Transaction_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.Panel3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.Search)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel3.Location = New System.Drawing.Point(533, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(292, 75)
+        Me.Panel3.TabIndex = 2
+        '
+        'Search
+        '
+        Me.Search.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Search.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.Search.ForeColor = System.Drawing.Color.White
+        Me.Search.HintForeColor = System.Drawing.Color.Empty
+        Me.Search.HintText = ""
+        Me.Search.isPassword = False
+        Me.Search.LineFocusedColor = System.Drawing.Color.Gray
+        Me.Search.LineIdleColor = System.Drawing.Color.DimGray
+        Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
+        Me.Search.LineThickness = 4
+        Me.Search.Location = New System.Drawing.Point(87, 26)
+        Me.Search.Margin = New System.Windows.Forms.Padding(6)
+        Me.Search.Name = "Search"
+        Me.Search.Size = New System.Drawing.Size(199, 38)
+        Me.Search.TabIndex = 0
+        Me.Search.Text = "Search Anything"
+        Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.BunifuDatepicker1)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(312, 75)
+        Me.Panel2.TabIndex = 3
+        '
+        'BunifuDatepicker1
+        '
+        Me.BunifuDatepicker1.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.BunifuDatepicker1.BorderRadius = 0
+        Me.BunifuDatepicker1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BunifuDatepicker1.ForeColor = System.Drawing.Color.White
+        Me.BunifuDatepicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.BunifuDatepicker1.FormatCustom = Nothing
+        Me.BunifuDatepicker1.Location = New System.Drawing.Point(12, 21)
+        Me.BunifuDatepicker1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BunifuDatepicker1.Name = "BunifuDatepicker1"
+        Me.BunifuDatepicker1.Size = New System.Drawing.Size(215, 43)
+        Me.BunifuDatepicker1.TabIndex = 0
+        Me.BunifuDatepicker1.Value = New Date(2019, 6, 23, 0, 48, 3, 835)
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(825, 75)
+        Me.Panel1.TabIndex = 12
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Address"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Age"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Age"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
         '
         'Transaction_Table
         '
@@ -106,100 +200,6 @@ Partial Class Transaction_Histroy_List
         Me.Transaction_Table.Size = New System.Drawing.Size(825, 381)
         Me.Transaction_Table.TabIndex = 13
         '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Age"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Address"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(825, 75)
-        Me.Panel1.TabIndex = 12
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.BunifuDatepicker1)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(312, 75)
-        Me.Panel2.TabIndex = 3
-        '
-        'BunifuDatepicker1
-        '
-        Me.BunifuDatepicker1.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.BunifuDatepicker1.BorderRadius = 0
-        Me.BunifuDatepicker1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuDatepicker1.ForeColor = System.Drawing.Color.White
-        Me.BunifuDatepicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.BunifuDatepicker1.FormatCustom = Nothing
-        Me.BunifuDatepicker1.Location = New System.Drawing.Point(12, 21)
-        Me.BunifuDatepicker1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BunifuDatepicker1.Name = "BunifuDatepicker1"
-        Me.BunifuDatepicker1.Size = New System.Drawing.Size(215, 43)
-        Me.BunifuDatepicker1.TabIndex = 0
-        Me.BunifuDatepicker1.Value = New Date(2019, 6, 23, 0, 48, 3, 835)
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.Search)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(533, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(292, 75)
-        Me.Panel3.TabIndex = 2
-        '
-        'Search
-        '
-        Me.Search.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Search.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Search.ForeColor = System.Drawing.Color.White
-        Me.Search.HintForeColor = System.Drawing.Color.Empty
-        Me.Search.HintText = ""
-        Me.Search.isPassword = False
-        Me.Search.LineFocusedColor = System.Drawing.Color.Gray
-        Me.Search.LineIdleColor = System.Drawing.Color.DimGray
-        Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
-        Me.Search.LineThickness = 4
-        Me.Search.Location = New System.Drawing.Point(87, 26)
-        Me.Search.Margin = New System.Windows.Forms.Padding(6)
-        Me.Search.Name = "Search"
-        Me.Search.Size = New System.Drawing.Size(199, 38)
-        Me.Search.TabIndex = 0
-        Me.Search.Text = "Search Anything"
-        Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        '
         'Transaction_Histroy_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -210,23 +210,23 @@ Partial Class Transaction_Histroy_List
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Transaction_Histroy_List"
         Me.Text = "Transaction_Histroy_List"
-        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.Transaction_Table, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Transaction_Table As Bunifu.Framework.UI.BunifuCustomDataGrid
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents BunifuDatepicker1 As Bunifu.Framework.UI.BunifuDatepicker
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents BunifuDatepicker1 As Bunifu.Framework.UI.BunifuDatepicker
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents Transaction_Table As Bunifu.Framework.UI.BunifuCustomDataGrid
 End Class

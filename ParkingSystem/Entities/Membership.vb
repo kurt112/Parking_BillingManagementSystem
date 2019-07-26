@@ -17,19 +17,21 @@
     Dim date_registered As String
     Dim total_spend As String
     Dim promo_activate As String
-
+    Dim place_of_birth As String
+    Dim person_to_contact As String
+    Dim person_to_contact_number As String
+    Dim photo As String
+    Dim active As String
 #End Region
-
-#Region "Constructor"
     Public Sub New(member_id As Integer, first_name As String, last_name As String,
                    email_address As String, cellphone_number As String,
-                   phone_number As String, date_of_birth As String,
-                   initital_amount As String, login_times As String, points As String,
-                   last_parking As String, membership_level As String,
-                   cashier_registered As String, date_registered As String, total_spend As String, promo_active As String)
-        Me.Promo_activate1 = Promo_activate1
+                   phone_number As String, date_of_birth As String, initital_amount As String,
+                   login_times As String, points As String, last_parking As String, membership_level As String,
+                   cashier_registered As String, date_registered As String, total_spend As String,
+                   promo_activate As String, place_of_birth As String, person_to_contact As String,
+                   person_to_contact_number As String, photo As String, active As String)
         Me.member_id = member_id
-        Me.First_name2 = first_name
+        Me.first_name = first_name
         Me.last_name = last_name
         Me.email_address = email_address
         Me.cellphone_number = cellphone_number
@@ -43,7 +45,14 @@
         Me.cashier_registered = cashier_registered
         Me.date_registered = date_registered
         Me.total_spend = total_spend
+        Me.promo_activate = promo_activate
+        Me.place_of_birth = place_of_birth
+        Me.person_to_contact = person_to_contact
+        Me.person_to_contact_number = person_to_contact_number
+        Me.photo = photo
+        Me.active = active
     End Sub
+#Region "Constructor"
 
 #End Region
 #Region "Getter and Setter"
@@ -199,5 +208,52 @@
             promo_activate = value
         End Set
     End Property
+
+    Public Property Active1 As String
+        Get
+            Return active
+        End Get
+        Set(value As String)
+            active = value
+        End Set
+    End Property
+
+    Public Property Person_to_contact1 As String
+        Get
+            Return person_to_contact
+        End Get
+        Set(value As String)
+            person_to_contact = value
+        End Set
+    End Property
+
+    Public Property Person_to_contact_number1 As String
+        Get
+            Return person_to_contact_number
+        End Get
+        Set(value As String)
+            person_to_contact_number = value
+        End Set
+    End Property
+
+    Public Property Place_of_birth1 As String
+        Get
+            Return place_of_birth
+        End Get
+        Set(value As String)
+            place_of_birth = value
+        End Set
+    End Property
+
+    Public Property Photo1 As String
+        Get
+            Return photo
+        End Get
+        Set(value As String)
+            photo = value
+        End Set
+    End Property
+
+
 #End Region
 End Class

@@ -7,12 +7,14 @@
     Private Promo_registered_date As String
     Private Promo_ends As String
     Private promo_active As String
+    Private user_assign As String
 
 #End Region
 
 
 #Region "Constructor"
-    Public Sub New(promo_id As String, member_id As String, promo_name As String, location As String, promo_registered_date As String, promo_ends As String, promo_active As String)
+    Public Sub New(promo_id As String, member_id As String, promo_name As String, location As String, promo_registered_date As String, promo_ends As String,
+                   user_assign As String, promo_active As String)
         Me.Promo_id = promo_id
         Me.Member_id = member_id
         Me.Promo_name = promo_name
@@ -20,6 +22,7 @@
         Me.Promo_registered_date = promo_registered_date
         Me.Promo_ends = promo_ends
         Me.promo_active = promo_active
+        Me.User_assign1 = user_assign
     End Sub
 #End Region
 #Region "Properties"
@@ -83,6 +86,15 @@
         End Get
         Set(value As String)
             promo_active = value
+        End Set
+    End Property
+
+    Public Property User_assign1 As String
+        Get
+            Return user_assign
+        End Get
+        Set(value As String)
+            user_assign = value
         End Set
     End Property
 #End Region

@@ -11,7 +11,6 @@ Public Class Server
     Dim fullPath As String = System.IO.Path.Combine(location, fileName)
 
     Public connectionString As String = String.Format("Data Source = {0}", fullPath)
-    Private table As BunifuCustomDataGrid = New Bunifu.Framework.UI.BunifuCustomDataGrid
     Private _member As Membership
 
 
@@ -19,15 +18,6 @@ Public Class Server
 #End Region
 
 #Region "Getter and Setter"
-    Public Property Table1 As BunifuCustomDataGrid
-        Get
-            Return table
-        End Get
-        Set(value As BunifuCustomDataGrid)
-            table = value
-        End Set
-    End Property
-
     Public Property Member1 As Membership
         Get
             Return _member
@@ -56,7 +46,8 @@ Public Class Server
 	                                             'AREA_ID'	INTEGER PRIMARY KEY AUTOINCREMENT,
 	                                             'PARKING_NAME'	TEXT,
 	                                             'PARKING_LEVEL'	TEXT,
-	                                             'PARKING_RATE'	TEXT);"
+	                                             'PARKING_RATE'	TEXT,
+                                                 'PARKING_STATUS' TEXT);"
 
     Dim Create_User_History_Table_Statment As String = "CREATE TABLE 'USER_HISTORY' (
                                                   'USER_ID'	 TEXT,
@@ -94,17 +85,19 @@ Public Class Server
                                                       'PLACE_OF_BIRTH'	TEXT,
                                                       'PERSON_TO_CONTACT'	TEXT,
 	                                                  'PERSON_TO_CONTACT_NUMBER'	TEXT,
-	                                                  'PHOTO'	TEXT
+	                                                  'PHOTO'	TEXT,
+                                                      'ACTIVE'	TEXT,
                                                       PRIMARY KEY('MEMBER_ID')
                                                       );"
 
-    Private Create_promo_history_table_query As String = "CREATE TABLE 'PROMO_HISOTRY' (
-	                                               'PROMO_ID'	INTEGER PRIMARY KEY AUTOINCREMENT,
+    Private Create_parking_history_table_query As String = "CREATE TABLE 'PARKING_HISTORY' (
+	                                               'PARKING_ID'	INTEGER PRIMARY KEY AUTOINCREMENT,
 	                                               'MEMBER_ID'	TEXT,
 	                                               'PROMO_NAME'	TEXT,
 	                                               'LOCATION'	TEXT,
-	                                               'PROMO_REGISTERED' TEXT,
-	                                               'PROMO_ENDS'	TEXT,
+	                                               'TIME_IN' TEXT,
+	                                               'TIME_OUT'	TEXT,
+                                                    'USER_ASSIGN'	TEXT,
                                                    'PROMO_ACTIVE'	TEXT);"
 #End Region
 
@@ -137,7 +130,7 @@ Public Class Server
             Connection_Query(Create_Area_Table_Statement)
             Connection_Query(Create_Promo_Table_Statemet)
             Connection_Query(Create_Membership_Table_Statement)
-            Connection_Query(Create_promo_history_table_query)
+            Connection_Query(Create_parking_history_table_query)
         End If
     End Sub
 
@@ -276,33 +269,21 @@ Public Class Server
     '------------------------------------------------------------------------------------------------------------'
     Public Function User_History_Table(ByVal table1 As Bunifu.Framework.UI.BunifuCustomDataGrid, ByVal text As String) As Boolean
         table1.Rows.Clear()
-
         Dim query As String
         If (text = "") Then
             query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE
                      FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID];"
-
         Else
             query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE 
                                FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID] WHERE USER.USER_ID like '" + text + "%' Or USER.FIRST_NAME like '" + text + "%'
                                Or USER.LAST_NAME like '" + text + "%' Or USER.USER_NAME like '" + text + "%' Or USER_HISTORY.TIME_IN like '" + text + "%'Or USER_HISTORY.TIME_OUT like '" + text + "%' Or USER_HISTORY.SESSION like '" + text + "%'
                                Or USER_HISTORY.DATE like '" + text + "%';"
-
         End If
-
-
-
         Using con As New SQLiteConnection(connectionString)
-
             con.Open()
-
             Using cmd As New SQLiteCommand(query, con)
-
                 Dim reader As SQLiteDataReader = cmd.ExecuteReader
-
-
                 While (reader.Read())
-
                     Dim id As String = reader.GetString(0)
                     Dim first_name As String = reader.GetString(1)
                     Dim last_name As String = reader.GetString(2)
@@ -311,16 +292,11 @@ Public Class Server
                     Dim time_out As String = reader.GetString(5)
                     Dim session As String = reader.GetString(6)
                     Dim date_ As String = reader.GetString(7)
-
                     table1.Rows.Add(id, first_name, last_name, user_name, time_in, time_out, session, date_)
-
                 End While
-
             End Using
             con.Close()
         End Using
-
-
         Return False
     End Function
 
@@ -333,7 +309,7 @@ Public Class Server
 
     'Start of Parking Query'
 
-    Public Sub Update_location_Available(name As String, value As String)
+    Public Sub Update_location(name As String, value As String)
         Dim Update_Location_Status As String = "UPDATE PARKING_AREA SET PARKING_STATUS =  '" + value + "'WHERE PARKING_NAME ='" + name + "'"
 
         Connection_Query(Update_Location_Status)
@@ -378,6 +354,32 @@ Public Class Server
             con.Close()
         End Using
 
+        Return location
+    End Function
+
+    Public Function generate_Occupide_Area(id As String) As String
+
+        Dim query As String = "SELECT PARKING_AREA.PARKING_NAME FROM PARKING_AREA WHERE PARKING_STATUS = '" + id + "' LIMIT 1"
+
+        Dim location As String = ""
+        Using con As New SQLiteConnection(connectionString)
+
+            con.Open()
+
+            Using cmd As New SQLiteCommand(query, con)
+
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+
+                While (reader.Read())
+
+                    location = reader.GetString(0)
+
+                End While
+            End Using
+            con.Close()
+
+        End Using
         Return location
     End Function
 
@@ -470,8 +472,8 @@ Public Class Server
 
     End Sub
 
-    Public Sub Parking_Table(ByVal text As String)
-        Table1.Rows.Clear()
+    Public Sub Parking_Table(ByVal text As String, ByVal table As Bunifu.Framework.UI.BunifuCustomDataGrid)
+        table.Rows.Clear()
         Dim query As String
         If Not (text.Equals("")) Then
             query = "SELECT * FROM PARKING_AREA WHERE PARKING_NAME LIKE '%" + text + "%' OR PARKING_LEVEL LIKE '%" + text + "%' OR PARKING_RATE LIKE '%" + text + "%' OR PARKING_STATUS LIKE'%" + text + "%' ORDER BY PARKING_NAME ASC"
@@ -510,24 +512,28 @@ Public Class Server
     'Start of Promo Query'
     '------------------------------------------------------------------------------------------------------------'
     Public Function Promo_ends(ByVal name As String) As Integer
-        Dim query_duration As String = "SELECT PROMO.DURATION FROM PROMO WHERE NAME = '" + name + "'"
         Dim value As Integer = 0
-        Using con As New SQLiteConnection(connectionString)
+        If Not (name.Equals("Enter Promo")) Then
+            Dim query_duration As String = "SELECT PROMO.DURATION FROM PROMO WHERE NAME = '" + name + "'"
 
-            con.Open()
+            Using con As New SQLiteConnection(connectionString)
 
-            Using cmd As New SQLiteCommand(query_duration, con)
+                con.Open()
 
-                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+                Using cmd As New SQLiteCommand(query_duration, con)
 
-                While (reader.Read())
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader
 
-                    value = CInt(reader.GetString(0))
+                    While (reader.Read())
 
-                End While
+                        value = CInt(reader.GetString(0))
+
+                    End While
+                End Using
+                con.Close()
             End Using
-            con.Close()
-        End Using
+            Return value
+        End If
         Return value
     End Function
 
@@ -540,9 +546,8 @@ Public Class Server
         MessageBox.Show("Succesful Added")
     End Sub
 
-    Public Sub Promo_Table(ByVal text As String)
-
-        Table1.Rows.Clear()
+    Public Sub Promo_Table(ByVal text As String, ByVal table As Bunifu.Framework.UI.BunifuCustomDataGrid)
+        table.Rows.Clear()
         Dim query As String
 
         If Not (text.Equals("")) Then
@@ -558,19 +563,23 @@ Public Class Server
 
                 Dim reader As SQLiteDataReader = cmd.ExecuteReader
 
-
+                Dim count As Integer = 0
                 While (reader.Read())
 
-                    Dim id As String = reader.GetInt64(0).ToString
-                    Dim name As String = reader.GetString(1)
-                    Dim duration As String = reader.GetString(2)
-                    Dim description As String = reader.GetString(3)
-                    Dim promoend As String = reader.GetString(4)
-                    Dim price As String = reader.GetString(5)
-                    Dim status As String = reader.GetString(6)
+                    If (count = 0) Then
+                        count += 1
+                    Else
+                        Dim id As String = reader.GetInt64(0).ToString
+                        Dim name As String = reader.GetString(1)
+                        Dim duration As String = reader.GetString(2)
+                        Dim description As String = reader.GetString(3)
+                        Dim promoend As String = reader.GetString(4)
+                        Dim price As String = reader.GetString(5)
+                        Dim status As String = reader.GetString(6)
+                        table.Rows.Add(id, name, duration, description, promoend, price, status)
+                    End If
 
                     'MessageBox.Show(id)
-                    table.Rows.Add(id, name, duration, description, promoend, price, status)
                 End While
             End Using
             con.Close()
@@ -640,6 +649,11 @@ Public Class Server
 #Region "Membership Query"
     'Start Membership Query '
     '------------------------------------------------------------------------------------------------------------'
+    Public Sub Update_Member_Status(member_id As String, value As String)
+        Dim Update_Member_Status_Query As String = "UPDATE MEMBERSHIP SET ACTIVE = '" + value + "' WHERE MEMBER_ID = '" + member_id + "'"
+        Connection_Query(Update_Member_Status_Query)
+    End Sub
+
     Public Sub Update_Promo(member As String, value As String)
 
         Dim Update_Promo_StatusQuery As String = "UPDATE MEMBERSHIP SET PROMO_ACTIVATE = '" + value + "' WHERE MEMBER_ID = '" + member + "'"
@@ -668,26 +682,12 @@ Public Class Server
                     Dim last_name As String = reader.GetString(2)
                     Dim email_address As String = reader.GetString(3)
                     Dim cellphone_number As String = reader.GetString(4)
-                    Dim phone_number As String = reader.GetString(5)
-                    Dim date_of_birth As String = reader.GetString(6)
-                    Dim place_of_birth As String = reader.GetString(7)
-                    Dim person_to_contact As String = reader.GetString(8)
-                    Dim person_to_contact_number As String = reader.GetString(9)
-                    Dim photo As String = reader.GetString(10)
-                    Dim initital_amount As String = reader.GetString(11)
-                    Dim login_times As String = reader.GetString(12)
-                    Dim points As String = reader.GetString(13)
-                    Dim last_parking As String = reader.GetString(14)
-                    Dim membership_level As String = reader.GetString(15)
-                    Dim cashier_registered As String = reader.GetString(16)
-                    Dim date_registered As String = reader.GetString(17)
-                    Dim total_spend As String = reader.GetString(18)
-
+                    Dim last_parking As String = reader.GetString(10)
+                    Dim promo As String = reader.GetString(15)
+                    Dim status As String = reader.GetString(20)
                     'MessageBox.Show(id)
                     table.Rows.Add(member_id, last_name, first_name, email_address, cellphone_number,
-                                   phone_number, date_of_birth, place_of_birth, person_to_contact, person_to_contact_number,
-                                   photo, initital_amount, login_times, points, last_parking, membership_level, cashier_registered,
-                                   date_registered, total_spend)
+                                   last_parking, promo, status)
                 End While
             End Using
             con.Close()
@@ -698,19 +698,24 @@ Public Class Server
     End Sub
 
     Public Function Membership_Register(ByVal member As Membership) As Boolean
-        'Dim query As String = "INSERT INTO MEMBERSHIP VALUES(55, 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt')"
+        'Dim register_statement As String = "INSERT INTO MEMBERSHIP VALUES(100, 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt', 'kurt')"
+        Dim register_statement As String = "INSERT INTO MEMBERSHIP VALUES(" + member.Member_id1.ToString + ", '" +
+        member.First_name1 + "' , '" + member.Last_name1 +
+       "' , '" + member.Email_address1 + "' , '" + member.Cellphone_number1 +
+       "' , '" + member.Phone_number1 + "' , '" + member.Date_of_birth1 +
+       "' , '" + member.Initital_amount1 + "' , '" + member.Login_times1 +
+       "' , '" + member.Points1 + "' , '" + member.Last_parking1 +
+       "' , '" + member.Membership_level1 + "' , '" + member.Cashier_registered1 +
+       "' , '" + member.Date_registered1 + "' , '" + member.Total_spend1 +
+       "' , '" + member.Promo_activate1 + "' , '" + member.Place_of_birth1 +
+       "' , '" + member.Person_to_contact1 + "' , '" + member.Person_to_contact_number1 +
+       "' , '" + member.Photo1 + "' , '" + member.Active1 + "')"
 
-        Dim register_statement As String = "INSERT INTO MEMBERSHIP VALUES('" +
-                        member.Member_id1 + "' , '" + member.First_name1 +
-                     "' , '" + member.Last_name1 + "' , '" + member.Email_address1 +
-                       "' , '" + member.Cellphone_number1 + "' , '" + member.Phone_number1 +
-                      "' , '" + member.Date_of_birth1 + "' , '" + member.Initital_amount1 +
-                  "' , '" + member.Login_times1 + "' , '" + member.Points1 +
-                 "' , '" + member.Last_parking1 + "' , '" + member.Membership_level1 +
-                "' , '" + member.Cashier_registered1 + "' , '" + member.Date_registered1 +
-               "' , '" + member.Total_spend1 + "')"
-
-        Connection_Query(register_statement)
+        Try
+            Connection_Query(register_statement)
+        Catch ex As Exception
+            MessageBox.Show("Id has a duplicate")
+        End Try
 
         MessageBox.Show("Succesful")
 
@@ -749,28 +754,33 @@ Public Class Server
                     members.Date_registered1 = reader.GetString(13)
                     members.Total_spend1 = reader.GetString(14)
                     members.Promo_activate1 = reader.GetString(15)
-
+                    members.Active1 = reader.GetString(20)
                 End While
 
                 con.Close()
                 '  MessageBox.Show(members.Login_times1)
-                Try
-                    Dim login_total As Integer = CInt(members.Login_times1) + 1
-                    MessageBox.Show(login_total.ToString)
 
-                    Dim my_query As String = "UPDATE MEMBERSHIP set LOGIN_TIMES = '" + login_total.ToString +
-                          "' , LAST_PARKING = '" + Date.Today.ToString("dd'/'MM'/'yyyy") +
-                            "' WHERE  MEMBER_ID = '" + members.Member_id1.ToString + "'"
-                    Connection_Query(my_query)
-                Catch ex As Exception
-                    MessageBox.Show("No Members")
-                End Try
                 Return True
             End Using
 
         End Using
         Return False
     End Function
+
+    Public Sub Update_Login(ByVal members As Membership)
+        Try
+            Dim login_total As Integer = CInt(members.Login_times1) + 1
+
+            MessageBox.Show(login_total.ToString)
+            Dim my_query As String = "UPDATE MEMBERSHIP set LOGIN_TIMES = '" + login_total.ToString +
+                  "' , LAST_PARKING = '" + Date.Today.ToString("dd'/'MM'/'yyyy") +
+                    "' WHERE  MEMBER_ID = '" + members.Member_id1.ToString + "'"
+            Connection_Query(my_query)
+        Catch ex As Exception
+            MessageBox.Show("No Members")
+        End Try
+
+    End Sub
 
     Public Sub Update_Initital_Amount(ByVal amount As String, ByVal id As String)
 
@@ -784,12 +794,14 @@ Public Class Server
     Public Function Update_Amount(ByVal initial_value As Bunifu.Framework.UI.BunifuMaterialTextbox, ByVal membership As Membership, ByVal textBox As TextBox,
                                   ByVal points As Label, ByVal Total_amount As Label) As Boolean
 
-        Dim total = CInt(membership.Initital_amount1) + CInt(initial_value.Text)
+        Dim total As Integer = CInt(textBox.Text) + CInt(initial_value.Text)
+        MessageBox.Show("the total" + total.ToString)
         Dim total_pay = CInt(Total_amount.Text) + CInt(initial_value.Text)
 
         Dim initial_points As Double = Decimal.Round((CDbl(initial_value.Text / 50) + CDbl(points.Text)), 2, MidpointRounding.AwayFromZero)
 
         Try
+
             Dim query As String = "UPDATE MEMBERSHIP set INITIAL_AMOUNT = '" + total.ToString +
                 "' , TOTAL_SPEND = '" + total_pay.ToString +
                 "', POINTS = '" + initial_points.ToString +
@@ -804,25 +816,13 @@ Public Class Server
         Catch ex As Exception
             MessageBox.Show("Error amount")
         End Try
-
-        'textBox.Text = total.ToString
-
-        ' Dim add_query As String = "INSERT INTO PROMO (NAME,DURATION,DESCRIPTION,PROMOEND,PRICE,STATUS) VALUES('" + Promo.Name1 + "' , '" + Promo.Duration1 + "' , '" +
-        'Promo.Description1 +"' , '" + Promo.Ends1 + "', '" + Promo.Price1 + "', 'ACTIVE')"
-
-        '        Connection_Query(add_query)
-
-        'MessageBox.Show("Succesful Added")
-
-
-
         Return False
     End Function
 
     Public Sub Update_InitialAmount(member_id As String, amount As String)
-
+        MessageBox.Show(amount.ToString)
         Dim Update_Query_InititalAmount As String = "UPDATE MEMBERSHIP SET INITIAL_AMOUNT = '" + amount + "' WHERE MEMBER_ID = '" + member_id + "'"
-
+        Connection_Query(Update_Query_InititalAmount)
 
     End Sub
 
@@ -832,14 +832,57 @@ Public Class Server
 
 #End Region
 
-#Region "Promo History Query"
+#Region "PARKING_HISTORY Query"
+    'textBox.Text = total.ToString
 
+    Public Sub Insert_Parkinghistory(ByVal promo As Promo_History)
+
+        Dim add_query As String = "INSERT INTO PARKING_HISTORY (PARKING_ID,PROMO_NAME,LOCATION,TIME_IN,TIME_OUT,USER_ASSIGN,PROMO_ACTIVE) VALUES('" + promo.Member_id1 + "' , '" + promo.Promo_name1 + "' , '" +
+        promo.Location1 + "' , '" + promo.Promo_registered_date1 + "', '" + promo.Promo_ends1 + "' , '" + promo.User_assign1 + "', 'ACTIVE')"
+
+        Connection_Query(add_query)
+
+        MessageBox.Show("Succesful Added")
+    End Sub
+
+
+    Public Function get_Promo_ends(id As String) As String
+
+        Dim promo_ends_result As String = ""
+
+        Dim query As String = "Select PARKING_HISTORY.TIME_OUT FROM PROMO_HISTORY WHERE PROMO_ACTIVE = 'Active' AND MEMBER_ID = '" + id + "' LIMIT 1 "
+
+        Using con As New SQLiteConnection(connectionString)
+
+            con.Open()
+
+            Using cmd As New SQLiteCommand(query, con)
+
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+                While (reader.Read())
+
+                    promo_ends_result = (reader.GetString(0))
+
+                End While
+            End Using
+            con.Close()
+        End Using
+        Return promo_ends_result
+    End Function
+
+    Public Sub set_Promo_Inactive(id As String)
+
+        Dim update_promo_inactive As String = "UPDATE PARKING_HISTORY SET PROMO_ACTIVE = 'In Active' WHERE MEMBER_ID = '" + id + "'"
+        Connection_Query(update_promo_inactive)
+
+    End Sub
 
     Public Function location_history(ByVal id As String) As String
 
         Dim location As String = ""
 
-        Dim query As String = "Select PROMO_HISTORY.LOCATION FROM PROMO_HISTORY WHERE PROMO_ACTIVE = 'Active' AND PROMO_HISTORY.MEMBER_ID = '" + id + "' LIMIT 1 "
+        Dim query As String = "Select PARKING_HISTORY.LOCATION FROM TRANSACTION_HISTORY WHERE PROMO_ACTIVE = 'Active' AND PROMO_HISTORY.MEMBER_ID = '" + id + "' LIMIT 1 "
 
         Using con As New SQLiteConnection(connectionString)
 
@@ -860,18 +903,47 @@ Public Class Server
         Return location
     End Function
 
-    Public Sub Insert_History_Promo(ByVal promo As Promo_History)
-        Try
+    Public Sub Load_Historyparking(ByVal tables As Bunifu.Framework.UI.BunifuCustomDataGrid)
+        tables.Rows.Clear()
+        Dim query As String = "SELECT PARKING_HISTORY.PARKING_ID,
+                               MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
+                               MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
+                               PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
+                               PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
+                               PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
+                               FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID];"
+        Using con As New SQLiteConnection(connectionString)
 
-            Dim query_insert As String = "INSERT INTO PROMO_HISTORY(MEMBER_ID, PROMO_NAME, LOCATION, PROMO_REGISTERED, PROMO_ENDS, PROMO_ACTIVE) VALUES('" + promo.Member_id1.ToString + "', '" +
-            promo.Promo_name1.ToString + "', '" + promo.Location1.ToString + "', '" + promo.Promo_registered_date1.ToString + "', '" +
-            promo.Promo_ends1.ToString + "', '" + promo.Promo_active1.ToString + "')"
+            con.Open()
 
-            Connection_Query(query_insert)
+            Using cmd As New SQLiteCommand(query, con)
 
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString)
-        End Try
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+
+                While (reader.Read())
+
+                    Dim parking_id As Integer = reader.GetInt64(0)
+                    Dim member_id As Integer = reader.GetInt64(1)
+                    Dim firstname As String = reader.GetString(2)
+                    Dim lastname As String = reader.GetString(3)
+                    Dim promoname As String = reader.GetString(4)
+                    Dim location As String = reader.GetString(5)
+                    Dim timein As String = reader.GetString(6)
+                    Dim timeout As String = reader.GetString(7)
+                    Dim user_assign As String = reader.GetString(8)
+                    Dim promo_active As String = reader.GetString(9)
+                    Dim date_ As String = reader.GetString(10)
+                    tables.Rows.Add(parking_id.ToString, member_id.ToString, firstname, lastname,
+                                    promoname, location, timein, timeout, user_assign, date_)
+                End While
+
+            End Using
+            con.Close()
+        End Using
+
+
     End Sub
 #End Region
 

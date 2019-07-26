@@ -7,15 +7,32 @@ Public Class Parking
     Private _ChildForm As Form
 
     Dim isMaximize As Boolean = False
-    Public Property single_user As User_History
+    Public Property single_user As User_History = New User_History("", "", "", "", "", "", "", "")
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        username.Text = single_user.Username1
+        user_status.Text = single_user.First_name1 + " " + single_user.Last_name1
+        _Date.Text = Date.Today.ToString("MM/dd/yyyy")
         Me.MinimizeBox = True
         Me.MaximizeBox = True
-        switchPanel(User_List)
+
+        Dim transaction As Transaction_List = New Transaction_List
+        MessageBox.Show(single_user.Username1)
+        transaction.Username1 = single_user.Username1
+        switchTransaction(transaction)
     End Sub
 
     Sub switchPanel(ByVal panel As Form)
+
+        Panel_Change.Controls.Clear()
+        panel.TopLevel = False
+        panel.Dock = DockStyle.Fill
+        Panel_Change.Controls.Add(panel)
+        panel.Show()
+
+    End Sub
+
+    Sub switchTransaction(ByVal panel As Transaction_List)
 
         Panel_Change.Controls.Clear()
         panel.TopLevel = False
@@ -67,7 +84,11 @@ Public Class Parking
     '---------------------------------------------------------------------'
     'Just Switching panel'
     Private Sub Transaction_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Transaction_Button.MouseClick
-        switchPanel(Transaction_List)
+
+        Dim transaction As Transaction_List = New Transaction_List
+        MessageBox.Show(single_user.Username1)
+        transaction.Username1 = single_user.Username1
+        switchTransaction(transaction)
     End Sub
 
     Private Sub Parking_List_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Parking_List_Button.MouseClick
@@ -77,13 +98,19 @@ Public Class Parking
         switchPanel(User_List)
     End Sub
     Private Sub Membership_button_Click(sender As Object, e As EventArgs)
-        switchPanel(Membership_List)
+        switchPanel(Parking_Area_Used)
     End Sub
     Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.Click
         switchPanel(Transaction_Histroy_List)
     End Sub
     Private Sub Promo_Button_Click(sender As Object, e As EventArgs) Handles Promo_Button.Click
         switchPanel(Pricing)
+    End Sub
+    Private Sub Membership_button_Click_1(sender As Object, e As EventArgs) Handles Membership_button.Click
+        Dim member_list As Membership_List = New Membership_List
+        member_list.Username1 = username.Text
+        switchPanel(member_list)
+
     End Sub
     '---------------------------------------------------------------------'
     'Just coloring stuff'
@@ -123,4 +150,5 @@ Public Class Parking
     Private Sub User_Button_Leave(sender As Object, e As EventArgs) Handles User_Button.MouseLeave
         Users.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
+
 End Class
