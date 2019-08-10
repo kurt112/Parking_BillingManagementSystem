@@ -1,12 +1,12 @@
 ﻿Public Class Parking_Area
 
-    Private Id As Integer
+    Private Id As String
     Private Parking_name As String
     Private Parking_level As String
     Private Parking_Rate As String
     Private Parking_Status As String
 
-    Public Sub New(id As Integer, parking_name As String, parking_level As String, parking_Rate As String, parking_status As String)
+    Public Sub New(id As String, parking_name As String, parking_level As String, parking_Rate As String, parking_status As String)
         Me.Parking_Status = parking_status
         Me.Id = id
         Me.Parking_name = parking_name
@@ -16,11 +16,11 @@
 
 
 
-    Public Property Id1 As Integer
+    Public Property Id1 As String
         Get
             Return Id
         End Get
-        Set(value As Integer)
+        Set(value As String)
             Id = value
         End Set
     End Property

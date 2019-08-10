@@ -1,7 +1,7 @@
 ﻿Public Class Membership
 
 #Region "Object of Class"
-    Dim member_id As Integer
+    Dim member_id As String
     Dim first_name As String
     Dim last_name As String
     Dim email_address As String
@@ -23,7 +23,7 @@
     Dim photo As String
     Dim active As String
 #End Region
-    Public Sub New(member_id As Integer, first_name As String, last_name As String,
+    Public Sub New(member_id As String, first_name As String, last_name As String,
                    email_address As String, cellphone_number As String,
                    phone_number As String, date_of_birth As String, initital_amount As String,
                    login_times As String, points As String, last_parking As String, membership_level As String,
@@ -191,11 +191,11 @@
         End Set
     End Property
 
-    Public Property Member_id1 As Integer
+    Public Property Member_id1 As String
         Get
             Return member_id
         End Get
-        Set(value As Integer)
+        Set(value As String)
             member_id = value
         End Set
     End Property

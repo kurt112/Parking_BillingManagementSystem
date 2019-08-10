@@ -2,7 +2,8 @@
 
 Public Class Pricing_Promo
     Dim database As Server = New Server
-    Dim table As Bunifu.Framework.UI.BunifuCustomDataGrid
+
+    Dim table As BunifuCustomDataGrid
 
     Public Property Table1 As BunifuCustomDataGrid
         Get

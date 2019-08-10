@@ -1,27 +1,113 @@
-﻿Imports ParkingSystem
+﻿Imports Bunifu.Framework.UI
+Imports ParkingSystem
 Public Class Parking
 
+#Region "The objects in the class"
     Dim database As Server = New Server
 
     Private WithEvents _MainPanel As New Panel
     Private _ChildForm As Form
 
+    Dim member_table As BunifuCustomDataGrid
+    Dim location_table As BunifuCustomDataGrid
+
+
+
     Dim isMaximize As Boolean = False
+    Dim transaction_form As Transaction_List
+    Dim area_form As Park_List
+    Dim promohistory_form As Pricing
+    Dim member_form As Membership_List
+    Dim users_form As User_List
+
+#End Region
+
+#Region "Getter Setter of this class"
     Public Property single_user As User_History = New User_History("", "", "", "", "", "", "", "")
 
+    Public Property Transaction_form1 As Transaction_List
+        Get
+            Return transaction_form
+        End Get
+        Set(value As Transaction_List)
+            transaction_form = value
+        End Set
+    End Property
+
+
+    Public Property Promohistory_form1 As Pricing
+        Get
+            Return promohistory_form
+        End Get
+        Set(value As Pricing)
+            promohistory_form = value
+        End Set
+    End Property
+
+    Public Property Member_form1 As Membership_List
+        Get
+            Return member_form
+        End Get
+        Set(value As Membership_List)
+            member_form = value
+        End Set
+    End Property
+
+    Public Property Users_form1 As User_List
+        Get
+            Return users_form
+        End Get
+        Set(value As User_List)
+            users_form = value
+        End Set
+    End Property
+
+    Public Property Area_form1 As Park_List
+        Get
+            Return area_form
+        End Get
+        Set(value As Park_List)
+            area_form = value
+        End Set
+    End Property
+
+    Public Property Member_table1 As BunifuCustomDataGrid
+        Get
+            Return member_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            member_table = value
+        End Set
+    End Property
+
+    Public Property Location_table1 As BunifuCustomDataGrid
+        Get
+            Return location_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            location_table = value
+        End Set
+    End Property
+
+#End Region
+
+
+
+#Region "Form Load"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         username.Text = single_user.Username1
         user_status.Text = single_user.First_name1 + " " + single_user.Last_name1
-        _Date.Text = Date.Today.ToString("MM/dd/yyyy")
+        _Date.Text = Date.Today.ToLongDateString
         Me.MinimizeBox = True
         Me.MaximizeBox = True
-
-        Dim transaction As Transaction_List = New Transaction_List
-        MessageBox.Show(single_user.Username1)
-        transaction.Username1 = single_user.Username1
-        switchTransaction(transaction)
+        transaction_form.Location_table1 = location_table
+        transaction_form.Member_table1 = member_table
+        transaction_form.Username1 = single_user.Username1
+        switchTransaction(transaction_form)
     End Sub
+#End Region
 
+#Region "For Switching the panel"
     Sub switchPanel(ByVal panel As Form)
 
         Panel_Change.Controls.Clear()
@@ -41,12 +127,14 @@ Public Class Parking
         panel.Show()
 
     End Sub
+#End Region
 
+#Region "Minimize, Fullscreen, X button"
     Private Sub x_button_Click(sender As Object, e As EventArgs) Handles x_button.Click
 
 
-        Dim time_end As DateTime = New DateTime
-        time_end = Convert.ToDateTime(DateTime.Now)
+        Dim time_end As DateTime = Convert.ToDateTime(DateTime.Now)
+
 
         Dim time_start As DateTime = Convert.ToDateTime(single_user.Time_in1)
 
@@ -81,36 +169,32 @@ Public Class Parking
         End If
 
     End Sub
+#End Region
+
     '---------------------------------------------------------------------'
     'Just Switching panel'
     Private Sub Transaction_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Transaction_Button.MouseClick
 
-        Dim transaction As Transaction_List = New Transaction_List
-        MessageBox.Show(single_user.Username1)
-        transaction.Username1 = single_user.Username1
-        switchTransaction(transaction)
+        transaction_form.Username1 = single_user.Username1
+
+        switchTransaction(transaction_form)
     End Sub
 
     Private Sub Parking_List_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Parking_List_Button.MouseClick
-        switchPanel(Park_List)
+        switchPanel(area_form)
     End Sub
     Private Sub User_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles User_Button.MouseClick
-        switchPanel(User_List)
-    End Sub
-    Private Sub Membership_button_Click(sender As Object, e As EventArgs)
-        switchPanel(Parking_Area_Used)
+        switchPanel(users_form)
     End Sub
     Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.Click
-        switchPanel(Transaction_Histroy_List)
+        switchPanel(transaction_form)
     End Sub
     Private Sub Promo_Button_Click(sender As Object, e As EventArgs) Handles Promo_Button.Click
-        switchPanel(Pricing)
+        switchPanel(promohistory_form)
     End Sub
     Private Sub Membership_button_Click_1(sender As Object, e As EventArgs) Handles Membership_button.Click
-        Dim member_list As Membership_List = New Membership_List
-        member_list.Username1 = username.Text
-        switchPanel(member_list)
-
+        member_form.Username1 = single_user.Username1
+        switchPanel(member_form)
     End Sub
     '---------------------------------------------------------------------'
     'Just coloring stuff'
@@ -150,5 +234,6 @@ Public Class Parking
     Private Sub User_Button_Leave(sender As Object, e As EventArgs) Handles User_Button.MouseLeave
         Users.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
+
 
 End Class
