@@ -1,15 +1,8 @@
 ﻿Imports ParkingSystem
 
 Public Class Login
-
-    Dim database As Server = New Server
+    ReadOnly database As Server = New Server
     Dim user As User_History
-    Dim dashboard As Parking = New Parking()
-    Dim promo As Pricing = New Pricing()
-    Dim transactionlist As Transaction_List = New Transaction_List()
-    Dim area As Park_List = New Park_List()
-    Dim membership As Membership_List = New Membership_List()
-    Dim user_form As User_List = New User_List()
 
     Public Property User1 As User_History
         Get
@@ -20,8 +13,20 @@ Public Class Login
         End Set
     End Property
 
+    Public Property Promo1 As Pricing = New Pricing()
+
+    Public ReadOnly Property Dashboard1 As Parking = New Parking()
+
+    Public Property Transactionlist1 As Transaction_List = New Transaction_List()
+
+    Public Property Area1 As Park_List = New Park_List()
+
+    Public Property Membership1 As Membership_List = New Membership_List()
+
+    Public Property User_form1 As User_List = New User_List()
+
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles Me.Load
-        database.createDatabase()
+        database.CreateDatabase()
     End Sub
 
     Private Sub Exit_Button_Click(sender As Object, e As EventArgs) Handles Exit_Button.Click
@@ -32,10 +37,10 @@ Public Class Login
     Private Sub Login_Button_Click(sender As Object, e As EventArgs) Handles Login_Button.Click
 
         If (database.User_Login(username.Text, password.Text, Me) = True) Then
-            set_From()
-            dashboard.single_user = user
+            Set_From()
+            Dashboard1.Single_user = user
             Me.Hide()
-            dashboard.Show()
+            Dashboard1.Show()
 
         Else
 
@@ -51,15 +56,15 @@ Public Class Login
     End Sub
 
 #Region "Setting the form"
-    Private Sub set_From()
-        dashboard.Transaction_form1 = transactionlist
-        dashboard.Promohistory_form1 = Pricing
-        dashboard.Area_form1 = area
-        dashboard.Member_form1 = membership
-        dashboard.Users_form1 = user_form
+    Private Sub Set_From()
+        Dashboard1.Transaction_form1 = Transactionlist1
+        Dashboard1.Promohistory_form1 = Promo1
+        Dashboard1.Area_form1 = Area1
+        Dashboard1.Member_form1 = Membership1
+        Dashboard1.Users_form1 = User_form1
 
-        dashboard.Member_table1 = membership.Member_table
-        dashboard.Location_table1 = area.Parking_Area_Table
+        Dashboard1.Member_table1 = Membership1.Member_table
+        Dashboard1.Location_table1 = Area1.Parking_Area_Table
 
     End Sub
 #End Region

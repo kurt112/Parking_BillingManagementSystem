@@ -22,11 +22,12 @@ Partial Class Pricing
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pricing))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Promo_Logo = New System.Windows.Forms.PictureBox()
@@ -43,12 +44,20 @@ Partial Class Pricing
         Me.Promoends_Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Price_Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Status_Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Promotable_ContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.Register_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Update_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Refresh_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.setEnable_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.setDisable_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Promo_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Promo_Table, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Promotable_ContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -190,8 +199,8 @@ Partial Class Pricing
         '
         Me.Promo_Table.AllowUserToAddRows = False
         Me.Promo_Table.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        Me.Promo_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.Promo_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.Promo_Table.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -200,24 +209,24 @@ Partial Class Pricing
         Me.Promo_Table.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Promo_Table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.Promo_Table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Promo_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Promo_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.Promo_Table.ColumnHeadersHeight = 35
         Me.Promo_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.Promo_column, Me.Hours_Column, Me.Description_Column, Me.Promoends_Column, Me.Price_Column, Me.Status_Column})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Promo_Table.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Promo_Table.DefaultCellStyle = DataGridViewCellStyle3
         Me.Promo_Table.DoubleBuffered = True
         Me.Promo_Table.EnableHeadersVisualStyles = False
         Me.Promo_Table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
@@ -228,14 +237,14 @@ Partial Class Pricing
         Me.Promo_Table.Name = "Promo_Table"
         Me.Promo_Table.ReadOnly = True
         Me.Promo_Table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Promo_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Promo_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.Promo_Table.RowHeadersVisible = False
         Me.Promo_Table.RowHeadersWidth = 51
         Me.Promo_Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -300,6 +309,56 @@ Partial Class Pricing
         Me.Status_Column.Name = "Status_Column"
         Me.Status_Column.ReadOnly = True
         '
+        'Promotable_ContextMenu
+        '
+        Me.Promotable_ContextMenu.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.Promotable_ContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Register_ContextMenu, Me.Update_ContextMenu, Me.DeleteContextMenu, Me.Refresh_ContextMenu, Me.setEnable_ContextMenu, Me.setDisable_ContextMenu})
+        Me.Promotable_ContextMenu.Name = "ContextMenuStrip1"
+        Me.Promotable_ContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.Promotable_ContextMenu.Size = New System.Drawing.Size(180, 160)
+        '
+        'Register_ContextMenu
+        '
+        Me.Register_ContextMenu.Image = CType(resources.GetObject("Register_ContextMenu.Image"), System.Drawing.Image)
+        Me.Register_ContextMenu.Name = "Register_ContextMenu"
+        Me.Register_ContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.Register_ContextMenu.Text = "Add Promo"
+        '
+        'Update_ContextMenu
+        '
+        Me.Update_ContextMenu.Image = CType(resources.GetObject("Update_ContextMenu.Image"), System.Drawing.Image)
+        Me.Update_ContextMenu.Name = "Update_ContextMenu"
+        Me.Update_ContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.Update_ContextMenu.Text = "Update Promo"
+        '
+        'DeleteContextMenu
+        '
+        Me.DeleteContextMenu.Image = CType(resources.GetObject("DeleteContextMenu.Image"), System.Drawing.Image)
+        Me.DeleteContextMenu.Name = "DeleteContextMenu"
+        Me.DeleteContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.DeleteContextMenu.Text = "Delete Promo"
+        '
+        'Refresh_ContextMenu
+        '
+        Me.Refresh_ContextMenu.Image = CType(resources.GetObject("Refresh_ContextMenu.Image"), System.Drawing.Image)
+        Me.Refresh_ContextMenu.Name = "Refresh_ContextMenu"
+        Me.Refresh_ContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.Refresh_ContextMenu.Text = "Refresh Table"
+        '
+        'setEnable_ContextMenu
+        '
+        Me.setEnable_ContextMenu.Image = CType(resources.GetObject("setEnable_ContextMenu.Image"), System.Drawing.Image)
+        Me.setEnable_ContextMenu.Name = "setEnable_ContextMenu"
+        Me.setEnable_ContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.setEnable_ContextMenu.Text = "Set Enable"
+        '
+        'setDisable_ContextMenu
+        '
+        Me.setDisable_ContextMenu.Image = CType(resources.GetObject("setDisable_ContextMenu.Image"), System.Drawing.Image)
+        Me.setDisable_ContextMenu.Name = "setDisable_ContextMenu"
+        Me.setDisable_ContextMenu.Size = New System.Drawing.Size(179, 26)
+        Me.setDisable_ContextMenu.Text = "Set Disable"
+        '
         'Pricing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -317,6 +376,7 @@ Partial Class Pricing
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Promo_Table, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Promotable_ContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -337,4 +397,11 @@ Partial Class Pricing
     Friend WithEvents Create_Promo_Button As Bunifu.Framework.UI.BunifuFlatButton
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents BunifuMaterialTextbox1 As Bunifu.Framework.UI.BunifuMaterialTextbox
+    Friend WithEvents Promotable_ContextMenu As ContextMenuStrip
+    Friend WithEvents Register_ContextMenu As ToolStripMenuItem
+    Friend WithEvents Update_ContextMenu As ToolStripMenuItem
+    Friend WithEvents DeleteContextMenu As ToolStripMenuItem
+    Friend WithEvents Refresh_ContextMenu As ToolStripMenuItem
+    Friend WithEvents setEnable_ContextMenu As ToolStripMenuItem
+    Friend WithEvents setDisable_ContextMenu As ToolStripMenuItem
 End Class

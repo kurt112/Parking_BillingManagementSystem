@@ -22,10 +22,11 @@ Partial Class Park_List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Park_List))
         Me.Parking_Area_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +44,12 @@ Partial Class Park_List
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BunifuMaterialTextbox1 = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
+        Me.Parking_TableContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.Register_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Update_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Refresh_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Viewmember_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.Parking_Area_Table, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -50,37 +57,38 @@ Partial Class Park_List
         CType(Me.logo_transactionlogs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Parking_TableContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'Parking_Area_Table
         '
         Me.Parking_Area_Table.AllowUserToAddRows = False
         Me.Parking_Area_Table.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.Parking_Area_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        Me.Parking_Area_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.Parking_Area_Table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.Parking_Area_Table.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
         Me.Parking_Area_Table.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Parking_Area_Table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.Parking_Area_Table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Parking_Area_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Parking_Area_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.Parking_Area_Table.ColumnHeadersHeight = 35
         Me.Parking_Area_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.parking_name, Me.parking_level, Me.parking_price, Me.Status})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Parking_Area_Table.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Parking_Area_Table.DefaultCellStyle = DataGridViewCellStyle7
         Me.Parking_Area_Table.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Parking_Area_Table.DoubleBuffered = True
         Me.Parking_Area_Table.EnableHeadersVisualStyles = False
@@ -92,14 +100,14 @@ Partial Class Park_List
         Me.Parking_Area_Table.Name = "Parking_Area_Table"
         Me.Parking_Area_Table.ReadOnly = True
         Me.Parking_Area_Table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Parking_Area_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Parking_Area_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.Parking_Area_Table.RowHeadersVisible = False
         Me.Parking_Area_Table.RowHeadersWidth = 51
         Me.Parking_Area_Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -336,6 +344,49 @@ Partial Class Park_List
         Me.Search.TabIndex = 5
         Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
+        'Parking_TableContextMenu
+        '
+        Me.Parking_TableContextMenu.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.Parking_TableContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Register_ContextMenu, Me.Update_ContextMenu, Me.DeleteContextMenu, Me.Refresh_ContextMenu, Me.Viewmember_ContextMenu})
+        Me.Parking_TableContextMenu.Name = "ContextMenuStrip1"
+        Me.Parking_TableContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.Parking_TableContextMenu.Size = New System.Drawing.Size(215, 162)
+        '
+        'Register_ContextMenu
+        '
+        Me.Register_ContextMenu.Image = CType(resources.GetObject("Register_ContextMenu.Image"), System.Drawing.Image)
+        Me.Register_ContextMenu.Name = "Register_ContextMenu"
+        Me.Register_ContextMenu.Size = New System.Drawing.Size(214, 26)
+        Me.Register_ContextMenu.Text = "Add"
+        '
+        'Update_ContextMenu
+        '
+        Me.Update_ContextMenu.Image = CType(resources.GetObject("Update_ContextMenu.Image"), System.Drawing.Image)
+        Me.Update_ContextMenu.Name = "Update_ContextMenu"
+        Me.Update_ContextMenu.Size = New System.Drawing.Size(214, 26)
+        Me.Update_ContextMenu.Text = "Update"
+        '
+        'DeleteContextMenu
+        '
+        Me.DeleteContextMenu.Image = CType(resources.GetObject("DeleteContextMenu.Image"), System.Drawing.Image)
+        Me.DeleteContextMenu.Name = "DeleteContextMenu"
+        Me.DeleteContextMenu.Size = New System.Drawing.Size(214, 26)
+        Me.DeleteContextMenu.Text = "Delete"
+        '
+        'Refresh_ContextMenu
+        '
+        Me.Refresh_ContextMenu.Image = CType(resources.GetObject("Refresh_ContextMenu.Image"), System.Drawing.Image)
+        Me.Refresh_ContextMenu.Name = "Refresh_ContextMenu"
+        Me.Refresh_ContextMenu.Size = New System.Drawing.Size(214, 26)
+        Me.Refresh_ContextMenu.Text = "Refresh"
+        '
+        'Viewmember_ContextMenu
+        '
+        Me.Viewmember_ContextMenu.Image = CType(resources.GetObject("Viewmember_ContextMenu.Image"), System.Drawing.Image)
+        Me.Viewmember_ContextMenu.Name = "Viewmember_ContextMenu"
+        Me.Viewmember_ContextMenu.Size = New System.Drawing.Size(214, 26)
+        Me.Viewmember_ContextMenu.Text = "View Member"
+        '
         'Park_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -354,6 +405,7 @@ Partial Class Park_List
         CType(Me.logo_transactionlogs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Parking_TableContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -373,4 +425,10 @@ Partial Class Park_List
     Friend WithEvents Add_Parking_Button As Bunifu.Framework.UI.BunifuFlatButton
     Friend WithEvents logo_transactionlogs As PictureBox
     Friend WithEvents Transaction_logs_button As Bunifu.Framework.UI.BunifuFlatButton
+    Friend WithEvents Parking_TableContextMenu As ContextMenuStrip
+    Friend WithEvents Register_ContextMenu As ToolStripMenuItem
+    Friend WithEvents Update_ContextMenu As ToolStripMenuItem
+    Friend WithEvents DeleteContextMenu As ToolStripMenuItem
+    Friend WithEvents Refresh_ContextMenu As ToolStripMenuItem
+    Friend WithEvents Viewmember_ContextMenu As ToolStripMenuItem
 End Class

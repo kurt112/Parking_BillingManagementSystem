@@ -1,36 +1,38 @@
 ﻿Public Class User_List
-    Dim database As Server = New Server
+    Private ReadOnly database As Server = New Server
+    Dim index As Integer
+    Private ReadOnly user As User = New User("", "", "", "", "", "")
     Private Sub User_List_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+        User_table.ContextMenuStrip = User_ContextMenu
         database.User_Table(User_table, Search.Text)
     End Sub
 
-
+    Private Sub Update_function()
+        Dim selectedRow As DataGridViewRow
+        selectedRow = User_table.Rows(index)
+        database.User_Query(selectedRow.Cells(0).Value.ToString, user)
+        Using Register_User As User_Register = New User_Register
+            Register_User.User1 = user
+            Register_User.Table1 = Me.User_table
+            Register_User.Update1 = True
+            Register_User.ShowDialog()
+        End Using
+    End Sub
 
     Public Sub CreateModal(ByVal form As Form)
         form.ShowDialog()
     End Sub
 
     Private Sub Add_User_Click()
-        Dim Register_User As User_Register = New User_Register
-        Register_User.Table1 = Me.User_table
-        Register_User.Text1 = Search.Text
-        Register_User.ShowDialog()
+        Using Register_User As User_Register = New User_Register
+            Register_User.Table1 = Me.User_table
+            Register_User.Text1 = Search.Text
+            Register_User.ShowDialog()
+        End Using
     End Sub
 
     Private Sub User_table_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles User_table.CellClick
-        Dim index As Integer
-        index = e.RowIndex
-        Dim selectedRow As DataGridViewRow
-        selectedRow = User_table.Rows(index)
-        MessageBox.Show(selectedRow.Cells(0).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(1).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(2).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(3).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(4).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(5).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(6).Value.ToString)
-        MessageBox.Show(selectedRow.Cells(7).Value.ToString)
+        Index = e.RowIndex
 
     End Sub
 
@@ -54,4 +56,45 @@
         Add_User_Click()
     End Sub
 
+    Private Sub User_table_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles User_table.CellDoubleClick
+        Update_function()
+    End Sub
+
+
+    '********************************************** Context Menu *****************************************************
+    Private Sub Register_ContextMenu_Click(sender As Object, e As EventArgs) Handles Register_ContextMenu.Click
+        Add_User_Click()
+    End Sub
+
+    Private Sub Update_ContextMenu_Click(sender As Object, e As EventArgs) Handles Update_ContextMenu.Click
+        Dim result As DialogResult = MessageBox.Show("Do you want to Update this User",
+                                      "Update Confirmation",
+                                      MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Update_function()
+        End If
+    End Sub
+
+    Private Sub DeleteContextMenu_Click(sender As Object, e As EventArgs) Handles DeleteContextMenu.Click
+        Dim result As DialogResult = MessageBox.Show("Do you want to Delete this User",
+                                      "Delete Confirmation",
+                                      MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Dim selectedRow As DataGridViewRow
+            selectedRow = User_table.Rows(index)
+            database.Delete_user(selectedRow.Cells(0).Value.ToString)
+            database.User_Table(User_table, Search.Text)
+        End If
+    End Sub
+
+    Private Sub Refresh_ContextMenu_Click(sender As Object, e As EventArgs) Handles Refresh_ContextMenu.Click
+        database.User_Table(User_table, Search.Text)
+    End Sub
+
+    Private Sub Userlogs_ContextMenu_Click(sender As Object, e As EventArgs) Handles Userlogs_ContextMenu.Click
+        CreateModal(User_Log)
+    End Sub
+
+
+    '********************************************** End Context Menu *****************************************************
 End Class

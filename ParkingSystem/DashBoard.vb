@@ -3,11 +3,7 @@ Imports ParkingSystem
 Public Class Parking
 
 #Region "The objects in the class"
-    Dim database As Server = New Server
-
-    Private WithEvents _MainPanel As New Panel
-    Private _ChildForm As Form
-
+    ReadOnly database As Server = New Server
     Dim member_table As BunifuCustomDataGrid
     Dim location_table As BunifuCustomDataGrid
 
@@ -23,7 +19,7 @@ Public Class Parking
 #End Region
 
 #Region "Getter Setter of this class"
-    Public Property single_user As User_History = New User_History("", "", "", "", "", "", "", "")
+    Public Property Single_user As User_History = New User_History("", "", "", "", "", "", "", "")
 
     Public Property Transaction_form1 As Transaction_List
         Get
@@ -95,20 +91,20 @@ Public Class Parking
 
 #Region "Form Load"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        username.Text = single_user.Username1
-        user_status.Text = single_user.First_name1 + " " + single_user.Last_name1
+        username.Text = Single_user.Username1
+        user_status.Text = Single_user.First_name1 + " " + Single_user.Last_name1
         _Date.Text = Date.Today.ToLongDateString
         Me.MinimizeBox = True
         Me.MaximizeBox = True
         transaction_form.Location_table1 = location_table
         transaction_form.Member_table1 = member_table
-        transaction_form.Username1 = single_user.Username1
-        switchTransaction(transaction_form)
+        transaction_form.Username1 = Single_user.Username1
+        SwitchTransaction(transaction_form)
     End Sub
 #End Region
 
 #Region "For Switching the panel"
-    Sub switchPanel(ByVal panel As Form)
+    Sub SwitchPanel(ByVal panel As Form)
 
         Panel_Change.Controls.Clear()
         panel.TopLevel = False
@@ -118,7 +114,7 @@ Public Class Parking
 
     End Sub
 
-    Sub switchTransaction(ByVal panel As Transaction_List)
+    Sub SwitchTransaction(ByVal panel As Transaction_List)
 
         Panel_Change.Controls.Clear()
         panel.TopLevel = False
@@ -130,20 +126,20 @@ Public Class Parking
 #End Region
 
 #Region "Minimize, Fullscreen, X button"
-    Private Sub x_button_Click(sender As Object, e As EventArgs) Handles x_button.Click
+    Private Sub X_button_Click(sender As Object, e As EventArgs) Handles x_button.Click
 
 
         Dim time_end As DateTime = Convert.ToDateTime(DateTime.Now)
 
 
-        Dim time_start As DateTime = Convert.ToDateTime(single_user.Time_in1)
+        Dim time_start As DateTime = Convert.ToDateTime(Single_user.Time_in1)
 
         Dim total_session = time_end.Subtract(time_start)
 
-        single_user.Time_out1 = time_end
-        single_user.Session1 = total_session.ToString
+        Single_user.Time_out1 = time_end
+        Single_user.Session1 = total_session.ToString
 
-        database.Add_User_History(single_user)
+        database.Add_User_History(Single_user)
         Me.Close()
 
     End Sub
@@ -175,26 +171,26 @@ Public Class Parking
     'Just Switching panel'
     Private Sub Transaction_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Transaction_Button.MouseClick
 
-        transaction_form.Username1 = single_user.Username1
+        transaction_form.Username1 = Single_user.Username1
 
-        switchTransaction(transaction_form)
+        SwitchTransaction(transaction_form)
     End Sub
 
     Private Sub Parking_List_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles Parking_List_Button.MouseClick
-        switchPanel(area_form)
+        SwitchPanel(area_form)
     End Sub
     Private Sub User_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles User_Button.MouseClick
-        switchPanel(users_form)
+        SwitchPanel(users_form)
     End Sub
     Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.Click
-        switchPanel(transaction_form)
+        SwitchPanel(transaction_form)
     End Sub
     Private Sub Promo_Button_Click(sender As Object, e As EventArgs) Handles Promo_Button.Click
-        switchPanel(promohistory_form)
+        SwitchPanel(promohistory_form)
     End Sub
     Private Sub Membership_button_Click_1(sender As Object, e As EventArgs) Handles Membership_button.Click
-        member_form.Username1 = single_user.Username1
-        switchPanel(member_form)
+        member_form.Username1 = Single_user.Username1
+        SwitchPanel(member_form)
     End Sub
     '---------------------------------------------------------------------'
     'Just coloring stuff'

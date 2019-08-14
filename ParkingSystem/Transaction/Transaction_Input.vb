@@ -1,23 +1,23 @@
 ﻿Imports Bunifu.Framework.UI
 
 Public Class Transaction_Input
-    Private database As Server = New Server
-    Private membership As Boolean = True
+    Private ReadOnly database As Server = New Server
+    Private ReadOnly membership As Boolean = True
     Private promo_click = False
     Dim location_table As BunifuCustomDataGrid
     Dim member_table As BunifuCustomDataGrid
     Dim transaction_table As BunifuCustomDataGrid
 
-    Private Property username As String
-    Dim member As Membership = New Membership(0, "", "", "", "", "", "", "", "", "", "", "",
+    Private Property Username As String
+    ReadOnly member As Membership = New Membership(0, "", "", "", "", "", "", "", "", "", "", "",
                                                "", "", "", "", "", "", "", "", "")
 
     Public Property Username1 As String
         Get
-            Return username
+            Return Username
         End Get
         Set(value As String)
-            username = value
+            Username = value
         End Set
     End Property
 
@@ -48,13 +48,13 @@ Public Class Transaction_Input
         End Set
     End Property
 
-    Private Sub member_id_TextChanged(sender As Object, e As EventArgs) Handles member_id.TextChanged
+    Private Sub Member_id_TextChanged(sender As Object, e As EventArgs) Handles member_id.TextChanged
 
         If (member_id.Text.Length >= 10) Then
             Dim new_id = Replace(member_id.Text, Space(1), Space(2))
             If (database.Member_query(new_id, member) = True) Then
 
-                setValue()
+                SetValue()
                 database.Update_Login(member)
 
                 If (member.Active1.Equals("ACTIVE")) Then
@@ -63,7 +63,7 @@ Public Class Transaction_Input
                     database.Update_Member_Status(member.Member_id1, "INACTIVE")
 
                     If Not (member.Promo_activate1.Equals("Not Activate")) Then
-                        parking_location.Text = database.generate_Occupide_Area(member_id.Text)
+                        parking_location.Text = database.Generate_Occupide_Area(member_id.Text)
 
                     Else
 
@@ -71,13 +71,13 @@ Public Class Transaction_Input
                             'Gues Out
                             MessageBox.Show("Out in guest")
                             database.Update_InitialAmount(member_id.Text, "0")
-                            database.set_Promo_Inactive(member_id.Text)
+                            database.Set_Promo_Inactive(member_id.Text)
 
                         End If
 
-                        parking_location.Text = database.generate_Occupide_Area(member_id.Text)
+                        parking_location.Text = database.Generate_Occupide_Area(member_id.Text)
                         database.Update_location(parking_location.Text, "Available")
-                        database.set_Promo_Inactive(member_id.Text)
+                        database.Set_Promo_Inactive(member_id.Text)
 
 
                         '----------------------------------------------------------------'
@@ -94,18 +94,18 @@ Public Class Transaction_Input
 
                         'Time In when member
                         Promo_List.selectedIndex = 0
-                        parking_location.Text = database.generate_Location()
+                        parking_location.Text = database.Generate_Location()
 
                     Else
 
                         'just updating the location 
                         '  parking_location.Text = database.location_history(member_id.Text)
 
-                        If (database.get_Promo_ends(member_id.Text).Equals(DateTime.Now)) Then
+                        If (database.Get_Promo_ends(member_id.Text).Equals(DateTime.Now)) Then
 
                             MessageBox.Show("Promo Expired")
                             database.Update_location(parking_location.Text, "Available")
-                            database.set_Promo_Inactive(member_id.Text)
+                            database.Set_Promo_Inactive(member_id.Text)
                             Promo_List.selectedIndex = 0
                             promo_value.Text = Promo_List.selectedValue
 
@@ -113,7 +113,7 @@ Public Class Transaction_Input
                         Else
 
                             'Getting thep prper name of the promo
-                            parking_location.Text = database.generate_Occupide_Area(member_id.Text)
+                            parking_location.Text = database.Generate_Occupide_Area(member_id.Text)
 
                             Dim quit As Boolean = False
                             Dim index As Integer = 0
@@ -148,16 +148,17 @@ Public Class Transaction_Input
     End Sub
 
     Private Sub Top_Up_Click(sender As Object, e As EventArgs) Handles Top_Up.Click
-        Dim value As InputBox = New InputBox
+        Using value As InputBox = New InputBox
 
-        value.Member1 = member
-        value.Top_Up1 = True
-        value.Value1 = initial_amount.Text
-        value.Update_TextBox1 = initial_amount
-        value.Total_spend1 = total_spend
-        value.Points1 = points_value
-        value.Total_login1 = login_times_value
-        value.ShowDialog()
+            value.Member1 = member
+            value.Top_Up1 = True
+            value.Value1 = initial_amount.Text
+            value.Update_TextBox1 = initial_amount
+            value.Total_spend1 = total_spend
+            value.Points1 = points_value
+            value.Total_login1 = login_times_value
+            value.ShowDialog()
+        End Using
 
     End Sub
 
@@ -180,7 +181,7 @@ Public Class Transaction_Input
             Dim amount As Integer = CInt(initial_amount.Text)
 
             'just getting the amount of the location
-            Dim location_amount As Integer = database.location_price(parking_location.Text)
+            Dim location_amount As Integer = database.Location_price(parking_location.Text)
 
             If (promo_click = True) Then
                 database.Parking_Table("", location_table)
@@ -191,7 +192,7 @@ Public Class Transaction_Input
                 If (amount > location_amount And location_amount > 0) Then
 
                     Dim total As Object
-                    Dim status_rate = ""
+                    Dim status_rate As String
 
                     If (firstname.Text.Equals("GUEST")) Then
 
@@ -215,7 +216,7 @@ Public Class Transaction_Input
                     'Inserting data into history
                     database.Insert_Parkinghistory(New Promo_History("", member_id.Text,
                                 status_rate, parking_location.Text,
-                        DateTime.Now, DateTime.Now.AddHours(8), username, "Active"))
+                        DateTime.Now, DateTime.Now.AddHours(8), Username, "Active"))
 
                     'just clearing the textbox
                     database.Parking_Table("", location_table)
@@ -241,7 +242,7 @@ Public Class Transaction_Input
             Clear_Textbox()
         End If
     End Sub
-    Private Sub register_promo_button_Click(sender As Object, e As EventArgs) Handles register_promo_button.Click
+    Private Sub Register_promo_button_Click(sender As Object, e As EventArgs) Handles register_promo_button.Click
 
         If (firstname.Text.Equals("GUEST") Or last_name.Text.Equals("GUEST")) Then
             MessageBox.Show("Must be a member to register this promo")
@@ -273,7 +274,7 @@ Public Class Transaction_Input
                         'inserting the data into parking history 
                         database.Insert_Parkinghistory(New Promo_History("", member_id.Text,
                                promo_value.Text, parking_location.Text,
-                        DateTime.Now, DateTime.Now.AddDays(promo_ends), username, "Active"))
+                        DateTime.Now, DateTime.Now.AddDays(promo_ends), Username, "Active"))
 
                         MessageBox.Show("Succesful Registered")
 
@@ -293,13 +294,13 @@ Public Class Transaction_Input
         End If
     End Sub
 
-    Private Sub member_id_KeyPress(sender As Object, e As KeyPressEventArgs) Handles member_id.KeyPress
+    Private Sub Member_id_KeyPress(sender As Object, e As KeyPressEventArgs) Handles member_id.KeyPress
         If (Asc(e.KeyChar) = 27) Then
             Clear_Textbox()
         End If
     End Sub
 
-    Private Sub setValue()
+    Private Sub SetValue()
         firstname.Text = member.First_name1
         last_name.Text = member.Last_name1
         email.Text = member.Email_address1
@@ -336,7 +337,7 @@ Public Class Transaction_Input
         parking_location.Text = ""
     End Sub
 
-    Private Sub x_button_Click(sender As Object, e As EventArgs) Handles x_button.Click
+    Private Sub X_button_Click(sender As Object, e As EventArgs) Handles x_button.Click
         Me.Close()
     End Sub
 

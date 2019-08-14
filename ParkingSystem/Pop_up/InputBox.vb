@@ -2,9 +2,9 @@
 Imports Bunifu.Framework.UI
 Public Class InputBox
 
-    Private My_table As Bunifu.Framework.UI.BunifuCustomDataGrid
-    Private button As Bunifu.Framework.UI.BunifuFlatButton
-    Private Database As Server = New Server
+    Private My_table As BunifuCustomDataGrid
+
+    Private ReadOnly Database As Server = New Server
 
     'For Top up'
     Private Top_Up As Boolean = False
@@ -28,24 +28,18 @@ Public Class InputBox
     Private drop_down As BunifuDropdown
     'For Parking area add
 
-    Public Property table As Bunifu.Framework.UI.BunifuCustomDataGrid
+
+
+    Public Property Table As BunifuCustomDataGrid
         Get
             Return My_table
         End Get
 
-        Set(ByVal this_table As Bunifu.Framework.UI.BunifuCustomDataGrid)
+        Set(ByVal this_table As BunifuCustomDataGrid)
             My_table = this_table
         End Set
     End Property
 
-    Public Property my_button As Bunifu.Framework.UI.BunifuFlatButton
-        Get
-            Return button
-        End Get
-        Set(this_button As Bunifu.Framework.UI.BunifuFlatButton)
-            button = this_button
-        End Set
-    End Property
 
     Public Property Top_Up1 As Boolean
         Get
@@ -167,51 +161,63 @@ Public Class InputBox
     End Sub
 
     Private Sub Ok_button_Click(sender As Object, e As EventArgs) Handles Ok_button.Click
-        If (Top_Up = True) Then
-            Try
-                Dim total As Integer = CInt(value) + CInt(value_text.Text)
-                If (CInt(total) < 0) Then
 
-                    Throw New Exception
-                Else
-                    Database.Update_Amount(value_text, member, Update_TextBox, Points, total_spend)
-                End If
+        Try
+            Dim text_value As Integer = CInt(value_text.Text)
 
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString)
-            End Try
+            If (text_value < 0) Then
 
-        ElseIf (Register1 = True) Then
-            Try
-                If (CInt(value_text.Text) < 0) Then
-                    Throw New Exception
-                Else
-                    Update_TextBox.Text = value_text.Text
+                Throw New Exception
+
+            Else
+
+                If (Top_Up = True) Then
+                    Try
+
+                        Dim total As Integer = CInt(value) + text_value
+
+                        If (CInt(total) < 0) Then
+
+                            Throw New Exception
+
+                        Else
+
+                            Database.Update_Amount(value_text, member, Update_TextBox, Points, total_spend)
+
+                        End If
+
+                    Catch ex As Exception
+
+                        MessageBox.Show("Top up Failed")
+
+                    End Try
+
+                ElseIf (Register1 = True) Then
+
+                    Update_TextBox.Text = text_value
                     MessageBox.Show("Value added succesful")
-                End If
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString)
-            End Try
 
-        ElseIf (Generate_guest1 = True) Then
-            Database.Membership_Register(New Membership(value_text.Text, "GUEST", "GUEST", "GUEST",
+                ElseIf (Generate_guest1 = True) Then
+                    Database.Membership_Register(New Membership(value_text.Text, "GUEST", "GUEST", "GUEST",
                                                    "GUEST", "GUEST", Date.Now.ToString("MM/dd/yyyy"), "0",
                                                     "0", "0", "", "", user_assisgn, Date.Now.ToString("MM/dd/yyyy"), "0", "Not Activate", "GUEST",
                                                     "GUEST", "GUEST", "", "INACTIVE"))
-            Database.MembershipTable("", table)
+                    Database.MembershipTable("", Table)
 
-        ElseIf (Parking_add1 = True) Then
-            drop_down.AddItem(value_text.Text)
+                ElseIf (Parking_add1 = True) Then
 
+                    drop_down.AddItem(text_value)
+                    drop_down.selectedIndex = drop_down.Items.Count - 1
+                    drop_down.selectedIndex += 1
 
-        Else
-            table.Rows.Add(value_text.Text)
-            button.Text = value_text.Text
-            MessageBox.Show(value_text.Text + " has Added")
-            Me.Close()
-        End If
+                End If
 
-        Me.Close()
+                Me.Close()
 
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Invalid Value")
+        End Try
     End Sub
+
 End Class

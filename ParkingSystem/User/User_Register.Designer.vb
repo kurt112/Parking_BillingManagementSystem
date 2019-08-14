@@ -25,6 +25,7 @@ Partial Class User_Register
         Me.User_id = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.first_name = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.username__ = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -45,7 +46,6 @@ Partial Class User_Register
         Me.email_address = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.last_name = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.password_mismatch = New System.Windows.Forms.Label()
-        Me.username__ = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -120,6 +120,19 @@ Partial Class User_Register
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(533, 607)
         Me.Panel1.TabIndex = 6
+        '
+        'username__
+        '
+        Me.username__.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.username__.ForeColor = System.Drawing.Color.Red
+        Me.username__.Location = New System.Drawing.Point(132, 290)
+        Me.username__.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.username__.Name = "username__"
+        Me.username__.Size = New System.Drawing.Size(380, 23)
+        Me.username__.TabIndex = 66
+        Me.username__.Text = "Password does not match"
+        Me.username__.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.username__.Visible = False
         '
         'Label7
         '
@@ -419,19 +432,6 @@ Partial Class User_Register
         Me.password_mismatch.Text = "Password does not match"
         Me.password_mismatch.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.password_mismatch.Visible = False
-        '
-        'username__
-        '
-        Me.username__.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.username__.ForeColor = System.Drawing.Color.Red
-        Me.username__.Location = New System.Drawing.Point(132, 290)
-        Me.username__.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.username__.Name = "username__"
-        Me.username__.Size = New System.Drawing.Size(380, 23)
-        Me.username__.TabIndex = 66
-        Me.username__.Text = "Password does not match"
-        Me.username__.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.username__.Visible = False
         '
         'User_Register
         '

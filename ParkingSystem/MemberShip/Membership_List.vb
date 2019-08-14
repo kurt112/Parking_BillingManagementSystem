@@ -2,10 +2,10 @@
 
 Public Class Membership_List
     Private username As String
-    Private database As Server = New Server
+    Private ReadOnly database As Server = New Server
     Private index As Integer
+    ReadOnly promo_object As Promo = New Promo("", "", "", "", "", "", "")
 
-    Dim Member_table_ As BunifuCustomDataGrid = Member_table
 
     Public Property Username1 As String
         Get
@@ -17,15 +17,16 @@ Public Class Membership_List
     End Property
 
     Private Sub Generate_guest_Click(sender As Object, e As EventArgs) Handles generate_guest.Click
-        generate_guest_function()
+        Generate_guest_function()
     End Sub
 
-    Private Sub generate_guest_function()
-        Dim input As InputBox = New InputBox
-        input.User_assisgn1 = username
-        input.Generate_guest1 = True
-        input.table = Member_table
-        input.ShowDialog()
+    Private Sub Generate_guest_function()
+        Using input As InputBox = New InputBox
+            input.User_assisgn1 = username
+            input.Generate_guest1 = True
+            input.Table = Member_table
+            input.ShowDialog()
+        End Using
     End Sub
 
 
@@ -41,21 +42,21 @@ Public Class Membership_List
     End Sub
 
     Private Sub Register_Function()
-        Dim Register_Form As Member_Register = New Member_Register
-        Register_Form.User1 = username
-        Register_Form.Table1 = Member_table
-        Register_Form.Update1 = False
-        Register_Form.ShowDialog()
+        Using Register_Form As Member_Register = New Member_Register
+            Register_Form.User1 = username
+            Register_Form.Table1 = Member_table
+            Register_Form.ShowDialog()
+        End Using
     End Sub
     '------ ------------------------- End of Register Function -----------------------------
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Dim Register_Form As Member_Register = New Member_Register
-        Register_Form.User1 = username
-        Register_Form.Table1 = Member_table
-        Register_Form.ShowDialog()
+        Using Register_Form As Member_Register = New Member_Register
+            Register_Form.User1 = username
+            Register_Form.Table1 = Member_table
+            Register_Form.ShowDialog()
+        End Using
     End Sub
-
 
     '------ -------------------------For Table Function -----------------------------
 
@@ -70,24 +71,29 @@ Public Class Membership_List
 
 
     Private Sub Update_member()
-        Dim member As Member_Register = New Member_Register
-        Dim Update_member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+        Using member As Member_Register = New Member_Register
+            Dim Update_member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
 
 
-        Dim selectedRow As DataGridViewRow
-        selectedRow = Member_table.Rows(index)
+            Try
+                Dim selectedRow As DataGridViewRow
+                selectedRow = Member_table.Rows(index)
 
+                If (selectedRow.Cells(1).Value.ToString.Equals("GUEST")) Then
+                    MessageBox.Show("GUEST CARD CANNOT BE UPDATED")
+                Else
+                    database.Member_query(selectedRow.Cells(0).Value.ToString, Update_member)
+                    member.Update_member1 = Update_member
+                    member.Update1 = True
+                    member.Table1 = Member_table
+                    member.ShowDialog()
 
-        If (selectedRow.Cells(1).Value.ToString.Equals("GUEST")) Then
-            MessageBox.Show("GUEST CARD CANNOT BE UPDATED")
-        Else
+                End If
+            Catch ex As Exception
+                MessageBox.Show("No Member Found")
+            End Try
+        End Using
 
-            database.Member_query(selectedRow.Cells(0).Value.ToString, Update_member)
-            member.Update_member1 = Update_member
-            member.Update1 = True
-            member.Table1 = Member_table
-            member.ShowDialog()
-        End If
     End Sub
 
     Private Sub Check_Update()
@@ -101,7 +107,12 @@ Public Class Membership_List
     '------------------------------------------------------------------------------------------------------------------------------------;
     'Context menu
     Private Sub Generateguest_ContextMenu_Click(sender As Object, e As EventArgs) Handles Generateguest_ContextMenu.Click
-        generate_guest_function()
+        Dim result As DialogResult = MessageBox.Show("Do you want to generate guest card ",
+                                      "Confirmation",
+                                      MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Generate_guest_function()
+        End If
     End Sub
 
     Private Sub Refresh_ContextMenu_Click(sender As Object, e As EventArgs) Handles Refresh_ContextMenu.Click
@@ -109,11 +120,25 @@ Public Class Membership_List
     End Sub
 
     Private Sub DeleteContextMenu_Click(sender As Object, e As EventArgs) Handles DeleteContextMenu.Click
+        Dim result As DialogResult = MessageBox.Show("Do you want to delete this member?",
+                                     "Delete Confirmation",
+                                     MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Dim selectedRow As DataGridViewRow
+            selectedRow = Member_table.Rows(index)
 
+            database.Update_Member_Status(selectedRow.Cells(0).Value.ToString, "DISABLED")
+            database.MembershipTable(Search.Text, Member_table)
+        End If
     End Sub
 
     Private Sub Update_ContextMenu_Click(sender As Object, e As EventArgs) Handles Update_ContextMenu.Click
-        Check_Update()
+        Dim result As DialogResult = MessageBox.Show("Do you want to update this member ",
+                                      "Update Confirmation",
+                                      MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Check_Update()
+        End If
     End Sub
 
     Private Sub Register_ContextMenu_Click(sender As Object, e As EventArgs) Handles Register_ContextMenu.Click
@@ -122,6 +147,28 @@ Public Class Membership_List
 
     Private Sub Search_OnValueChanged_1(sender As Object, e As EventArgs) Handles Search.OnValueChanged
         database.MembershipTable(Search.Text, Member_table)
+    End Sub
+
+    Private Sub ViewPromoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPromoToolStripMenuItem.Click
+        Using promo_form As Pricing_Promo = New Pricing_Promo
+            Try
+                Dim selectedRow As DataGridViewRow
+                selectedRow = Member_table.Rows(index)
+
+                If Not (selectedRow.Cells(4).Value.ToString.Equals("Not Activate")) Then
+                    database.Promo_Query_Name(selectedRow.Cells(4).Value.ToString, promo_object)
+                    promo_form.Promo1 = promo_object
+                    promo_form.Update1 = True
+                    promo_form.Look1 = True
+                    promo_form.ShowDialog()
+                Else
+                    MessageBox.Show("No promo detected")
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("No Element Found")
+            End Try
+        End Using
     End Sub
     '------------------------------------------------------------------------------------------------------------------------------------;
     'End of Context menu

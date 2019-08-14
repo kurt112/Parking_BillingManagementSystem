@@ -22,10 +22,11 @@ Partial Class User_List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(User_List))
         Me.User_table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -46,6 +47,12 @@ Partial Class User_List
         Me.Add_User = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.User_log_logo = New System.Windows.Forms.PictureBox()
         Me.User_logs_Button = New Bunifu.Framework.UI.BunifuFlatButton()
+        Me.User_ContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.Register_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Update_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Refresh_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Userlogs_ContextMenu = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.User_table, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -53,14 +60,15 @@ Partial Class User_List
         Me.Panel2.SuspendLayout()
         CType(Me.Add_User_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.User_log_logo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.User_ContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'User_table
         '
         Me.User_table.AllowUserToAddRows = False
         Me.User_table.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.User_table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
+        Me.User_table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.User_table.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -69,24 +77,24 @@ Partial Class User_List
         Me.User_table.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.User_table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.User_table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.User_table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.User_table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
         Me.User_table.ColumnHeadersHeight = 35
         Me.User_table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.Password, Me.Date_Created, Me.Status})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.User_table.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.User_table.DefaultCellStyle = DataGridViewCellStyle19
         Me.User_table.DoubleBuffered = True
         Me.User_table.EnableHeadersVisualStyles = False
         Me.User_table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
@@ -97,14 +105,14 @@ Partial Class User_List
         Me.User_table.Name = "User_table"
         Me.User_table.ReadOnly = True
         Me.User_table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.User_table.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.User_table.RowHeadersDefaultCellStyle = DataGridViewCellStyle20
         Me.User_table.RowHeadersVisible = False
         Me.User_table.RowHeadersWidth = 51
         Me.User_table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -362,6 +370,49 @@ Partial Class User_List
         Me.User_logs_Button.Textcolor = System.Drawing.Color.White
         Me.User_logs_Button.TextFont = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
+        'User_ContextMenu
+        '
+        Me.User_ContextMenu.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.User_ContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Register_ContextMenu, Me.Update_ContextMenu, Me.DeleteContextMenu, Me.Refresh_ContextMenu, Me.Userlogs_ContextMenu})
+        Me.User_ContextMenu.Name = "ContextMenuStrip1"
+        Me.User_ContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.User_ContextMenu.Size = New System.Drawing.Size(171, 134)
+        '
+        'Register_ContextMenu
+        '
+        Me.Register_ContextMenu.Image = CType(resources.GetObject("Register_ContextMenu.Image"), System.Drawing.Image)
+        Me.Register_ContextMenu.Name = "Register_ContextMenu"
+        Me.Register_ContextMenu.Size = New System.Drawing.Size(170, 26)
+        Me.Register_ContextMenu.Text = "Add User"
+        '
+        'Update_ContextMenu
+        '
+        Me.Update_ContextMenu.Image = CType(resources.GetObject("Update_ContextMenu.Image"), System.Drawing.Image)
+        Me.Update_ContextMenu.Name = "Update_ContextMenu"
+        Me.Update_ContextMenu.Size = New System.Drawing.Size(170, 26)
+        Me.Update_ContextMenu.Text = "Update User"
+        '
+        'DeleteContextMenu
+        '
+        Me.DeleteContextMenu.Image = CType(resources.GetObject("DeleteContextMenu.Image"), System.Drawing.Image)
+        Me.DeleteContextMenu.Name = "DeleteContextMenu"
+        Me.DeleteContextMenu.Size = New System.Drawing.Size(170, 26)
+        Me.DeleteContextMenu.Text = "Delete User"
+        '
+        'Refresh_ContextMenu
+        '
+        Me.Refresh_ContextMenu.Image = CType(resources.GetObject("Refresh_ContextMenu.Image"), System.Drawing.Image)
+        Me.Refresh_ContextMenu.Name = "Refresh_ContextMenu"
+        Me.Refresh_ContextMenu.Size = New System.Drawing.Size(170, 26)
+        Me.Refresh_ContextMenu.Text = "Refresh Table"
+        '
+        'Userlogs_ContextMenu
+        '
+        Me.Userlogs_ContextMenu.Image = CType(resources.GetObject("Userlogs_ContextMenu.Image"), System.Drawing.Image)
+        Me.Userlogs_ContextMenu.Name = "Userlogs_ContextMenu"
+        Me.Userlogs_ContextMenu.Size = New System.Drawing.Size(170, 26)
+        Me.Userlogs_ContextMenu.Text = "User Logs"
+        '
         'User_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -382,6 +433,7 @@ Partial Class User_List
         Me.Panel2.ResumeLayout(False)
         CType(Me.Add_User_logo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.User_log_logo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.User_ContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -405,4 +457,10 @@ Partial Class User_List
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents BunifuMaterialTextbox1 As Bunifu.Framework.UI.BunifuMaterialTextbox
     Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
+    Friend WithEvents User_ContextMenu As ContextMenuStrip
+    Friend WithEvents Register_ContextMenu As ToolStripMenuItem
+    Friend WithEvents Update_ContextMenu As ToolStripMenuItem
+    Friend WithEvents DeleteContextMenu As ToolStripMenuItem
+    Friend WithEvents Refresh_ContextMenu As ToolStripMenuItem
+    Friend WithEvents Userlogs_ContextMenu As ToolStripMenuItem
 End Class

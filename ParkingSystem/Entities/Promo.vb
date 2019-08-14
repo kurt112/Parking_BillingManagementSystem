@@ -1,5 +1,5 @@
 ﻿Public Class Promo
-    Private Id As Integer
+    Private Id As String
     Private Name As String
     Private Duration As String
     Private Description As String
@@ -7,7 +7,7 @@
     Private Price As String
     Private Status As String
 
-    Public Sub New(id As Integer, name As String, duration As String, description As String, ends As String, price As String, status As String)
+    Public Sub New(id As String, name As String, duration As String, description As String, ends As String, price As String, status As String)
         Me.Id = id
         Me.Name = name
         Me.Duration1 = duration
@@ -17,11 +17,11 @@
         Me.Status = status
     End Sub
 
-    Public Property Id1 As Integer
+    Public Property Id1 As String
         Get
             Return Id
         End Get
-        Set(value As Integer)
+        Set(value As String)
             Id = value
         End Set
     End Property

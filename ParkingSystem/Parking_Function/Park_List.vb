@@ -1,23 +1,21 @@
 ﻿Imports Bunifu.Framework.UI
 
 Public Class Park_List
-
-    Dim combobox As Combobox = New Combobox
-    Dim showing As Boolean = False
-    Dim start = True
-    Dim Parking_table = Parking_Area_Table
-    Dim database As Server = New Server
+    ReadOnly Update_member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+    ReadOnly database As Server = New Server
     Dim Index As Integer
 
 
     'When Parking Click
-    Private Sub Add_Parking_Click(sender As Object, e As EventArgs)
-        Dim form As Parking_Add = New Parking_Add()
-        form.My_Table = Parking_Area_Table
-        form.ShowDialog()
-
+    Private Sub Register_ParkingArea()
+        Using form As Parking_Add = New Parking_Add()
+            form.My_Table = Parking_Area_Table
+            form.ShowDialog()
+        End Using
     End Sub
-
+    Private Sub Add_Parking_Click(sender As Object, e As EventArgs) Handles Add_Parking_Button.MouseClick
+        Register_ParkingArea()
+    End Sub
 
     'When the Focus is lose to the button the panel will close
 
@@ -31,12 +29,15 @@ Public Class Park_List
     Private Sub Parking_List_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Set_Parkingtable()
+        Parking_Area_Table.ContextMenuStrip = Parking_TableContextMenu
+
     End Sub
 
     Private Sub Goto_parking_area()
-        Dim parking_add_ As Parking_Add = New Parking_Add
-        parking_add_.My_Table = Parking_Area_Table
-        parking_add_.ShowDialog()
+        Using parking_add_ As Parking_Add = New Parking_Add
+            parking_add_.My_Table = Parking_Area_Table
+            parking_add_.ShowDialog()
+        End Using
 
     End Sub
 
@@ -61,19 +62,25 @@ Public Class Park_List
     End Sub
 
     Private Sub Update_Area()
-        Dim parking_add As Parking_Add = New Parking_Add
-        Dim parking_area As Parking_Area = New Parking_Area(0, "", "", "", "")
-        Dim selectedRow As DataGridViewRow
-        selectedRow = Parking_Area_Table.Rows(Index)
+
+        Using parking_add As Parking_Add = New Parking_Add
+            Dim parking_area As Parking_Area = New Parking_Area(0, "", "", "", "")
+            Dim selectedRow As DataGridViewRow
+            Try
+                selectedRow = Parking_Area_Table.Rows(Index)
 
 
-        database.Parking_Query(selectedRow.Cells(0).Value.ToString, parking_area)
+                database.Parking_Query(selectedRow.Cells(0).Value.ToString, parking_area)
 
-        parking_add.Parking_area1 = parking_area
-            parking_add.Update1 = True
-            parking_add.My_Table = Parking_Area_Table
-            parking_add.ShowDialog()
+                parking_add.Parking_area1 = parking_area
+                parking_add.Update1 = True
+                parking_add.My_Table = Parking_Area_Table
+                parking_add.ShowDialog()
 
+            Catch ex As Exception
+                MessageBox.Show("No Area found")
+            End Try
+        End Using
     End Sub
 
     Private Sub Check_Update()
@@ -82,4 +89,71 @@ Public Class Park_List
 
     End Sub
 
+    '******************************************* CONTEXT MENU FUNCTION ******************************************************
+    Private Sub Register_ContextMenu_Click(sender As Object, e As EventArgs) Handles Register_ContextMenu.Click
+        Register_ParkingArea()
+    End Sub
+
+    Private Sub Update_ContextMenu_Click(sender As Object, e As EventArgs) Handles Update_ContextMenu.Click
+        Dim result As DialogResult = MessageBox.Show("Do you want to Update this location?",
+                                      "Update Confirmation",
+                                      MessageBoxButtons.YesNo)
+
+        If (result = DialogResult.Yes) Then
+            Update_Area()
+        End If
+
+    End Sub
+
+    Private Sub DeleteContextMenu_Click(sender As Object, e As EventArgs) Handles DeleteContextMenu.Click
+
+        Dim result As DialogResult = MessageBox.Show("Do you want to delete this item",
+                                      "Delete Confirmation",
+                                      MessageBoxButtons.YesNo)
+
+        Try
+            Dim selectedRow As DataGridViewRow
+            selectedRow = Parking_Area_Table.Rows(Index)
+
+            If (result = DialogResult.Yes) Then
+
+                database.Update_location(selectedRow.Cells(1).Value.ToString, "DISABLED")
+                Set_Parkingtable()
+
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show("No Area found")
+        End Try
+
+    End Sub
+
+    Private Sub Refresh_ContextMenu_Click(sender As Object, e As EventArgs) Handles Refresh_ContextMenu.Click
+        Set_Parkingtable()
+    End Sub
+
+    Private Sub Viewmember_ContextMenu_Click(sender As Object, e As EventArgs) Handles Viewmember_ContextMenu.Click
+        Try
+            Dim selectedRow As DataGridViewRow
+
+            selectedRow = Parking_Area_Table.Rows(Index)
+
+            If Not (selectedRow.Cells(4).Value.ToString.Equals("Available") Or selectedRow.Cells(4).Value.ToString.Equals("DISABLED")) Then
+                database.Member_query(selectedRow.Cells(4).Value.ToString, Update_member)
+                Using member_register As Member_Register = New Member_Register
+                    member_register.Update_member1 = Update_member
+                    member_register.Update1 = True
+                    member_register.Park_list1 = True
+                    member_register.ShowDialog()
+                   End Using
+                    Else
+                MessageBox.Show("No Member to show")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Member not Found")
+        End Try
+    End Sub
+
+    '******************************************* END CONTEXT MENU FUNCTION ******************************************************
 End Class
