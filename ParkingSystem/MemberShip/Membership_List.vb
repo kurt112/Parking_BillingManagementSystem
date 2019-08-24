@@ -6,6 +6,9 @@ Public Class Membership_List
     Private index As Integer
     ReadOnly promo_object As Promo = New Promo("", "", "", "", "", "", "")
 
+    'For updating the Profit
+    Private profit_table As BunifuCustomDataGrid
+    Private total_label As Label
 
     Public Property Username1 As String
         Get
@@ -13,6 +16,24 @@ Public Class Membership_List
         End Get
         Set(value As String)
             username = value
+        End Set
+    End Property
+
+    Public Property Profit_table1 As BunifuCustomDataGrid
+        Get
+            Return profit_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_table = value
+        End Set
+    End Property
+
+    Public Property Total_label1 As Label
+        Get
+            Return total_label
+        End Get
+        Set(value As Label)
+            total_label = value
         End Set
     End Property
 
@@ -45,6 +66,8 @@ Public Class Membership_List
         Using Register_Form As Member_Register = New Member_Register
             Register_Form.User1 = username
             Register_Form.Table1 = Member_table
+            Register_Form.Total_label1 = total_label
+            Register_Form.Profit_table1 = Profit_table1
             Register_Form.ShowDialog()
         End Using
     End Sub
@@ -65,28 +88,39 @@ Public Class Membership_List
     End Sub
 
     Private Sub Member_table_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Member_table.CellMouseDoubleClick
-        Check_Update()
+        Dim result As DialogResult = MessageBox.Show("Do you want to update this member ",
+                                      "Update Confirmation",
+                                      MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Check_Update()
+        End If
     End Sub
     '------ -------------------------For Table Function -----------------------------
 
 
     Private Sub Update_member()
+
         Using member As Member_Register = New Member_Register
             Dim Update_member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
 
+            Dim selectedRow As DataGridViewRow
+            selectedRow = Member_table.Rows(index)
 
             Try
-                Dim selectedRow As DataGridViewRow
-                selectedRow = Member_table.Rows(index)
 
                 If (selectedRow.Cells(1).Value.ToString.Equals("GUEST")) Then
                     MessageBox.Show("GUEST CARD CANNOT BE UPDATED")
                 Else
+
                     database.Member_query(selectedRow.Cells(0).Value.ToString, Update_member)
+                    member.User1 = username
                     member.Update_member1 = Update_member
                     member.Update1 = True
                     member.Table1 = Member_table
+                    member.Profit_table1 = profit_table
+                    member.Total_label1 = total_label
                     member.ShowDialog()
+
 
                 End If
             Catch ex As Exception
@@ -123,6 +157,7 @@ Public Class Membership_List
         Dim result As DialogResult = MessageBox.Show("Do you want to delete this member?",
                                      "Delete Confirmation",
                                      MessageBoxButtons.YesNo)
+
         If (result = DialogResult.Yes) Then
             Dim selectedRow As DataGridViewRow
             selectedRow = Member_table.Rows(index)
@@ -149,27 +184,11 @@ Public Class Membership_List
         database.MembershipTable(Search.Text, Member_table)
     End Sub
 
-    Private Sub ViewPromoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewPromoToolStripMenuItem.Click
-        Using promo_form As Pricing_Promo = New Pricing_Promo
-            Try
-                Dim selectedRow As DataGridViewRow
-                selectedRow = Member_table.Rows(index)
-
-                If Not (selectedRow.Cells(4).Value.ToString.Equals("Not Activate")) Then
-                    database.Promo_Query_Name(selectedRow.Cells(4).Value.ToString, promo_object)
-                    promo_form.Promo1 = promo_object
-                    promo_form.Update1 = True
-                    promo_form.Look1 = True
-                    promo_form.ShowDialog()
-                Else
-                    MessageBox.Show("No promo detected")
-                End If
-
-            Catch ex As Exception
-                MessageBox.Show("No Element Found")
-            End Try
-        End Using
+    Private Sub Generate_picture_Click(sender As Object, e As EventArgs) Handles generate_picture.Click
+        Generate_guest_function()
     End Sub
+
+
     '------------------------------------------------------------------------------------------------------------------------------------;
     'End of Context menu
 End Class

@@ -46,6 +46,8 @@ Partial Class User_Register
         Me.email_address = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.last_name = New Bunifu.Framework.UI.BunifuMaterialTextbox()
         Me.password_mismatch = New System.Windows.Forms.Label()
+        Me.BunifuCheckbox1 = New Bunifu.Framework.UI.BunifuCheckbox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -92,6 +94,8 @@ Partial Class User_Register
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.Label8)
+        Me.Panel1.Controls.Add(Me.BunifuCheckbox1)
         Me.Panel1.Controls.Add(Me.username__)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label6)
@@ -433,6 +437,29 @@ Partial Class User_Register
         Me.password_mismatch.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.password_mismatch.Visible = False
         '
+        'BunifuCheckbox1
+        '
+        Me.BunifuCheckbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(205, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.BunifuCheckbox1.ChechedOffColor = System.Drawing.Color.FromArgb(CType(CType(132, Byte), Integer), CType(CType(135, Byte), Integer), CType(CType(140, Byte), Integer))
+        Me.BunifuCheckbox1.Checked = True
+        Me.BunifuCheckbox1.CheckedOnColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(205, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.BunifuCheckbox1.ForeColor = System.Drawing.Color.White
+        Me.BunifuCheckbox1.Location = New System.Drawing.Point(20, 411)
+        Me.BunifuCheckbox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BunifuCheckbox1.Name = "BunifuCheckbox1"
+        Me.BunifuCheckbox1.Size = New System.Drawing.Size(20, 20)
+        Me.BunifuCheckbox1.TabIndex = 67
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.ForeColor = System.Drawing.Color.White
+        Me.Label8.Location = New System.Drawing.Point(43, 411)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(55, 17)
+        Me.Label8.TabIndex = 68
+        Me.Label8.Text = "Admin?"
+        '
         'User_Register
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -474,4 +501,6 @@ Partial Class User_Register
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents username__ As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents BunifuCheckbox1 As Bunifu.Framework.UI.BunifuCheckbox
 End Class

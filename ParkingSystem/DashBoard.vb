@@ -4,9 +4,10 @@ Public Class Parking
 
 #Region "The objects in the class"
     ReadOnly database As Server = New Server
+
     Dim member_table As BunifuCustomDataGrid
     Dim location_table As BunifuCustomDataGrid
-
+    Dim profit_tables As BunifuCustomDataGrid
 
 
     Dim isMaximize As Boolean = False
@@ -15,6 +16,9 @@ Public Class Parking
     Dim promohistory_form As Pricing
     Dim member_form As Membership_List
     Dim users_form As User_List
+    Dim Profit_form As Profit_List
+
+    Dim admin As Boolean = False
 
 #End Region
 
@@ -85,6 +89,33 @@ Public Class Parking
         End Set
     End Property
 
+    Public Property Profit_form1 As Profit_List
+        Get
+            Return Profit_form
+        End Get
+        Set(value As Profit_List)
+            Profit_form = value
+        End Set
+    End Property
+
+    Public Property Profit_tables1 As BunifuCustomDataGrid
+        Get
+            Return profit_tables
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_tables = value
+        End Set
+    End Property
+
+    Public Property Admin1 As Boolean
+        Get
+            Return admin
+        End Get
+        Set(value As Boolean)
+            admin = value
+        End Set
+    End Property
+
 #End Region
 
 
@@ -99,6 +130,13 @@ Public Class Parking
         transaction_form.Location_table1 = location_table
         transaction_form.Member_table1 = member_table
         transaction_form.Username1 = Single_user.Username1
+
+        If (admin = False) Then
+            Profit_panel.Visible = False
+            Users.Visible = False
+        End If
+
+
         SwitchTransaction(transaction_form)
     End Sub
 #End Region
@@ -136,7 +174,7 @@ Public Class Parking
 
         Dim total_session = time_end.Subtract(time_start)
 
-        Single_user.Time_out1 = time_end
+        Single_user.Time_out1 = time_end.ToString("dd'/'MM'/'yyyy")
         Single_user.Session1 = total_session.ToString
 
         database.Add_User_History(Single_user)
@@ -182,7 +220,7 @@ Public Class Parking
     Private Sub User_Button_MouseClick(sender As Object, e As MouseEventArgs) Handles User_Button.MouseClick
         SwitchPanel(users_form)
     End Sub
-    Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.Click
+    Private Sub Transaction_HistoryButton_Click(sender As Object, e As EventArgs)
         SwitchPanel(transaction_form)
     End Sub
     Private Sub Promo_Button_Click(sender As Object, e As EventArgs) Handles Promo_Button.Click
@@ -212,18 +250,13 @@ Public Class Parking
     Private Sub Promo_Button_Leave(sender As Object, e As EventArgs) Handles Promo_Button.MouseLeave
         Promo.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
-    Private Sub Membership_Button_Hover(sender As Object, e As EventArgs)
+    Private Sub Membership_Button_Hover(sender As Object, e As EventArgs) Handles Membership_button.MouseHover
         Membership.BackColor = Color.FromArgb(64, 64, 64)
     End Sub
-    Private Sub Membership_Button_Leave(sender As Object, e As EventArgs)
+    Private Sub Membership_Button_Leave(sender As Object, e As EventArgs) Handles Membership_button.MouseLeave
         Membership.BackColor = Color.FromArgb(18, 18, 18)
     End Sub
-    Private Sub History_Button_Hover(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.MouseHover
-        Transaction_History.BackColor = Color.FromArgb(64, 64, 64)
-    End Sub
-    Private Sub History_Button_Leave(sender As Object, e As EventArgs) Handles Transaction_HistoryButton.MouseLeave
-        Transaction_History.BackColor = Color.FromArgb(18, 18, 18)
-    End Sub
+
     Private Sub User_Button_Hover(sender As Object, e As EventArgs) Handles User_Button.MouseHover
         Users.BackColor = Color.FromArgb(64, 64, 64)
     End Sub
@@ -232,4 +265,44 @@ Public Class Parking
     End Sub
 
 
+
+    Private Sub Actions_Click_1(sender As Object, e As EventArgs) Handles Actions.Click
+        SwitchPanel(Profit_form)
+    End Sub
+
+    Private Sub Actions_Hover_1(sender As Object, e As EventArgs) Handles Actions.MouseHover
+        Profit_panel.BackColor = Color.FromArgb(64, 64, 64)
+
+    End Sub
+    Private Sub Actions_Leave_1(sender As Object, e As EventArgs) Handles Actions.MouseLeave
+        Profit_panel.BackColor = Color.FromArgb(18, 18, 18)
+    End Sub
+
+
+
+    Private Sub PictureBox10_Click(sender As Object, e As EventArgs) Handles Logout.Click
+        Dim time_end As DateTime = Convert.ToDateTime(DateTime.Now)
+
+
+        Dim time_start As DateTime = Convert.ToDateTime(Single_user.Time_in1)
+
+        Dim total_session = time_end.Subtract(time_start)
+
+        Single_user.Time_out1 = time_end.ToString("dd'/'MM'/'yyyy")
+        Single_user.Session1 = total_session.ToString
+
+        database.Add_User_History(Single_user)
+        Dim login As Login = New Login
+        Me.Close()
+        login.ShowDialog()
+    End Sub
+
+    Private Sub PictureBox_Hover(sender As Object, e As EventArgs) Handles Logout.MouseHover
+        logout_panel.BackColor = Color.FromArgb(64, 64, 64)
+
+    End Sub
+    Private Sub PictureBox10_Leave(sender As Object, e As EventArgs) Handles Logout.MouseLeave
+
+        logout_panel.BackColor = Color.FromArgb(18, 18, 18)
+    End Sub
 End Class

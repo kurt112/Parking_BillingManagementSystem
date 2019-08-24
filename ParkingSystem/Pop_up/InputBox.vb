@@ -1,6 +1,7 @@
 ﻿Imports ParkingSystem
 Imports Bunifu.Framework.UI
 Public Class InputBox
+#Region "Variables And Object"
 
     Private My_table As BunifuCustomDataGrid
 
@@ -19,7 +20,7 @@ Public Class InputBox
 
     'For generate Guesst
     Private generate_guest As Boolean = False
-    Private user_assisgn As String = ""
+    Private user_assisgn As String
     'End of generate guest
 
 
@@ -28,8 +29,15 @@ Public Class InputBox
     Private drop_down As BunifuDropdown
     'For Parking area add
 
+    'For Autoselecting the combobox
+    Dim index As Integer = 1
 
+    'For Reloading The pro fit
+    Dim profit_table As BunifuCustomDataGrid
+    Dim total_label As Label
+#End Region
 
+#Region "Properties"
     Public Property Table As BunifuCustomDataGrid
         Get
             Return My_table
@@ -151,6 +159,34 @@ Public Class InputBox
         End Set
     End Property
 
+    Public Property Profit_table1 As BunifuCustomDataGrid
+        Get
+            Return profit_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_table = value
+        End Set
+    End Property
+
+    Public Property Total1 As Label
+        Get
+            Return total_label
+        End Get
+        Set(value As Label)
+            total_label = value
+        End Set
+    End Property
+
+    Public Property Total_label1 As Label
+        Get
+            Return total_label
+        End Get
+        Set(value As Label)
+            total_label = value
+        End Set
+    End Property
+#End Region
+
     Private Sub Cancel_button_Click(sender As Object, e As EventArgs) Handles Cancel_button.Click
         If (parking_add = True) Then
             drop_down.selectedIndex = 0
@@ -161,9 +197,11 @@ Public Class InputBox
     End Sub
 
     Private Sub Ok_button_Click(sender As Object, e As EventArgs) Handles Ok_button.Click
-
         Try
-            Dim text_value As Integer = CInt(value_text.Text)
+
+            Dim date_today As String = Date.Today.ToString("dd'/'MM'/'yyyy")
+
+            Dim text_value As Long = CLng(value_text.Text)
 
             If (text_value < 0) Then
 
@@ -181,8 +219,10 @@ Public Class InputBox
                             Throw New Exception
 
                         Else
-
+                            '                 MessageBox.Show("I'm on Transaction input")
                             Database.Update_Amount(value_text, member, Update_TextBox, Points, total_spend)
+                            Database.Insert_Profit(New Profit_Entities("", user_assisgn, date_today, member.First_name1, text_value))
+                            Database.Profit_Table("", profit_table, total_label, " PROFIT_DATE = ")
 
                         End If
 
@@ -192,23 +232,28 @@ Public Class InputBox
 
                     End Try
 
+                    'First registration of the Member
+
                 ElseIf (Register1 = True) Then
 
-                    Update_TextBox.Text = text_value
-                    MessageBox.Show("Value added succesful")
-
+                    Update_TextBox.Text = text_value + CInt(Update_TextBox.Text)
+                    Database.Insert_Profit(New Profit_Entities("", user_assisgn, date_today, "First Top Up", text_value))
+                    Database.Profit_Table("", profit_table, total_label, " PROFIT_DATE = ")
                 ElseIf (Generate_guest1 = True) Then
+
                     Database.Membership_Register(New Membership(value_text.Text, "GUEST", "GUEST", "GUEST",
-                                                   "GUEST", "GUEST", Date.Now.ToString("MM/dd/yyyy"), "0",
-                                                    "0", "0", "", "", user_assisgn, Date.Now.ToString("MM/dd/yyyy"), "0", "Not Activate", "GUEST",
+                                                   "GUEST", "GUEST", date_today, "0",
+                                                    "0", "0", "", "", user_assisgn, date_today, "0", "Not Activate", "GUEST",
                                                     "GUEST", "GUEST", "", "INACTIVE"))
+
                     Database.MembershipTable("", Table)
 
                 ElseIf (Parking_add1 = True) Then
 
                     drop_down.AddItem(text_value)
                     drop_down.selectedIndex = drop_down.Items.Count - 1
-                    drop_down.selectedIndex += 1
+                    drop_down.selectedIndex += index
+                    index += 1
 
                 End If
 
@@ -220,4 +265,7 @@ Public Class InputBox
         End Try
     End Sub
 
+    Private Sub InputBox_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ' MessageBox.Show(user_assisgn)
+    End Sub
 End Class

@@ -4,10 +4,12 @@ Public Class Transaction_Histroy_List
 
     Private ReadOnly database As Server = New Server
     Dim location_table As BunifuCustomDataGrid
-    ReadOnly User_ As User = New User("", "", "", "", "", "")
+    ReadOnly User_ As User = New User("", "", "", "", "", "", "")
     ReadOnly Member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
     Shadows ReadOnly Location As Parking_Area = New Parking_Area("", "", "", "", "")
     Dim index As Integer = 0
+    Dim Date_word As String = " PARKING_HISTORY.DATE = "
+
     Public Property Username1 As String
         Get
             Return Username
@@ -29,8 +31,13 @@ Public Class Transaction_Histroy_List
     End Property
 
     Private Sub Transaction_List_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        start_date.Value = Date.Today()
+        date_end.Value = Date.Today()
+
+        database.Load_Historyparking("", Transaction_Table, True, Date_word)
+
         Transaction_Table.ContextMenuStrip = ContextMenuStrip1
-        database.Load_Historyparking("", Transaction_Table)
 
     End Sub
 
@@ -45,19 +52,19 @@ Public Class Transaction_Histroy_List
     End Sub
 
     Private Sub Search_OnValueChanged(sender As Object, e As EventArgs) Handles Search.OnValueChanged
-        database.Load_Historyparking(Search.Text, Transaction_Table)
+        database.Load_Historyparking(Search.Text, Transaction_Table, True, Date_word)
     End Sub
 
-    Private Sub Transaction_Table_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Transaction_Table.CellMouseClick
+    Private Sub Transaction_Table_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
         index = e.RowIndex
     End Sub
 
-    Private Sub Transaction_Table_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Transaction_Table.CellMouseDoubleClick
+    Private Sub Transaction_Table_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs)
 
 
     End Sub
 
-    '--------------------------------- Context Menu -----------------------------------------------------------'
+    '*****************************************  Context Menu *************************************************************'
     Private Sub Viewuser_ContextMenu_Click(sender As Object, e As EventArgs) Handles Viewuser_ContextMenu.Click
         Using register As User_Register = New User_Register
             Try
@@ -113,7 +120,69 @@ Public Class Transaction_Histroy_List
     End Sub
 
     Private Sub Contextmenu_refresh_Click(sender As Object, e As EventArgs) Handles contextmenu_refresh.Click
-        database.Load_Historyparking(Search.Text, Transaction_Table)
+        database.Load_Historyparking(Search.Text, Transaction_Table, True, Date_word)
+    End Sub
+    '***************************************** End  Context Menu *************************************************************'
+
+
+    '********************************************* For Date ************************************************************
+    Private Sub Start_date_onValueChanged(sender As Object, e As EventArgs) Handles start_date.onValueChanged
+
+        Date_word = " PARKING_HISTORY.DATE = "
+
+        start_date_copy.Value = start_date.Value
+
+        If (start_date_copy.Value < date_end.Value) Then
+
+            While Not (start_date_copy.Value = date_end.Value.AddDays(1))
+
+                If (start_date_copy.Value.AddDays(1) = date_end.Value.AddDays(1)) Then
+
+                    Date_word += "'" + start_date_copy.Value.ToString("dd'/'MM'/'yyyy") + "'"
+
+                Else
+
+                    Date_word += "'" + start_date_copy.Value.ToString("dd'/'MM'/'yyyy") + "' OR PARKING_HISTORY.DATE = "
+
+                End If
+
+
+                start_date_copy.Value = start_date_copy.Value.AddDays(1)
+
+            End While
+
+            database.Load_Historyparking(Search.Text, Transaction_Table, True, Date_word)
+
+        End If
+
     End Sub
 
+    Private Sub Date_end_onValueChanged(sender As Object, e As EventArgs) Handles date_end.onValueChanged
+        Date_word = " PARKING_HISTORY.DATE = "
+
+        start_date_copy.Value = start_date.Value
+        If (start_date_copy.Value < date_end.Value) Then
+
+            While Not (start_date_copy.Value = date_end.Value.AddDays(1))
+
+                If (start_date_copy.Value.AddDays(1) = date_end.Value.AddDays(1)) Then
+
+                    Date_word += "'" + start_date_copy.Value.ToString("dd'/'MM'/'yyyy") + "' "
+
+                Else
+
+                    Date_word += "'" + start_date_copy.Value.ToString("dd'/'MM'/'yyyy") + "' OR PARKING_HISTORY.DATE = "
+
+                End If
+
+
+                start_date_copy.Value = start_date_copy.Value.AddDays(1)
+
+            End While
+            database.Load_Historyparking(Search.Text, Transaction_Table, True, Date_word)
+
+        End If
+    End Sub
+
+    '*********************************************** End Date ************************************************************
 End Class

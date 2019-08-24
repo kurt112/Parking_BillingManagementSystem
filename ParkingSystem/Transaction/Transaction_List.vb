@@ -5,10 +5,23 @@ Public Class Transaction_List
 
     Private ReadOnly database As Server = New Server
     Dim location_table As BunifuCustomDataGrid
-    ReadOnly User_ As User = New User("", "", "", "", "", "")
+    ReadOnly User_ As User = New User("", "", "", "", "", "", "")
     ReadOnly Member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
     Shadows ReadOnly Location As Parking_Area = New Parking_Area("", "", "", "", "")
     Dim index As Integer = 0
+    ReadOnly Date_word = " Date = "
+
+    'For the profit table
+    Dim profit_table As BunifuCustomDataGrid
+    Dim total_label As Label
+    Public Property Profit_table1 As BunifuCustomDataGrid
+        Get
+            Return profit_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_table = value
+        End Set
+    End Property
     Public Property Username1 As String
         Get
             Return Username
@@ -29,9 +42,18 @@ Public Class Transaction_List
         End Set
     End Property
 
+    Public Property Total_label1 As Label
+        Get
+            Return total_label
+        End Get
+        Set(value As Label)
+            total_label = value
+        End Set
+    End Property
+
     Private Sub Transaction_List_Load(sender As Object, e As EventArgs) Handles Me.Load
         Transaction_Table.ContextMenuStrip = ContextMenuStrip1
-        database.Load_Historyparking("", Transaction_Table)
+        database.Load_Historyparking("", Transaction_Table, False, Date_word)
 
     End Sub
 
@@ -57,6 +79,8 @@ Public Class Transaction_List
             transaction.Member_table1 = Member_table1
             transaction.Location_table1 = location_table
             transaction.Transaction_table1 = Transaction_Table
+            transaction.Profit_table1 = profit_table
+            transaction.Profit_total_label1 = total_label
             transaction.ShowDialog()
         End Using
     End Sub
@@ -68,7 +92,7 @@ Public Class Transaction_List
     End Sub
 
     Private Sub Search_OnValueChanged(sender As Object, e As EventArgs) Handles Search.OnValueChanged
-        database.Load_Historyparking(Search.Text, Transaction_Table)
+        database.Load_Historyparking(Search.Text, Transaction_Table, False, Date_word)
     End Sub
 
     Private Sub Transaction_Table_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Transaction_Table.CellMouseClick
@@ -99,7 +123,9 @@ Public Class Transaction_List
     End Sub
     Private Sub Viewlocation_contextMenu_Click(sender As Object, e As EventArgs) Handles viewlocation_contextMenu.Click
         Using location_form As Parking_Add = New Parking_Add
+
             Try
+
                 Dim selectedRow As DataGridViewRow
                 selectedRow = Transaction_Table.Rows(index)
                 database.Parking_Query_Name(selectedRow.Cells(5).Value.ToString, Location)
@@ -123,6 +149,8 @@ Public Class Transaction_List
                 member_form.Update_member1 = Member
                 member_form.Update1 = True
                 member_form.Park_list1 = True
+                member_form.Profit_table1 = profit_table
+                member_form.total_spend = total_label
                 member_form.ShowDialog()
 
             Catch ex As Exception
@@ -136,7 +164,7 @@ Public Class Transaction_List
     End Sub
 
     Private Sub Contextmenu_refresh_Click(sender As Object, e As EventArgs) Handles contextmenu_refresh.Click
-        database.Load_Historyparking(Search.Text, Transaction_Table)
+        database.Load_Historyparking(Search.Text, Transaction_Table, False, Date_word)
     End Sub
 
     '--------------------------------- End Context Menu -----------------------------------------------------------'

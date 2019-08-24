@@ -1,4 +1,5 @@
-﻿Imports Bunifu.Framework.UI
+﻿Imports System.Drawing.Printing
+Imports Bunifu.Framework.UI
 
 Public Class Transaction_Input
     Private ReadOnly database As Server = New Server
@@ -7,11 +8,27 @@ Public Class Transaction_Input
     Dim location_table As BunifuCustomDataGrid
     Dim member_table As BunifuCustomDataGrid
     Dim transaction_table As BunifuCustomDataGrid
+    Private date_today = Date.Today.ToString("dd'/'MM'/'yyyy")
+
+
+
+
+    'Don't Remove the Space
+    ReadOnly Date_word = " PARKING_HISTORY.DATE = "
+    Private profit_total_label As Label
+
+    Dim profit_table As BunifuCustomDataGrid
 
     Private Property Username As String
-    ReadOnly member As Membership = New Membership(0, "", "", "", "", "", "", "", "", "", "", "",
-                                               "", "", "", "", "", "", "", "", "")
-
+    ReadOnly member As Membership = New Membership(0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+    Public Property Profit_table1 As BunifuCustomDataGrid
+        Get
+            Return profit_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_table = value
+        End Set
+    End Property
     Public Property Username1 As String
         Get
             Return Username
@@ -45,6 +62,16 @@ Public Class Transaction_Input
         End Get
         Set(value As BunifuCustomDataGrid)
             transaction_table = value
+        End Set
+    End Property
+
+
+    Public Property Profit_total_label1 As Label
+        Get
+            Return profit_total_label
+        End Get
+        Set(value As Label)
+            profit_total_label = value
         End Set
     End Property
 
@@ -87,7 +114,7 @@ Public Class Transaction_Input
                     Clear_Textbox()
 
                 ElseIf (member.Active1.Equals("INACTIVE")) Then
-
+                    MessageBox.Show("Time In Succesful")
                     database.Update_Member_Status(member.Member_id1, "ACTIVE")
 
                     If (promo_value.Text = "Not Activate") Then
@@ -126,7 +153,7 @@ Public Class Transaction_Input
                                 End If
                             End While
 
-                            MessageBox.Show(parking_location.Text)
+                            'MessageBox.Show(parking_location.Text)
                             Clear_Textbox()
                         End If
                     End If
@@ -136,7 +163,7 @@ Public Class Transaction_Input
                 database.Parking_Table("", location_table)
                 database.MembershipTable("", member_table)
 
-                database.Load_Historyparking("", Transaction_table1)
+                database.Load_Historyparking("", Transaction_table1, False, Date_word)
             Else
 
 
@@ -157,7 +184,11 @@ Public Class Transaction_Input
             value.Total_spend1 = total_spend
             value.Points1 = points_value
             value.Total_login1 = login_times_value
+            value.User_assisgn1 = Username
+            value.Total_label1 = profit_total_label
+            value.Profit_table1 = profit_table
             value.ShowDialog()
+
         End Using
 
     End Sub
@@ -189,7 +220,7 @@ Public Class Transaction_Input
                 database.MembershipTable("", member_table)
             Else
 
-                If (amount > location_amount And location_amount > 0) Then
+                If (amount >= location_amount And location_amount >= 0) Then
 
                     Dim total As Object
                     Dim status_rate As String
@@ -222,8 +253,54 @@ Public Class Transaction_Input
                     database.Parking_Table("", location_table)
 
                     database.MembershipTable("", member_table)
+                    'MessageBox.Show(database.Get_Floor(parking_location.Text))
+                    database.Load_Historyparking("", Transaction_table1, False, Date_word)
+                    ' Solve ko bukas
+#Region "For Printing The Reciept"
+                    'defaultPrinterSetting = DocumentPriter.GetDefaultPrinterSetting
 
-                    database.Load_Historyparking("", Transaction_table1)
+                    'PrintPreviewDialog1.Document = PrintDocument1
+                    PrintPreviewDialog1.PrintPreviewControl.Zoom = 1.0
+                    'PrintDialog1.ShowDialog()
+
+                    'rintPreviewDialog1.Document = PrintDocument1
+
+                    Dim page As New PageSetupDialog
+                    With page
+                        .AllowOrientation = True
+                        .AllowPaper = True
+                        .AllowPrinter = True
+                        .ShowHelp = True
+                        .ShowNetwork = True
+                    End With
+                    page.Document = PrintDocument1
+                    PrintDocument1.PrinterSettings.PrinterName = "XP-58"
+                    With PrintDocument1
+                        .PrinterSettings.DefaultPageSettings.Landscape = False
+                        .PrintController = New StandardPrintController()
+                        .Print()
+                    End With
+                    'If Not myPageAlreadySetUp Then
+                    'With page.Document.DefaultPageSettings
+                    '.Margins.Top = 50
+                    '.Margins.Left = 50
+                    '.Margins.Right = 50
+                    '.Margins.Bottom = 50
+                    '.PaperSize.Height = 2
+                    '.Landscape = False
+                    'End With
+                    'End If
+                    'page.Sh    owDialog()
+
+
+                    'PrintPreviewDialog1.Document = PrintDocument1
+
+                    'PrintPreviewDialog1.ShowDialog()
+
+                    'Me.Close()
+
+#End Region
+
                     Clear_Textbox()
                 Else
 
@@ -238,10 +315,12 @@ Public Class Transaction_Input
 
             database.MembershipTable("", member_table)
 
-            database.Load_Historyparking("", Transaction_table1)
+            database.Load_Historyparking("", Transaction_table1, False, Date_word)
+
             Clear_Textbox()
         End If
     End Sub
+
     Private Sub Register_promo_button_Click(sender As Object, e As EventArgs) Handles register_promo_button.Click
 
         If (firstname.Text.Equals("GUEST") Or last_name.Text.Equals("GUEST")) Then
@@ -279,9 +358,10 @@ Public Class Transaction_Input
                         MessageBox.Show("Succesful Registered")
 
                         '
+                        RegisterPromo_Document.Print()
                         database.Update_location(parking_location.Text, member_id.Text)
                         promo_click = True
-                        database.Load_Historyparking("", Transaction_table1)
+                        database.Load_Historyparking("", Transaction_table1, False, Date_word)
                     End If
 
                 Else
@@ -347,4 +427,164 @@ Public Class Transaction_Input
             Promo_List.selectedIndex = 0
         End If
     End Sub
+#Region "For Printing A Receipt"
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+
+        Dim font_name As String = "Courier New"
+        Dim font_size As Integer = 9
+        Dim csz As New PaperSize("Custom Paper Size", 2, 2)
+        ' PrintDocument1.PrinterSettings.DefaultPageSettings.PaperSize = csz
+        Dim interval As Integer = 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Parking Billing", New Font(font_name, 11, FontStyle.Bold), Brushes.Black, 15, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("User Assign: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(Username, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 100, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Member Name: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(member.First_name1, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 100, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+        'For Location
+        e.Graphics.DrawString("Location ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Location Name: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(parking_location.Text, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 140, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Location Floor: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(database.Get_Floor(parking_location.Text), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 140, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Location Fee: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(database.Location_price(parking_location.Text), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 140, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+        'For Time
+        e.Graphics.DrawString("Parking Status ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Time In: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(TimeOfDay.ToString("h:mm:ss tt"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Time Out: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(TimeOfDay.AddHours(8).ToString("h:mm:ss tt"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Date: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(Date.Today.ToString("dd'/'MM'/'yyyy"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+
+
+
+        e.PageSettings.PaperSize = csz
+
+        'e.Graphics.DrawString("SampleText", New Font("Arial", 70, FontStyle.Bold), Brushes.Blue, 175, 130)
+    End Sub
+
+
+    Private Sub RegisterPromo_Document_PrintPage(sender As Object, e As PrintPageEventArgs) Handles RegisterPromo_Document.PrintPage
+        Dim promo_ends As Integer = database.Promo_ends(Promo_List.selectedValue)
+        Dim promo_price As Integer = database.Promo_Price(Promo_List.selectedValue)
+
+        Dim font_name As String = "Courier New"
+        Dim font_size As Integer = 9
+        Dim csz As New PaperSize("Custom Paper Size", 2, 2)
+
+        Dim interval As Integer = 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Parking Billing", New Font(font_name, 11, FontStyle.Bold), Brushes.Black, 15, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("User Assign: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(Username, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 100, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Member Name: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(member.First_name1, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 100, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+        'For Location
+        e.Graphics.DrawString("Location ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Location Name: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(parking_location.Text, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 140, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Location Floor: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(database.Get_Floor(parking_location.Text), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 140, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        interval += 30
+
+
+        'For Time
+        e.Graphics.DrawString("Promo Status", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Promo Price: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(promo_price, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Promo Name: ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(Promo_List.selectedValue, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Promo Start", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Date: ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(date_today, New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Time: ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(TimeOfDay.ToString("h:mm:ss tt"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+
+        e.Graphics.DrawString("Promo End ", New Font(font_name, font_size, FontStyle.Bold), Brushes.Black, 0, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Date: ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(DateTime.Now.AddDays(promo_ends).ToString("dd'/'MM'/'yyyy"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("Time: ", New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 0, interval)
+        e.Graphics.DrawString(TimeOfDay.ToString("h:mm:ss tt"), New Font(font_name, font_size, FontStyle.Regular), Brushes.Black, 90, interval)
+        interval += 30
+
+        e.Graphics.DrawString("_______________________________________________ ", New Font(font_name, 11, FontStyle.Regular), Brushes.Black, 0, interval)
+
+
+
+        e.PageSettings.PaperSize = csz
+    End Sub
+#End Region
 End Class

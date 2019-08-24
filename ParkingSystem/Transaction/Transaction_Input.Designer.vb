@@ -42,6 +42,7 @@ Partial Class Transaction_Input
         Me.firstname = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.member_id = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.x_button = New System.Windows.Forms.PictureBox()
@@ -65,7 +66,10 @@ Partial Class Transaction_Input
         Me.Top_Up = New System.Windows.Forms.Button()
         Me.initial_amount = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.member_id = New System.Windows.Forms.TextBox()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
+        Me.RegisterPromo_Document = New System.Drawing.Printing.PrintDocument()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -337,6 +341,19 @@ Partial Class Transaction_Input
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(798, 96)
         Me.Panel4.TabIndex = 36
+        '
+        'member_id
+        '
+        Me.member_id.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
+        Me.member_id.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.member_id.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.member_id.ForeColor = System.Drawing.Color.White
+        Me.member_id.Location = New System.Drawing.Point(19, 43)
+        Me.member_id.Margin = New System.Windows.Forms.Padding(4)
+        Me.member_id.Name = "member_id"
+        Me.member_id.Size = New System.Drawing.Size(355, 32)
+        Me.member_id.TabIndex = 23
+        Me.member_id.WordWrap = False
         '
         'Label1
         '
@@ -651,18 +668,25 @@ Partial Class Transaction_Input
         Me.Label8.TabIndex = 29
         Me.Label8.Text = "Initial Amount"
         '
-        'member_id
+        'PrintDocument1
         '
-        Me.member_id.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(39, Byte), Integer))
-        Me.member_id.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.member_id.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.member_id.ForeColor = System.Drawing.Color.White
-        Me.member_id.Location = New System.Drawing.Point(19, 43)
-        Me.member_id.Margin = New System.Windows.Forms.Padding(4)
-        Me.member_id.Name = "member_id"
-        Me.member_id.Size = New System.Drawing.Size(355, 32)
-        Me.member_id.TabIndex = 23
-        Me.member_id.WordWrap = False
+        '
+        'PrintDialog1
+        '
+        Me.PrintDialog1.UseEXDialog = True
+        '
+        'PrintPreviewDialog1
+        '
+        Me.PrintPreviewDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PrintPreviewDialog1.Enabled = True
+        Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
+        Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        Me.PrintPreviewDialog1.Visible = False
+        '
+        'RegisterPromo_Document
+        '
         '
         'Transaction_Input
         '
@@ -734,4 +758,8 @@ Partial Class Transaction_Input
     Friend WithEvents Label8 As Label
     Friend WithEvents Promo_List As Bunifu.Framework.UI.BunifuDropdown
     Friend WithEvents member_id As TextBox
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintDialog1 As PrintDialog
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents RegisterPromo_Document As Printing.PrintDocument
 End Class

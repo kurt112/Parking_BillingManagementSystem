@@ -8,6 +8,7 @@ Public Class Server
     ReadOnly location As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
     ReadOnly fileName As String = "Parking_Database.db"
 
+    Private ReadOnly encrypt As Encrypt = New Encrypt
     ReadOnly fullPath As String = System.IO.Path.Combine(location, fileName)
 
     Public connectionString As String = String.Format("Data Source = {0}", fullPath)
@@ -101,6 +102,13 @@ Public Class Server
                                                     'USER_ASSIGN'	TEXT,
                                                    'PROMO_ACTIVE'	TEXT,
                                                    'DATE' TEXT);"
+
+    ReadOnly Create_Profit_table_query As String = "CREATE TABLE 'PROFIT' (
+	                                               'ACTION_ID'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	                                               'ASSIGN_USER'	TEXT,
+	                                               'PROFIT_DATE'	TEXT,
+                                                   'MEMBER_NAME'	TEXT,
+	                                               'PROFIT_AMOUNT'	TEXT);"
 #End Region
 
 #Region "Connection To the database"
@@ -134,13 +142,13 @@ Public Class Server
             Connection_Query(Create_Promo_Table_Statemet)
             Connection_Query(Create_Membership_Table_Statement)
             Connection_Query(Create_parking_history_table_query)
-
+            Connection_Query(Create_Profit_table_query)
             Dim add_query As String = "INSERT INTO PROMO (NAME,DURATION,DESCRIPTION,PROMOEND,PRICE,STATUS) VALUES('Enter Promo' , '" + "" + "' , '" +
             "" + "' , '" + "" + "', '" + "" + "', 'ACTIVE')"
 
             Connection_Query(add_query)
 
-            Dim register_statement As String = "INSERT INTO USER VALUES('1234567891', 'John' , 'Doe' , 'username' , 'johndoe@gmail.com' , 'password' , 'beginning of the system', 'Active')"
+            Dim register_statement As String = "INSERT INTO USER VALUES('1234567891', 'John' , 'Doe' , 'username' , 'johndoe@gmail.com' , 'cGFzc3dvcmQ=' , 'beginning of the system', 'Admin')"
 
             Connection_Query(register_statement)
         End If
@@ -304,7 +312,7 @@ Public Class Server
         Try
 
             Dim register_statement As String = "INSERT INTO USER VALUES('" + user.Id1 + "' , '" + user.First_name1 + "' , '" + user.Last_name1 + "' , '" +
-                user.Username1 + "' , '" + user.Email1 + "' , '" + user.Password1 + "' , '" + date_today + "', 'Active')"
+                user.Username1 + "' , '" + user.Email1 + "' , '" + user.Password1 + "' , '" + date_today + "', '" + user.Status1 + "')"
 
             Connection_Query(register_statement)
 
@@ -325,20 +333,20 @@ Public Class Server
     '------------------------------------------------------------------------------------------------------------'
 
     Public Function User_Login(ByVal username As String, ByVal password As String, ByVal login As Login) As Boolean
-
+        Dim exist As Boolean = False
         Using con As New SQLiteConnection(connectionString)
 
             con.Open()
 
             Using cmd As New SQLiteCommand(con)
 
-                cmd.CommandText = "SELECT * FROM USER WHERE USER_NAME = '" + username + "' AND PASSWORD = '" + password + "' LIMIT 1"
-
+                cmd.CommandText = "SELECT * FROM USER WHERE USER_NAME = '" + username + "' AND PASSWORD = '" + password + "' AND STATUS = 'User' LIMIT 1"
                 Dim rdr As SQLiteDataReader = cmd.ExecuteReader()
 
                 Using rdr
 
                     While (rdr.Read())
+                        exist = True
 
                         Dim id As String = rdr.GetString(0)
                         Dim firstname As String = rdr.GetString(1)
@@ -349,7 +357,7 @@ Public Class Server
                         time_start = Convert.ToDateTime(DateTime.Now)
 
                         login.User1 = New User_History(id, firstname, lastname, user_name, time_start.ToString, "", "", Date.Now.ToString("MM/dd/yyyy"))
-
+                        login.Admin1 = False
                         con.Close()
 
                         Return True
@@ -360,12 +368,46 @@ Public Class Server
 
             End Using
 
-
+            '**************************************
             con.Close()
 
+            If (exist = False) Then
+                con.Open()
+
+                Using cmd As New SQLiteCommand(con)
+
+                    cmd.CommandText = "SELECT * FROM USER WHERE USER_NAME = '" + username + "' AND PASSWORD = '" + password + "' AND STATUS = 'Admin' LIMIT 1"
+                    Dim rdr As SQLiteDataReader = cmd.ExecuteReader()
+
+                    Using rdr
+
+                        While (rdr.Read())
+                            exist = True
+                            Dim id As String = rdr.GetString(0)
+                            Dim firstname As String = rdr.GetString(1)
+                            Dim lastname As String = rdr.GetString(2)
+                            Dim user_name As String = rdr.GetString(3)
+
+                            Dim time_start As DateTime = New DateTime
+                            time_start = Convert.ToDateTime(DateTime.Now)
+
+                            login.User1 = New User_History(id, firstname, lastname, user_name, time_start.ToString, "", "", Date.Now.ToString("MM/dd/yyyy"))
+                            login.Admin1 = True
+                            con.Close()
+
+                            Return True
+                        End While
+
+                    End Using
+
+
+                End Using
+
+
+                con.Close()
+
+            End If
         End Using
-
-
         Return False
 
     End Function
@@ -378,7 +420,7 @@ Public Class Server
         Dim query As String
 
         If (text.Equals("")) Then
-            query = "SELECT * FROM USER WHERE STATUS = 'Active' "
+            query = "SELECT * FROM USER"
         Else
             query = "SELECT * FROM USER WHERE USER_ID like '%" + text + "%' Or FIRST_NAME like '%" + text +
                      "%' Or LAST_NAME like '" + text + "%' Or USER_NAME like '%" + text + "%' Or EMAIL like '%" +
@@ -405,7 +447,7 @@ Public Class Server
                     Dim date_Created As String = reader.GetString(6)
                     Dim status As String = reader.GetString(7)
 
-                    table.Rows.Add(id, first_name, last_name, user_name, email, password, date_Created, status)
+                    table.Rows.Add(id, first_name, last_name, user_name, email, encrypt.Base64Decode(password), date_Created, status)
 
                 End While
 
@@ -437,17 +479,42 @@ Public Class Server
     End Function
 
     '------------------------------------------------------------------------------------------------------------'
-    Public Function User_History_Table(ByVal table1 As Bunifu.Framework.UI.BunifuCustomDataGrid, ByVal text As String) As Boolean
+    Public Function User_History_Table(ByVal table1 As BunifuCustomDataGrid, ByVal text As String, ByVal condition As String) As Boolean
         table1.Rows.Clear()
         Dim query As String
         If (text = "") Then
-            query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE
+            If (condition.Equals(" USER_HISTORY.DATE = ")) Then
+
+                query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE
                      FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID];"
+                'MessageBox.Show("asdfadsf " + query)
+
+            Else
+
+                query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE
+                     FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID] WHERE " + condition + ";"
+                'MessageBox.Show(query)
+
+            End If
+
         Else
-            query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE 
+
+            If (condition.Equals(" USER_HISTORY.DATE = ")) Then
+
+                query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE 
                                FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID] WHERE USER.USER_ID like '%" + text + "%' Or USER.FIRST_NAME like '%" + text + "%'
                                Or USER.LAST_NAME like '%" + text + "%' Or USER.USER_NAME like '%" + text + "%' Or USER_HISTORY.TIME_IN like '%" + text + "%'Or USER_HISTORY.TIME_OUT like '%" + text + "%' Or USER_HISTORY.SESSION like '%" + text + "%'
                                Or USER_HISTORY.DATE like '%" + text + "%';"
+                'MessageBox.Show(query)
+            Else
+
+                query = "SELECT USER.USER_ID, USER.FIRST_NAME, USER.LAST_NAME, USER.USER_NAME, USER_HISTORY.TIME_IN, USER_HISTORY.TIME_OUT, USER_HISTORY.SESSION, USER_HISTORY.DATE 
+                               FROM [USER] INNER JOIN USER_HISTORY ON USER.[USER_ID] = USER_HISTORY.[USER_ID] WHERE (USER.USER_ID like '%" + text + "%' Or USER.FIRST_NAME like '%" + text + "%'
+                               Or USER.LAST_NAME like '%" + text + "%' Or USER.USER_NAME like '%" + text + "%' Or USER_HISTORY.TIME_IN like '%" + text + "%'Or USER_HISTORY.TIME_OUT like '%" + text + "%' Or USER_HISTORY.SESSION like '%" + text + "%'
+                               Or USER_HISTORY.DATE like '%" + text + "%') AND ( " + condition + " ) ;"
+                ' MessageBox.Show(query)
+            End If
+
         End If
         Using con As New SQLiteConnection(connectionString)
             con.Open()
@@ -704,7 +771,7 @@ Public Class Server
 
     End Sub
 
-    Public Sub Parking_Table(ByVal text As String, ByVal table As Bunifu.Framework.UI.BunifuCustomDataGrid)
+    Public Sub Parking_Table(ByVal text As String, ByVal table As BunifuCustomDataGrid)
         CreateDatabase()
         table.Rows.Clear()
         Dim query As String
@@ -738,6 +805,25 @@ Public Class Server
             con.Close()
         End Using
     End Sub
+
+    Public Function Get_Floor(ByVal parking_name As String) As String
+        Dim query As String = "SELECT PARKING_AREA.PARKING_LEVEL FROM PARKING_AREA WHERE PARKING_NAME = '" + parking_name + "'; "
+        Dim floor As String = ""
+        Using con As New SQLiteConnection(connectionString)
+
+            con.Open()
+
+            Using cmd As New SQLiteCommand(query, con)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+                While (reader.Read())
+                    floor = reader.GetString(0)
+                End While
+            End Using
+            con.Close()
+        End Using
+        Return floor
+    End Function
+
     'End of Parking Query '
     '------------------------------------------------------------------------------------------------------------'
 
@@ -1151,6 +1237,7 @@ Public Class Server
                     members.Total_spend1 = reader.GetString(14)
                     members.Promo_activate1 = reader.GetString(15)
                     members.Active1 = reader.GetString(20)
+                    members.Photo1 = reader.GetString(19)
                 End While
 
                 con.Close()
@@ -1165,7 +1252,7 @@ Public Class Server
         Try
             Dim login_total As Integer = CInt(members.Login_times1) + 1
 
-            MessageBox.Show(login_total.ToString)
+            ' MessageBox.Show(login_total.ToString)
             Dim my_query As String = "UPDATE MEMBERSHIP set LOGIN_TIMES = '" + login_total.ToString +
                   "' , LAST_PARKING = '" + date_today +
                     "' WHERE  MEMBER_ID = '" + members.Member_id1 + "'"
@@ -1234,7 +1321,7 @@ Public Class Server
 
         Connection_Query(add_query)
 
-        MessageBox.Show("Succesful Added")
+        'MessageBox.Show("Succesful Added")
     End Sub
 
 
@@ -1295,16 +1382,90 @@ Public Class Server
         Return location
     End Function
 
-    Public Sub Load_Historyparking(ByVal search As String, ByVal tables As Bunifu.Framework.UI.BunifuCustomDataGrid)
+
+    'First parameter for searching
+    'Second param The table that will add the query
+    'Third param the table that will define if the tables is for history or not
+    'Fourth param The date
+    Public Sub Load_Historyparking(ByVal search As String, ByVal tables As BunifuCustomDataGrid, ByVal history As Boolean, ByVal condition As String)
         tables.Rows.Clear()
         date_today = Date.Today.ToString("dd'/'MM'/'yyyy")
         Dim query As String
 
 
-        MessageBox.Show(date_today)
-        MessageBox.Show("im called")
-        If (search.Equals("")) Then
-            query = "SELECT PARKING_HISTORY.PARKING_ID,
+        If (history = True) Then
+
+            If (search.Equals("")) Then
+                If (condition.Equals(" PARKING_HISTORY.DATE = ")) Then
+                    query = "SELECT PARKING_HISTORY.PARKING_ID,
+                               MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
+                               MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
+                               PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
+                               PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
+                               PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
+                               FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID];"
+
+                    '  MessageBox.Show(query)
+                Else
+
+                    query = "SELECT PARKING_HISTORY.PARKING_ID,
+                               MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
+                               MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
+                               PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
+                               PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
+                               PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
+                               FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID] WHERE " + condition + ";"
+                    '  MessageBox.Show(query)
+
+                End If
+
+            Else
+
+                If (condition.Equals(" PARKING_HISTORY.DATE = ")) Then
+
+                    query = "SELECT PARKING_HISTORY.PARKING_ID,
+                               MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
+                               MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
+                               PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
+                               PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
+                               PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
+                               FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID]
+							   WHERE PARKING_HISTORY.PARKING_ID LIKE '%" + search + "%' " +
+                               "OR MEMBERSHIP.MEMBER_ID LIKE '%" + search + "%'  OR MEMBERSHIP.FIRST_NAME LIKE '%" + search + "%' " +
+                               "OR Membership.last_name Like '%" + search + "%'  OR PARKING_HISTORY.PROMO_NAME LIKE '%" + search + "%' " +
+                               "OR PARKING_HISTORY.LOCATION Like '%" + search + "%' OR PARKING_HISTORY.TIME_IN LIKE '%" + search + "%'" +
+                               "OR PARKING_HISTORY.TIME_OUT Like '%" + search + "%'  OR PARKING_HISTORY.USER_ASSIGN Like '%" + search + "%' " +
+                               "OR PARKING_HISTORY.PROMO_ACTIVE Like '%" + search + "%' OR PARKING_HISTORY.DATE LIKE '%" + search + "%'; "
+                    '  MessageBox.Show(query)
+
+                Else
+
+                    query = "SELECT PARKING_HISTORY.PARKING_ID,
+                               MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
+                               MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
+                               PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
+                               PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
+                               PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
+                               FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID]
+							   WHERE (" + condition + ") AND (PARKING_HISTORY.PARKING_ID LIKE '%" + search + "%' " +
+                               "OR MEMBERSHIP.MEMBER_ID LIKE '%" + search + "%'  OR MEMBERSHIP.FIRST_NAME LIKE '%" + search + "%' " +
+                               "OR Membership.last_name Like '%" + search + "%'  OR PARKING_HISTORY.PROMO_NAME LIKE '%" + search + "%' " +
+                               "OR PARKING_HISTORY.LOCATION Like '%" + search + "%' OR PARKING_HISTORY.TIME_IN LIKE '%" + search + "%'" +
+                               "OR PARKING_HISTORY.TIME_OUT Like '%" + search + "%'  OR PARKING_HISTORY.USER_ASSIGN Like '%" + search + "%' " +
+                               "OR PARKING_HISTORY.PROMO_ACTIVE Like '%" + search + "%' OR PARKING_HISTORY.DATE LIKE '%" + search + "%');"
+                    ' MessageBox.Show(query)
+                End If
+
+            End If
+
+                Else
+            If (search.Equals("")) Then
+
+                query = "SELECT PARKING_HISTORY.PARKING_ID,
                                MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
                                MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
                                PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
@@ -1312,56 +1473,137 @@ Public Class Server
                                PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
                                FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
                                ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID] WHERE PARKING_HISTORY.DATE = '" + date_today + "' OR PARKING_HISTORY.PROMO_ACTIVE = 'ACTIVE';"
-        Else
-            query = "SELECT PARKING_HISTORY.PARKING_ID,
+            Else
+                query = "SELECT PARKING_HISTORY.PARKING_ID,
                                MEMBERSHIP.MEMBER_ID , MEMBERSHIP.FIRST_NAME, 
                                MEMBERSHIP.LAST_NAME, PARKING_HISTORY.PROMO_NAME, 
                                PARKING_HISTORY.LOCATION, PARKING_HISTORY.TIME_IN, 
                                PARKING_HISTORY.TIME_OUT, PARKING_HISTORY.USER_ASSIGN,
                                PARKING_HISTORY.PROMO_ACTIVE, PARKING_HISTORY.DATE
                                FROM MEMBERSHIP INNER JOIN PARKING_HISTORY 
-                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID] WHERE PARKING_HISTORY.DATE = '" + date_today +
-                               "'OR PARKING_HISTORY.PROMO_ACTIVE = 'ACTIVE' AND PARKING_HISTORY.PARKING_ID LIKE ' %" + search + "%' " +
-                               "OR MEMBERSHIP.MEMBER_ID LIKE ' %" + search + "%' OR MEMBERSHIP.FIRST_NAME LIKE ' %" + search + "%' " +
-                               "OR MEMBERSHIP.LAST_NAME LIKE ' %" + search + "%' OR PARKING_HISTORY.PROMO_NAME LIKE ' %" + search + "%' " +
-                               "OR PARKING_HISTORY.LOCATION LIKE ' %" + search + "%' OR PARKING_HISTORY.TIME_IN LIKE ' %" + search + "%' " +
-                               "OR PARKING_HISTORY.TIME_OUT LIKE ' %" + search + "%' OR PARKING_HISTORY.USER_ASSIGN LIKE ' %" + search + "%' " +
-                               "OR PARKING_HISTORY.PROMO_ACTIVE LIKE ' %" + search + "%' OR PARKING_HISTORY.DATE LIKE ' %" + search + "%';"
+                               ON MEMBERSHIP.[MEMBER_ID] = PARKING_HISTORY.[MEMBER_ID]
+							   WHERE ( PARKING_HISTORY.PARKING_ID LIKE '%" + search + "%' " +
+                               "OR MEMBERSHIP.MEMBER_ID LIKE '%" + search + "%'  OR MEMBERSHIP.FIRST_NAME LIKE '%" + search + "%'" +
+                               "OR Membership.last_name Like '%" + search + "%'  OR PARKING_HISTORY.PROMO_NAME LIKE '%" + search + "%'" +
+                               "OR PARKING_HISTORY.LOCATION Like '%" + search + "%' OR PARKING_HISTORY.TIME_IN LIKE '%" + search + "%'" +
+                               "OR PARKING_HISTORY.TIME_OUT Like '%" + search + "%'  OR PARKING_HISTORY.USER_ASSIGN Like '%" + search + "%' ) " +
+                               "AND (PARKING_HISTORY.PROMO_ACTIVE = 'ACTIVE' OR PARKING_HISTORY.DATE = '" + date_today + "');"
+                '  MessageBox.Show(query)
+
+            End If
 
         End If
 
         Using con As New SQLiteConnection(connectionString)
 
-            con.Open()
+                con.Open()
 
-            Using cmd As New SQLiteCommand(query, con)
+                Using cmd As New SQLiteCommand(query, con)
 
-                Dim reader As SQLiteDataReader = cmd.ExecuteReader
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader
 
 
-                While (reader.Read())
+                    While (reader.Read())
 
-                    Dim parking_id As Integer = reader.GetInt64(0)
-                    Dim member_id As String = reader.GetString(1)
-                    Dim firstname As String = reader.GetString(2)
-                    Dim lastname As String = reader.GetString(3)
-                    Dim promoname As String = reader.GetString(4)
-                    Dim location As String = reader.GetString(5)
-                    Dim timein As String = reader.GetString(6)
-                    Dim timeout As String = reader.GetString(7)
-                    Dim user_assign As String = reader.GetString(8)
-                    Dim promo_active As String = reader.GetString(9)
-                    Dim date_ As String = reader.GetString(10)
-                    tables.Rows.Add(parking_id.ToString, member_id.ToString, firstname, lastname,
+                        Dim parking_id As Integer = reader.GetInt64(0)
+                        Dim member_id As String = reader.GetString(1)
+                        Dim firstname As String = reader.GetString(2)
+                        Dim lastname As String = reader.GetString(3)
+                        Dim promoname As String = reader.GetString(4)
+                        Dim location As String = reader.GetString(5)
+                        Dim timein As String = reader.GetString(6)
+                        Dim timeout As String = reader.GetString(7)
+                        Dim user_assign As String = reader.GetString(8)
+                        Dim promo_active As String = reader.GetString(9)
+                        Dim date_ As String = reader.GetString(10)
+                        tables.Rows.Add(parking_id.ToString, member_id.ToString, firstname, lastname,
                                     promoname, location, timein, timeout, user_assign, promo_active, date_)
-                End While
+                    End While
 
+                End Using
+                con.Close()
             End Using
-            con.Close()
-        End Using
 
 
     End Sub
 #End Region
 
+#Region "Profit Table Query"
+
+    Public Function Insert_Profit(ByVal profit As Profit_Entities) As Boolean
+        Dim profit_insert As String = "INSERT INTO  PROFIT(ASSIGN_USER, PROFIT_DATE, PROFIT_AMOUNT, MEMBER_NAME) VALUES ('" + profit.Asign_User1 + "', '" + profit.Profit_date1 + "', '" + profit.Profit_amount1 + "', '" + profit.Member_name1 + "')"
+        Connection_Query(profit_insert)
+        Try
+
+            Return True
+        Catch ex As Exception
+
+        End Try
+        Return False
+    End Function
+
+    Public Sub Profit_Table(ByVal text As String, ByVal tables As BunifuCustomDataGrid, ByVal label As Label, ByVal condition As String)
+        tables.Rows.Clear()
+        Dim query As String
+        Dim total As Integer
+        If (text.Equals("")) Then
+
+            If (condition.Equals(" PROFIT_DATE = ")) Then
+                query = "SELECT * FROM PROFIT"
+                'MessageBox.Show(query)
+            Else
+                query = "SELECT * FROM PROFIT WHERE " + condition + "; "
+                '  MessageBox.Show(query)
+            End If
+
+        Else
+
+            If (condition.Equals(" PROFIT_DATE = ")) Then
+
+                query = "SELECT * FROM PROFIT WHERE ASSIGN_USER LIKE '%" + text + "%' OR PROFIT_DATE LIKE '%" + text + "%' OR PROFIT_AMOUNT LIKE '%" + text + "%' OR MEMBER_NAME LIKE '%" + text + "%'"
+                'MessageBox.Show(query)
+            Else
+
+                query = "SELECT * FROM PROFIT WHERE (" + condition + ") AND (ASSIGN_USER LIKE '%" + text + "%' OR PROFIT_DATE LIKE '%" + text + "%' OR PROFIT_AMOUNT LIKE '%" + text + "%' OR MEMBER_NAME LIKE '%" + text + "%')"
+                ' MessageBox.Show(query)
+            End If
+
+        End If
+
+        ' Try
+        Using con As New SQLiteConnection(connectionString)
+
+                con.Open()
+
+                Using cmd As New SQLiteCommand(query, con)
+
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader
+
+                    While (reader.Read())
+
+                        Dim id As String = reader.GetInt64(0).ToString
+                        Dim assign_user As String = reader.GetString(1)
+                        Dim profit_date As String = reader.GetString(2)
+                        Dim member_name As String = reader.GetString(3)
+                        Dim amount As String = reader.GetString(4)
+
+                        Try
+                            total += CInt(amount)
+                        Catch ex As Exception
+
+                        End Try
+
+                        tables.Rows.Add(id, assign_user, profit_date, member_name, amount)
+                    End While
+
+                End Using
+                label.Text = total.ToString
+                con.Close()
+            End Using
+        'Catch ex As Exception
+
+        'MessageBox.Show("Invalid Query")
+        'End Try
+    End Sub
+#End Region
 End Class

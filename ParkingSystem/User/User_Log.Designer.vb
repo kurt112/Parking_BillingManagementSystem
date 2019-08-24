@@ -22,10 +22,10 @@ Partial Class User_Log
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.UserLogs_Table = New Bunifu.Framework.UI.BunifuCustomDataGrid()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -37,11 +37,14 @@ Partial Class User_Log
         Me.Date_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.BunifuDatepicker2 = New Bunifu.Framework.UI.BunifuDatepicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.BunifuDatepicker1 = New Bunifu.Framework.UI.BunifuDatepicker()
+        Me.date_end = New Bunifu.Framework.UI.BunifuDatepicker()
+        Me.start_date = New Bunifu.Framework.UI.BunifuDatepicker()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Search = New Bunifu.Framework.UI.BunifuMaterialTextbox()
+        Me.start_date_copy = New Bunifu.Framework.UI.BunifuDatepicker()
         CType(Me.UserLogs_Table, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -52,8 +55,8 @@ Partial Class User_Log
         '
         Me.UserLogs_Table.AllowUserToAddRows = False
         Me.UserLogs_Table.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.UserLogs_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        Me.UserLogs_Table.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.UserLogs_Table.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -62,24 +65,24 @@ Partial Class User_Log
         Me.UserLogs_Table.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.UserLogs_Table.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.UserLogs_Table.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.UserLogs_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 13.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.UserLogs_Table.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.UserLogs_Table.ColumnHeadersHeight = 35
         Me.UserLogs_Table.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.Time_Out, Me.Session_Hours, Me.Date_})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.UserLogs_Table.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(233, Byte), Integer))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.UserLogs_Table.DefaultCellStyle = DataGridViewCellStyle7
         Me.UserLogs_Table.DoubleBuffered = True
         Me.UserLogs_Table.EnableHeadersVisualStyles = False
         Me.UserLogs_Table.GridColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
@@ -90,14 +93,14 @@ Partial Class User_Log
         Me.UserLogs_Table.Name = "UserLogs_Table"
         Me.UserLogs_Table.ReadOnly = True
         Me.UserLogs_Table.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.UserLogs_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.UserLogs_Table.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.UserLogs_Table.RowHeadersVisible = False
         Me.UserLogs_Table.RowHeadersWidth = 51
         Me.UserLogs_Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -175,37 +178,53 @@ Partial Class User_Log
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1236, 92)
         Me.Panel1.TabIndex = 14
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.BunifuDatepicker2)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.BunifuDatepicker1)
+        Me.Panel2.Controls.Add(Me.date_end)
+        Me.Panel2.Controls.Add(Me.start_date)
+        Me.Panel2.Controls.Add(Me.start_date_copy)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(629, 92)
+        Me.Panel2.Size = New System.Drawing.Size(683, 92)
         Me.Panel2.TabIndex = 3
         '
-        'BunifuDatepicker2
+        'Label3
         '
-        Me.BunifuDatepicker2.BackColor = System.Drawing.Color.SeaGreen
-        Me.BunifuDatepicker2.BorderRadius = 0
-        Me.BunifuDatepicker2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuDatepicker2.ForeColor = System.Drawing.Color.White
-        Me.BunifuDatepicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.BunifuDatepicker2.FormatCustom = Nothing
-        Me.BunifuDatepicker2.Location = New System.Drawing.Point(345, 22)
-        Me.BunifuDatepicker2.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
-        Me.BunifuDatepicker2.Name = "BunifuDatepicker2"
-        Me.BunifuDatepicker2.Size = New System.Drawing.Size(279, 52)
-        Me.BunifuDatepicker2.TabIndex = 15
-        Me.BunifuDatepicker2.Value = New Date(2019, 6, 27, 17, 55, 16, 963)
+        Me.Label3.AccessibleDescription = ""
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(337, 6)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(90, 25)
+        Me.Label3.TabIndex = 10
+        Me.Label3.Text = "Date End"
+        '
+        'Label2
+        '
+        Me.Label2.AccessibleDescription = ""
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(0, 7)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(99, 25)
+        Me.Label2.TabIndex = 9
+        Me.Label2.Text = "Date Start"
         '
         'Label1
         '
@@ -214,37 +233,52 @@ Partial Class User_Log
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(303, 33)
+        Me.Label1.Location = New System.Drawing.Point(301, 47)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 25)
-        Me.Label1.TabIndex = 2
+        Me.Label1.TabIndex = 8
         Me.Label1.Text = "To"
         '
-        'BunifuDatepicker1
+        'date_end
         '
-        Me.BunifuDatepicker1.BackColor = System.Drawing.Color.SeaGreen
-        Me.BunifuDatepicker1.BorderRadius = 0
-        Me.BunifuDatepicker1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuDatepicker1.ForeColor = System.Drawing.Color.White
-        Me.BunifuDatepicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.BunifuDatepicker1.FormatCustom = Nothing
-        Me.BunifuDatepicker1.Location = New System.Drawing.Point(12, 22)
-        Me.BunifuDatepicker1.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
-        Me.BunifuDatepicker1.Name = "BunifuDatepicker1"
-        Me.BunifuDatepicker1.Size = New System.Drawing.Size(279, 52)
-        Me.BunifuDatepicker1.TabIndex = 0
-        Me.BunifuDatepicker1.Value = New Date(2019, 6, 27, 17, 55, 16, 963)
+        Me.date_end.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.date_end.BorderRadius = 0
+        Me.date_end.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.date_end.ForeColor = System.Drawing.Color.White
+        Me.date_end.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.date_end.FormatCustom = Nothing
+        Me.date_end.Location = New System.Drawing.Point(342, 34)
+        Me.date_end.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.date_end.Name = "date_end"
+        Me.date_end.Size = New System.Drawing.Size(287, 53)
+        Me.date_end.TabIndex = 7
+        Me.date_end.Value = New Date(2019, 6, 23, 0, 48, 3, 835)
+        '
+        'start_date
+        '
+        Me.start_date.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.start_date.BorderRadius = 0
+        Me.start_date.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.start_date.ForeColor = System.Drawing.Color.White
+        Me.start_date.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.start_date.FormatCustom = Nothing
+        Me.start_date.Location = New System.Drawing.Point(6, 34)
+        Me.start_date.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.start_date.Name = "start_date"
+        Me.start_date.Size = New System.Drawing.Size(287, 53)
+        Me.start_date.TabIndex = 6
+        Me.start_date.Value = New Date(2019, 6, 23, 0, 48, 3, 835)
         '
         'Panel3
         '
         Me.Panel3.Controls.Add(Me.Search)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel3.ForeColor = System.Drawing.Color.White
-        Me.Panel3.Location = New System.Drawing.Point(899, 0)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel3.Location = New System.Drawing.Point(765, 0)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(337, 92)
+        Me.Panel3.Size = New System.Drawing.Size(471, 92)
         Me.Panel3.TabIndex = 2
         '
         'Search
@@ -259,12 +293,27 @@ Partial Class User_Log
         Me.Search.LineIdleColor = System.Drawing.Color.DimGray
         Me.Search.LineMouseHoverColor = System.Drawing.Color.Gray
         Me.Search.LineThickness = 4
-        Me.Search.Location = New System.Drawing.Point(59, 22)
+        Me.Search.Location = New System.Drawing.Point(183, 25)
         Me.Search.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Search.Name = "Search"
         Me.Search.Size = New System.Drawing.Size(271, 47)
         Me.Search.TabIndex = 5
         Me.Search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        '
+        'start_date_copy
+        '
+        Me.start_date_copy.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.start_date_copy.BorderRadius = 0
+        Me.start_date_copy.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.start_date_copy.ForeColor = System.Drawing.Color.White
+        Me.start_date_copy.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.start_date_copy.FormatCustom = Nothing
+        Me.start_date_copy.Location = New System.Drawing.Point(164, 40)
+        Me.start_date_copy.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.start_date_copy.Name = "start_date_copy"
+        Me.start_date_copy.Size = New System.Drawing.Size(122, 41)
+        Me.start_date_copy.TabIndex = 11
+        Me.start_date_copy.Value = New Date(2019, 6, 23, 0, 48, 3, 835)
         '
         'User_Log
         '
@@ -275,7 +324,7 @@ Partial Class User_Log
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.UserLogs_Table)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "User_Log"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "User_Log"
@@ -292,10 +341,7 @@ Partial Class User_Log
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label1 As Label
-    Friend WithEvents BunifuDatepicker1 As Bunifu.Framework.UI.BunifuDatepicker
     Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
-    Friend WithEvents BunifuDatepicker2 As Bunifu.Framework.UI.BunifuDatepicker
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
@@ -304,4 +350,10 @@ Partial Class User_Log
     Friend WithEvents Time_Out As DataGridViewTextBoxColumn
     Friend WithEvents Session_Hours As DataGridViewTextBoxColumn
     Friend WithEvents Date_ As DataGridViewTextBoxColumn
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents date_end As Bunifu.Framework.UI.BunifuDatepicker
+    Friend WithEvents start_date As Bunifu.Framework.UI.BunifuDatepicker
+    Friend WithEvents start_date_copy As Bunifu.Framework.UI.BunifuDatepicker
 End Class

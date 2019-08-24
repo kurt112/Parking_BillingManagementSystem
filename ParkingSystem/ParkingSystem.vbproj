@@ -81,6 +81,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -102,12 +103,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action List\Action_List.Designer.vb">
-      <DependentUpon>Action_List.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Action List\Action_List.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="DashBoard.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +110,8 @@
       <DependentUpon>DashBoard.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Database\Encrypt.vb" />
+    <Compile Include="Entities\Profit_Entities.vb" />
     <Compile Include="Entities\User.vb" />
     <Compile Include="Entities\Membership.vb" />
     <Compile Include="Entities\Parking_Area.vb" />
@@ -160,12 +157,6 @@
     <Compile Include="Parking_Function\Parking_Add.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Parking_Function\Parking_Area_Used.Designer.vb">
-      <DependentUpon>Parking_Area_Used.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Parking_Function\Parking_Area_Used.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Parking_Function\Park_List.Designer.vb">
       <DependentUpon>Park_List.vb</DependentUpon>
     </Compile>
@@ -176,6 +167,12 @@
       <DependentUpon>InputBox.vb</DependentUpon>
     </Compile>
     <Compile Include="Pop_up\InputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PROFIT\Profit_List.Designer.vb">
+      <DependentUpon>Profit_List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PROFIT\Profit_List.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Promo\Pricing.Designer.vb">
@@ -191,12 +188,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Database\Server.vb" />
-    <Compile Include="Report\Receipt.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receipt.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Transaction\Transaction_Histroy_List.Designer.vb">
       <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>
     </Compile>
@@ -235,9 +226,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Action List\Action_List.resx">
-      <DependentUpon>Action_List.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.vb</DependentUpon>
     </EmbeddedResource>
@@ -259,24 +247,20 @@
     <EmbeddedResource Include="Parking_Function\Parking_Add.resx">
       <DependentUpon>Parking_Add.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Parking_Function\Parking_Area_Used.resx">
-      <DependentUpon>Parking_Area_Used.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Parking_Function\Park_List.resx">
       <DependentUpon>Park_List.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pop_up\InputBox.resx">
       <DependentUpon>InputBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PROFIT\Profit_List.resx">
+      <DependentUpon>Profit_List.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Promo\Pricing.resx">
       <DependentUpon>Pricing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Promo\Pricing_Promo.resx">
       <DependentUpon>Pricing_Promo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\Receipt.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Receipt.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Transaction_Histroy_List.resx">
       <DependentUpon>Transaction_Histroy_List.vb</DependentUpon>

@@ -114,7 +114,7 @@ Public Class Pricing_Promo
                     Catch ex As Exception
                         MessageBox.Show("Promo Description is Empty")
                     End Try
-            `    Catch ex As Exception
+                Catch ex As Exception
                     MessageBox.Show("Promo hours should a number")
                 End Try
             End If

@@ -1,7 +1,7 @@
 ﻿Public Class User_List
     Private ReadOnly database As Server = New Server
     Dim index As Integer
-    Private ReadOnly user As User = New User("", "", "", "", "", "")
+    Private ReadOnly user As User = New User("", "", "", "", "", "", "")
     Private Sub User_List_Load(sender As Object, e As EventArgs) Handles Me.Load
         User_table.ContextMenuStrip = User_ContextMenu
         database.User_Table(User_table, Search.Text)

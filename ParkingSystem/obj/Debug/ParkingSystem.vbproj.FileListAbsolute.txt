@@ -79,14 +79,12 @@ C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\bin\Debug\
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\bin\Debug\EntityFramework.xml
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\bin\Debug\System.Data.SQLite.xml
-C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Action_List.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Login.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Membership_List.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Member_Register.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Resources.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking_Add.resources
-C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Parking_Area_Used.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Park_List.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.InputBox.resources
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Pricing.resources
@@ -105,3 +103,4 @@ C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\bin\Debug\
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.vbprojAssemblyReference.cache
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.vbproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.vbproj.CopyComplete
+C:\Users\Lenovo\Desktop\Parking_BillingManagementSystem\ParkingSystem\obj\Debug\ParkingSystem.Profit_List.resources

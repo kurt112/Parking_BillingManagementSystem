@@ -94,6 +94,7 @@ Partial Class Transaction_List
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(19, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(19, Byte), Integer))
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox1.Enabled = False
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(335, 31)
         Me.PictureBox1.Name = "PictureBox1"
@@ -435,7 +436,6 @@ Partial Class Transaction_List
         Me.Transaction_Table.RowTemplate.DividerHeight = 1
         Me.Transaction_Table.RowTemplate.Height = 40
         Me.Transaction_Table.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Transaction_Table.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
         Me.Transaction_Table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Transaction_Table.Size = New System.Drawing.Size(1173, 542)
         Me.Transaction_Table.TabIndex = 10

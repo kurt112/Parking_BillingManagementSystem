@@ -64,7 +64,6 @@ Partial Class Membership_List
         Me.PromoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Sort_By = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewPromoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.generate_picture, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -386,10 +385,10 @@ Partial Class Membership_List
         'MemberTable_Menu
         '
         Me.MemberTable_Menu.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MemberTable_Menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Register_ContextMenu, Me.Update_ContextMenu, Me.DeleteContextMenu, Me.Refresh_ContextMenu, Me.Generateguest_ContextMenu, Me.ViewPromoToolStripMenuItem})
+        Me.MemberTable_Menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Register_ContextMenu, Me.Update_ContextMenu, Me.DeleteContextMenu, Me.Refresh_ContextMenu, Me.Generateguest_ContextMenu})
         Me.MemberTable_Menu.Name = "ContextMenuStrip1"
         Me.MemberTable_Menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MemberTable_Menu.Size = New System.Drawing.Size(215, 188)
+        Me.MemberTable_Menu.Size = New System.Drawing.Size(215, 162)
         '
         'Register_ContextMenu
         '
@@ -500,13 +499,6 @@ Partial Class Membership_List
         Me.Sort_By.Size = New System.Drawing.Size(214, 26)
         Me.Sort_By.Text = "Sort By"
         '
-        'ViewPromoToolStripMenuItem
-        '
-        Me.ViewPromoToolStripMenuItem.Image = CType(resources.GetObject("ViewPromoToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ViewPromoToolStripMenuItem.Name = "ViewPromoToolStripMenuItem"
-        Me.ViewPromoToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
-        Me.ViewPromoToolStripMenuItem.Text = "View Promo"
-        '
         'Membership_List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -566,5 +558,4 @@ Partial Class Membership_List
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents BunifuMaterialTextbox1 As Bunifu.Framework.UI.BunifuMaterialTextbox
     Friend WithEvents Search As Bunifu.Framework.UI.BunifuMaterialTextbox
-    Friend WithEvents ViewPromoToolStripMenuItem As ToolStripMenuItem
 End Class

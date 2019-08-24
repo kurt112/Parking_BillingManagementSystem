@@ -54,7 +54,7 @@ Public Class Park_List
     End Sub
 
     Private Sub Parking_Area_Table_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Parking_Area_Table.CellMouseDoubleClick
-        MessageBox.Show("Im clicked")
+        ' MessageBox.Show("Im clicked")
         Check_Update()
     End Sub
     Private Sub Parking_Area_Table_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Parking_Area_Table.CellMouseClick
@@ -153,6 +153,10 @@ Public Class Park_List
         Catch ex As Exception
             MessageBox.Show("Member not Found")
         End Try
+    End Sub
+
+    Private Sub Add_Parking_Click(sender As Object, e As MouseEventArgs) Handles Add_Parking_Button.MouseClick
+
     End Sub
 
     '******************************************* END CONTEXT MENU FUNCTION ******************************************************

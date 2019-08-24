@@ -5,8 +5,9 @@
     Private email As String
     Private Username As String
     Private password As String
-
-    Public Sub New(id As String, first_name As String, last_name As String, email As String, username As String, password As String)
+    Private status As String
+    Public Sub New(id As String, first_name As String, last_name As String, email As String, username As String, password As String, status As String)
+        Me.Status1 = status
         Me.Id1 = id
         Me.First_name1 = first_name
         Me.Last_name1 = last_name
@@ -66,6 +67,15 @@
         End Get
         Set(value As String)
             password = value
+        End Set
+    End Property
+
+    Public Property Status1 As String
+        Get
+            Return status
+        End Get
+        Set(value As String)
+            status = value
         End Set
     End Property
 End Class

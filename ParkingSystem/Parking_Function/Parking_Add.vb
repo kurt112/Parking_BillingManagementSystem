@@ -74,7 +74,7 @@ Public Class Parking_Add
                 Register_Button.Text = "Update"
             End If
 
-            MessageBox.Show(Parking_fee.Items.Count.ToString)
+            'MessageBox.Show(Parking_fee.Items.Count.ToString)
 
             Parking_name.Text = parking_area.Parking_name1
             Dim quit As Boolean = False

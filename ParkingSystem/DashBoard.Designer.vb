@@ -43,24 +43,18 @@ Partial Class Parking
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BunifuSeparator1 = New Bunifu.Framework.UI.BunifuSeparator()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.Profit_panel = New System.Windows.Forms.Panel()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Actions = New System.Windows.Forms.PictureBox()
         Me.Membership = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Membership_button = New System.Windows.Forms.PictureBox()
-        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.logout_panel = New System.Windows.Forms.Panel()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
-        Me.Panel14 = New System.Windows.Forms.Panel()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.Logout = New System.Windows.Forms.PictureBox()
         Me.Users = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.User_Button = New System.Windows.Forms.PictureBox()
-        Me.Transaction_History = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Transaction_HistoryButton = New System.Windows.Forms.PictureBox()
         Me.Promo = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Promo_Button = New System.Windows.Forms.PictureBox()
@@ -84,18 +78,14 @@ Partial Class Parking
         Me.Panel3.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel7.SuspendLayout()
-        Me.Panel13.SuspendLayout()
+        Me.Profit_panel.SuspendLayout()
         CType(Me.Actions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Membership.SuspendLayout()
         CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel15.SuspendLayout()
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel14.SuspendLayout()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.logout_panel.SuspendLayout()
+        CType(Me.Logout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Users.SuspendLayout()
         CType(Me.User_Button, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Transaction_History.SuspendLayout()
-        CType(Me.Transaction_HistoryButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Promo.SuspendLayout()
         CType(Me.Promo_Button, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Parking_List.SuspendLayout()
@@ -329,19 +319,17 @@ Partial Class Parking
         Me.BunifuSeparator1.Location = New System.Drawing.Point(1, 96)
         Me.BunifuSeparator1.Margin = New System.Windows.Forms.Padding(5)
         Me.BunifuSeparator1.Name = "BunifuSeparator1"
-        Me.BunifuSeparator1.Size = New System.Drawing.Size(347, 12)
+        Me.BunifuSeparator1.Size = New System.Drawing.Size(319, 12)
         Me.BunifuSeparator1.TabIndex = 10
         Me.BunifuSeparator1.Transparency = 255
         Me.BunifuSeparator1.Vertical = False
         '
         'Panel7
         '
-        Me.Panel7.Controls.Add(Me.Panel13)
+        Me.Panel7.Controls.Add(Me.Profit_panel)
         Me.Panel7.Controls.Add(Me.Membership)
-        Me.Panel7.Controls.Add(Me.Panel15)
-        Me.Panel7.Controls.Add(Me.Panel14)
+        Me.Panel7.Controls.Add(Me.logout_panel)
         Me.Panel7.Controls.Add(Me.Users)
-        Me.Panel7.Controls.Add(Me.Transaction_History)
         Me.Panel7.Controls.Add(Me.Promo)
         Me.Panel7.Controls.Add(Me.Parking_List)
         Me.Panel7.Controls.Add(Me.Transaction)
@@ -351,16 +339,16 @@ Partial Class Parking
         Me.Panel7.Size = New System.Drawing.Size(364, 347)
         Me.Panel7.TabIndex = 4
         '
-        'Panel13
+        'Profit_panel
         '
-        Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Panel13.Controls.Add(Me.Label10)
-        Me.Panel13.Controls.Add(Me.Actions)
-        Me.Panel13.Location = New System.Drawing.Point(7, 222)
-        Me.Panel13.Margin = New System.Windows.Forms.Padding(4)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(115, 103)
-        Me.Panel13.TabIndex = 10
+        Me.Profit_panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.Profit_panel.Controls.Add(Me.Label10)
+        Me.Profit_panel.Controls.Add(Me.Actions)
+        Me.Profit_panel.Location = New System.Drawing.Point(127, 111)
+        Me.Profit_panel.Margin = New System.Windows.Forms.Padding(4)
+        Me.Profit_panel.Name = "Profit_panel"
+        Me.Profit_panel.Size = New System.Drawing.Size(115, 103)
+        Me.Profit_panel.TabIndex = 11
         '
         'Label10
         '
@@ -371,7 +359,7 @@ Partial Class Parking
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(115, 27)
         Me.Label10.TabIndex = 1
-        Me.Label10.Text = "Actions"
+        Me.Label10.Text = "Profit"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Actions
@@ -379,11 +367,11 @@ Partial Class Parking
         Me.Actions.BackColor = System.Drawing.Color.Transparent
         Me.Actions.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Actions.Image = CType(resources.GetObject("Actions.Image"), System.Drawing.Image)
-        Me.Actions.Location = New System.Drawing.Point(0, 0)
+        Me.Actions.Location = New System.Drawing.Point(0, 1)
         Me.Actions.Margin = New System.Windows.Forms.Padding(4)
         Me.Actions.Name = "Actions"
         Me.Actions.Size = New System.Drawing.Size(115, 73)
-        Me.Actions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Actions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Actions.TabIndex = 0
         Me.Actions.TabStop = False
         '
@@ -415,30 +403,30 @@ Partial Class Parking
         Me.Membership_button.BackColor = System.Drawing.Color.Transparent
         Me.Membership_button.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Membership_button.Image = CType(resources.GetObject("Membership_button.Image"), System.Drawing.Image)
-        Me.Membership_button.Location = New System.Drawing.Point(1, 0)
+        Me.Membership_button.Location = New System.Drawing.Point(3, 2)
         Me.Membership_button.Margin = New System.Windows.Forms.Padding(4)
         Me.Membership_button.Name = "Membership_button"
         Me.Membership_button.Size = New System.Drawing.Size(111, 65)
-        Me.Membership_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.Membership_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Membership_button.TabIndex = 0
         Me.Membership_button.TabStop = False
         '
-        'Panel15
+        'logout_panel
         '
-        Me.Panel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Panel15.Controls.Add(Me.Label12)
-        Me.Panel15.Controls.Add(Me.PictureBox10)
-        Me.Panel15.Location = New System.Drawing.Point(127, 222)
-        Me.Panel15.Margin = New System.Windows.Forms.Padding(4)
-        Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(115, 103)
-        Me.Panel15.TabIndex = 8
+        Me.logout_panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.logout_panel.Controls.Add(Me.Label12)
+        Me.logout_panel.Controls.Add(Me.Logout)
+        Me.logout_panel.Location = New System.Drawing.Point(10, 222)
+        Me.logout_panel.Margin = New System.Windows.Forms.Padding(4)
+        Me.logout_panel.Name = "logout_panel"
+        Me.logout_panel.Size = New System.Drawing.Size(115, 103)
+        Me.logout_panel.TabIndex = 8
         '
         'Label12
         '
         Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(0, 76)
+        Me.Label12.Location = New System.Drawing.Point(3, 72)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(115, 27)
@@ -446,54 +434,18 @@ Partial Class Parking
         Me.Label12.Text = "Logout"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox10
+        'Logout
         '
-        Me.PictureBox10.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox10.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox10.Image = CType(resources.GetObject("PictureBox10.Image"), System.Drawing.Image)
-        Me.PictureBox10.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox10.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(115, 73)
-        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox10.TabIndex = 0
-        Me.PictureBox10.TabStop = False
-        '
-        'Panel14
-        '
-        Me.Panel14.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Panel14.Controls.Add(Me.Label11)
-        Me.Panel14.Controls.Add(Me.PictureBox9)
-        Me.Panel14.Location = New System.Drawing.Point(247, 222)
-        Me.Panel14.Margin = New System.Windows.Forms.Padding(4)
-        Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(115, 103)
-        Me.Panel14.TabIndex = 7
-        '
-        'Label11
-        '
-        Me.Label11.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(0, 76)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(117, 27)
-        Me.Label11.TabIndex = 1
-        Me.Label11.Text = "Transaction"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'PictureBox9
-        '
-        Me.PictureBox9.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(115, 73)
-        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox9.TabIndex = 0
-        Me.PictureBox9.TabStop = False
+        Me.Logout.BackColor = System.Drawing.Color.Transparent
+        Me.Logout.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Logout.Image = CType(resources.GetObject("Logout.Image"), System.Drawing.Image)
+        Me.Logout.Location = New System.Drawing.Point(1, 2)
+        Me.Logout.Margin = New System.Windows.Forms.Padding(4)
+        Me.Logout.Name = "Logout"
+        Me.Logout.Size = New System.Drawing.Size(115, 73)
+        Me.Logout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Logout.TabIndex = 0
+        Me.Logout.TabStop = False
         '
         'Users
         '
@@ -530,42 +482,6 @@ Partial Class Parking
         Me.User_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.User_Button.TabIndex = 0
         Me.User_Button.TabStop = False
-        '
-        'Transaction_History
-        '
-        Me.Transaction_History.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.Transaction_History.Controls.Add(Me.Label8)
-        Me.Transaction_History.Controls.Add(Me.Transaction_HistoryButton)
-        Me.Transaction_History.Location = New System.Drawing.Point(127, 111)
-        Me.Transaction_History.Margin = New System.Windows.Forms.Padding(4)
-        Me.Transaction_History.Name = "Transaction_History"
-        Me.Transaction_History.Size = New System.Drawing.Size(115, 103)
-        Me.Transaction_History.TabIndex = 4
-        '
-        'Label8
-        '
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(0, 78)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(115, 26)
-        Me.Label8.TabIndex = 1
-        Me.Label8.Text = "Used Area"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Transaction_HistoryButton
-        '
-        Me.Transaction_HistoryButton.BackColor = System.Drawing.Color.Transparent
-        Me.Transaction_HistoryButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Transaction_HistoryButton.Image = CType(resources.GetObject("Transaction_HistoryButton.Image"), System.Drawing.Image)
-        Me.Transaction_HistoryButton.Location = New System.Drawing.Point(0, 0)
-        Me.Transaction_HistoryButton.Margin = New System.Windows.Forms.Padding(4)
-        Me.Transaction_HistoryButton.Name = "Transaction_HistoryButton"
-        Me.Transaction_HistoryButton.Size = New System.Drawing.Size(115, 74)
-        Me.Transaction_HistoryButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Transaction_HistoryButton.TabIndex = 0
-        Me.Transaction_HistoryButton.TabStop = False
         '
         'Promo
         '
@@ -730,18 +646,14 @@ Partial Class Parking
         Me.Panel3.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
-        Me.Panel13.ResumeLayout(False)
+        Me.Profit_panel.ResumeLayout(False)
         CType(Me.Actions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Membership.ResumeLayout(False)
         CType(Me.Membership_button, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel15.ResumeLayout(False)
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel14.ResumeLayout(False)
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.logout_panel.ResumeLayout(False)
+        CType(Me.Logout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Users.ResumeLayout(False)
         CType(Me.User_Button, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Transaction_History.ResumeLayout(False)
-        CType(Me.Transaction_HistoryButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Promo.ResumeLayout(False)
         CType(Me.Promo_Button, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Parking_List.ResumeLayout(False)
@@ -773,18 +685,12 @@ Partial Class Parking
     Friend WithEvents Transaction As Panel
     Friend WithEvents Label2 As Label
     Friend WithEvents Transaction_Button As PictureBox
-    Friend WithEvents Panel15 As Panel
+    Friend WithEvents logout_panel As Panel
     Friend WithEvents Label12 As Label
-    Friend WithEvents PictureBox10 As PictureBox
-    Friend WithEvents Panel14 As Panel
-    Friend WithEvents Label11 As Label
-    Friend WithEvents PictureBox9 As PictureBox
+    Friend WithEvents Logout As PictureBox
     Friend WithEvents Users As Panel
     Friend WithEvents Label9 As Label
     Friend WithEvents User_Button As PictureBox
-    Friend WithEvents Transaction_History As Panel
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Transaction_HistoryButton As PictureBox
     Friend WithEvents x_button As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
@@ -796,10 +702,10 @@ Partial Class Parking
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Panel13 As Panel
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Actions As PictureBox
     Friend WithEvents Membership As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents Membership_button As PictureBox
+    Friend WithEvents Profit_panel As Panel
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Actions As PictureBox
 End Class

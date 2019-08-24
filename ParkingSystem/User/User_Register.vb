@@ -3,11 +3,14 @@ Imports ParkingSystem
 
 Public Class User_Register
     Private ReadOnly database As Server = New Server
+    Private ReadOnly encrypt As Encrypt = New Encrypt
     Dim text__ As String
-    Private user As User = New User("", "", "", "", "", "")
+
+    Private user As User = New User("", "", "", "", "", "", "")
     Private Shadows update As Boolean = False
     Private id As String = ""
     Private look As Boolean = False
+    Private status As String = "Admin"
     Public Property Table1 As BunifuCustomDataGrid = New BunifuCustomDataGrid
 
     Public Property Text1 As String
@@ -56,7 +59,7 @@ Public Class User_Register
         If (Validate_input() = True) Then
 
             If (Register_Button.Text.Equals("Update")) Then
-                If (database.Upate_user(id, New User(User_id.Text, first_name.Text, last_name.Text, email_address.Text, username.Text, password.Text)) = True) Then
+                If (database.Upate_user(id, New User(User_id.Text, first_name.Text, last_name.Text, email_address.Text, username.Text, encrypt.Base64Encode(password.Text), status)) = True) Then
                     database.User_Table(Table1, Text)
                 End If
             ElseIf (Register_Button.Text.Equals("OK")) Then
@@ -64,7 +67,7 @@ Public Class User_Register
                 Me.Close()
 
             Else
-                If (database.Register_User(New User(User_id.Text, first_name.Text, last_name.Text, email_address.Text, username.Text, password.Text)) = True) Then
+                If (database.Register_User(New User(User_id.Text, first_name.Text, last_name.Text, email_address.Text, username.Text, encrypt.Base64Encode(password.Text), status)) = True) Then
 
                     User_id.Text = ""
                     first_name.Text = ""
@@ -152,14 +155,17 @@ Public Class User_Register
         Return False
     End Function
 
-    Private Sub Check_vlaue(ByVal form As Bunifu.Framework.UI.BunifuMaterialTextbox)
+    Private Sub Check_vlaue(ByVal form As BunifuMaterialTextbox)
 
-        If (form.Text.Equals("")) Then
+        If Not (Register_Button.Text.Equals("Update") Or Register_Button.Text.Equals("OK")) Then
 
-            Throw New Exception
+            If (form.Text.Equals("")) Then
+
+                Throw New Exception
+
+            End If
 
         End If
-
     End Sub
 
     Private Sub Password_repeat_OnValueChanged(sender As Object, e As EventArgs)
@@ -179,7 +185,7 @@ Public Class User_Register
 
     ' for user id text Field --------------------------------------------------------------------
     Private Sub User_id_OnValueChanged(sender As Object, e As EventArgs) Handles User_id.OnValueChanged
-        If Not (Register_Button.Text.Equals("Update")) Then
+        If Not (Register_Button.Text.Equals("Update") Or Register_Button.Text.Equals("OK")) Then
             If (User_id.Text = "") Then
                 userfield_error.Visible = True
                 userfield_error.Text = "Username is empty"
@@ -213,7 +219,7 @@ Public Class User_Register
                 Throw New Exception
             Else
 
-                If Not (Register_Button.Text.Equals("Update")) Then
+                If Not (Register_Button.Text.Equals("Update") Or Register_Button.Text.Equals("OK")) Then
                     If (database.Check_email(email_address.Text) = True) Then
                         email_error.Text = "Email Already use"
                         email_error.Visible = True
@@ -232,12 +238,14 @@ Public Class User_Register
     End Sub
 
     Private Sub Password_OnValueChanged(sender As Object, e As EventArgs) Handles password.OnValueChanged
+        password.isPassword = True
         Error_Detection(password.Text, password_error, "Password is empty")
 
 
     End Sub
 
     Private Sub Password_repeat_OnValueChanged_1(sender As Object, e As EventArgs) Handles password_repeat.OnValueChanged
+        password_repeat.isPassword = True
         Error_Detection(password_repeat.Text, password_mismatch, "Re type password Empty")
     End Sub
 
@@ -256,7 +264,7 @@ Public Class User_Register
     End Sub
 
     Private Sub Username_OnValueChanged(sender As Object, e As EventArgs) Handles username.OnValueChanged
-        If Not (Register_Button.Text.Equals("Update")) Then
+        If Not (Register_Button.Text.Equals("Update") Or Register_Button.Text.Equals("OK")) Then
             If (username.Text.Equals("")) Then
 
                 username__.Visible = False
@@ -293,6 +301,19 @@ Public Class User_Register
             email_address.Text = User1.Email1
             username.Text = User1.Username1
             id = User1.Id1
+            If (User1.Status1 = "User") Then
+                BunifuCheckbox1.Checked = False
+            Else
+                BunifuCheckbox1.Checked = True
+            End If
+        End If
+    End Sub
+
+    Private Sub BunifuCheckbox1_OnChange(sender As Object, e As EventArgs) Handles BunifuCheckbox1.OnChange
+        If (BunifuCheckbox1.Checked = True) Then
+            status = "Admin"
+        Else
+            status = "User"
         End If
     End Sub
 End Class

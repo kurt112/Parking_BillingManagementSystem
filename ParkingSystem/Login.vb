@@ -1,9 +1,13 @@
-﻿Imports ParkingSystem
+﻿Imports System.Drawing.Printing
+Imports ParkingSystem
 
 Public Class Login
     ReadOnly database As Server = New Server
+    Public ReadOnly Property Dashboard1 As Parking = New Parking()
+    Private ReadOnly myPageAlreadySetUp As Boolean = False
     Dim user As User_History
-
+    Dim admin = False
+    Private ReadOnly encrypt As Encrypt = New Encrypt
     Public Property User1 As User_History
         Get
             Return user
@@ -13,30 +17,26 @@ Public Class Login
         End Set
     End Property
 
-    Public Property Promo1 As Pricing = New Pricing()
-
-    Public ReadOnly Property Dashboard1 As Parking = New Parking()
-
-    Public Property Transactionlist1 As Transaction_List = New Transaction_List()
-
-    Public Property Area1 As Park_List = New Park_List()
-
-    Public Property Membership1 As Membership_List = New Membership_List()
-
-    Public Property User_form1 As User_List = New User_List()
+    Public Property Admin1 As Object
+        Get
+            Return admin
+        End Get
+        Set(value As Object)
+            admin = value
+        End Set
+    End Property
 
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles Me.Load
-        database.CreateDatabase()
     End Sub
 
     Private Sub Exit_Button_Click(sender As Object, e As EventArgs) Handles Exit_Button.Click
         Me.Close()
-
     End Sub
 
     Private Sub Login_Button_Click(sender As Object, e As EventArgs) Handles Login_Button.Click
+        database.CreateDatabase()
 
-        If (database.User_Login(username.Text, password.Text, Me) = True) Then
+        If (database.User_Login(username.Text, encrypt.Base64Encode(password.Text), Me) = True) Then
             Set_From()
             Dashboard1.Single_user = user
             Me.Hide()
@@ -49,23 +49,34 @@ Public Class Login
         End If
 
 
-
     End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs)
 
     End Sub
 
 #Region "Setting the form"
     Private Sub Set_From()
-        Dashboard1.Transaction_form1 = Transactionlist1
-        Dashboard1.Promohistory_form1 = Promo1
-        Dashboard1.Area_form1 = Area1
-        Dashboard1.Member_form1 = Membership1
-        Dashboard1.Users_form1 = User_form1
+        Dashboard1.Admin1 = admin
+        Dashboard1.Transaction_form1 = New Transaction_List()
+        Dashboard1.Promohistory_form1 = New Pricing()
+        Dashboard1.Area_form1 = New Park_List()
+        Dashboard1.Member_form1 = New Membership_List()
+        Dashboard1.Users_form1 = New User_List()
+        Dashboard1.Profit_form1 = New Profit_List()
 
-        Dashboard1.Member_table1 = Membership1.Member_table
-        Dashboard1.Location_table1 = Area1.Parking_Area_Table
+        Dashboard1.Member_table1 = Dashboard1.Member_form1.Member_table
+        Dashboard1.Location_table1 = Dashboard1.Area_form1.Parking_Area_Table
+
+
+        Dashboard1.Transaction_form1.Profit_table1 = Dashboard1.Profit_form1.Profit_table
+        Dashboard1.Transaction_form1.Total_label1 = Dashboard1.Profit_form1.total_value
+
+        Dashboard1.Member_form1.Profit_table1 = Dashboard1.Profit_form1.Profit_table
+        Dashboard1.Member_form1.Total_label1 = Dashboard1.Profit_form1.total_value
 
     End Sub
+
+
 #End Region
 End Class

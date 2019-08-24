@@ -3,7 +3,8 @@ Imports ParkingSystem
 
 Public Class Member_Register
 
-    Private user As String = "asfa"
+#Region "Object And Variable"
+    Private user As String
     Private is_Update As Boolean = False
 
     Private ReadOnly database As Server = New Server
@@ -12,8 +13,14 @@ Public Class Member_Register
     Private Update_member As Membership = New Membership("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
 
     Dim id As String
-    Private Sub Member_Register_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+    Private profit_table As BunifuCustomDataGrid
+    Private total_label As Label
+#End Region
+
+#Region "On Load"
+    Private Sub Member_Register_Load(sender As Object, e As EventArgs) Handles Me.Load
+        '  MessageBox.Show(user)
         If (Update1 = True) Then
 
 
@@ -28,6 +35,7 @@ Public Class Member_Register
             member_id.Text = Update_member1.Member_id1
             email_address.Text = Update_member1.Email_address1
             Try
+
                 photo.Image = Image.FromFile(Update_member1.Photo1)
             Catch ex As Exception
 
@@ -46,13 +54,14 @@ Public Class Member_Register
             cashier_value.Text = Update_member1.Cashier_registered1
             date_registered_value.Text = Update_member1.Date_registered1
             total_spend.Text = Update_member1.Total_spend1
-
             date_of_birth.Value = Update_member1.Date_of_birth1
             id = Update_member.Member_id1
         End If
         Me.Width = 1225
     End Sub
+#End Region
 
+#Region "Getter and Setter"
 
     Public Property User1 As String
         Get
@@ -101,6 +110,25 @@ Public Class Member_Register
 
     Public Property Table2 As BunifuCustomDataGrid = New BunifuCustomDataGrid
 
+    Public Property Total_label1 As Label
+        Get
+            Return total_label
+        End Get
+        Set(value As Label)
+            total_label = value
+        End Set
+    End Property
+
+    Public Property Profit_table1 As BunifuCustomDataGrid
+        Get
+            Return profit_table
+        End Get
+        Set(value As BunifuCustomDataGrid)
+            profit_table = value
+        End Set
+    End Property
+#End Region
+
     Private Sub Register_Button_Click(sender As Object, e As EventArgs) Handles Register_Button.Click
 
         If (park_list = True) Then
@@ -131,11 +159,10 @@ Public Class Member_Register
                                                             cellphone_number.Text, Telephone_Number.Text, date_of_birth.Value.ToString("dd'/'MM'/'yyyy"), initial_amount.Text,
                                                             "0", points_value.Text, "", "", user, Date.Now.ToString("dd'/'MM'/'yyyy"), total_spend.Text, "Not Activate", Place_of_Birth.Text,
                                                             person_to_contact.Text, Person_to_contact_number.Text, strFileName, "INACTIVE")) = True) Then
-                        MessageBox.Show("Update Succesful")
                         Refresh_fields()
                     End If
                 Else
-                    MessageBox.Show("Im in update")
+                    '   MessageBox.Show("Im in update")
                 End If
 
             End If
@@ -327,20 +354,22 @@ Public Class Member_Register
 
     Private Sub Top_Up_Click(sender As Object, e As EventArgs) Handles Top_Up.Click
         Using value As InputBox = New InputBox
-
+            value.User_assisgn1 = user
             If (Register_Button.Text = "Update") Then
+
                 value.Top_Up1 = True
                 value.Points1 = points_value
-                value.Total_spend1 = total_spend
                 value.Member1 = Update_member
-                value.Update_TextBox1 = initial_amount
+                value.Total_spend1 = total_spend
+
             Else
                 value.Register1 = True
-                value.Update_TextBox1 = initial_amount
 
             End If
-            value.ShowDialog()
+            value.Profit_table1 = profit_table
+            value.Total_label1 = total_label
             value.Update_TextBox1 = initial_amount
+            value.ShowDialog()
         End Using
     End Sub
 End Class
