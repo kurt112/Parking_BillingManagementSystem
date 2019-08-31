@@ -319,7 +319,7 @@ Partial Class Parking
         Me.BunifuSeparator1.Location = New System.Drawing.Point(1, 96)
         Me.BunifuSeparator1.Margin = New System.Windows.Forms.Padding(5)
         Me.BunifuSeparator1.Name = "BunifuSeparator1"
-        Me.BunifuSeparator1.Size = New System.Drawing.Size(319, 12)
+        Me.BunifuSeparator1.Size = New System.Drawing.Size(315, 12)
         Me.BunifuSeparator1.TabIndex = 10
         Me.BunifuSeparator1.Transparency = 255
         Me.BunifuSeparator1.Vertical = False
@@ -367,10 +367,10 @@ Partial Class Parking
         Me.Actions.BackColor = System.Drawing.Color.Transparent
         Me.Actions.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Actions.Image = CType(resources.GetObject("Actions.Image"), System.Drawing.Image)
-        Me.Actions.Location = New System.Drawing.Point(0, 1)
+        Me.Actions.Location = New System.Drawing.Point(0, 0)
         Me.Actions.Margin = New System.Windows.Forms.Padding(4)
         Me.Actions.Name = "Actions"
-        Me.Actions.Size = New System.Drawing.Size(115, 73)
+        Me.Actions.Size = New System.Drawing.Size(115, 71)
         Me.Actions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Actions.TabIndex = 0
         Me.Actions.TabStop = False
@@ -403,10 +403,10 @@ Partial Class Parking
         Me.Membership_button.BackColor = System.Drawing.Color.Transparent
         Me.Membership_button.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Membership_button.Image = CType(resources.GetObject("Membership_button.Image"), System.Drawing.Image)
-        Me.Membership_button.Location = New System.Drawing.Point(3, 2)
+        Me.Membership_button.Location = New System.Drawing.Point(1, 0)
         Me.Membership_button.Margin = New System.Windows.Forms.Padding(4)
         Me.Membership_button.Name = "Membership_button"
-        Me.Membership_button.Size = New System.Drawing.Size(111, 65)
+        Me.Membership_button.Size = New System.Drawing.Size(114, 65)
         Me.Membership_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Membership_button.TabIndex = 0
         Me.Membership_button.TabStop = False
@@ -439,7 +439,7 @@ Partial Class Parking
         Me.Logout.BackColor = System.Drawing.Color.Transparent
         Me.Logout.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Logout.Image = CType(resources.GetObject("Logout.Image"), System.Drawing.Image)
-        Me.Logout.Location = New System.Drawing.Point(1, 2)
+        Me.Logout.Location = New System.Drawing.Point(0, 1)
         Me.Logout.Margin = New System.Windows.Forms.Padding(4)
         Me.Logout.Name = "Logout"
         Me.Logout.Size = New System.Drawing.Size(115, 73)

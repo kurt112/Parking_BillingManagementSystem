@@ -161,6 +161,7 @@ Public Class Transaction_Histroy_List
         Date_word = " PARKING_HISTORY.DATE = "
 
         start_date_copy.Value = start_date.Value
+
         If (start_date_copy.Value < date_end.Value) Then
 
             While Not (start_date_copy.Value = date_end.Value.AddDays(1))

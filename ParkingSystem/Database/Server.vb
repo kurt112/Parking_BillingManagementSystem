@@ -1462,7 +1462,7 @@ Public Class Server
 
             End If
 
-                Else
+        Else
             If (search.Equals("")) Then
 
                 query = "SELECT PARKING_HISTORY.PARKING_ID,
@@ -1493,36 +1493,36 @@ Public Class Server
             End If
 
         End If
-
+        MessageBox.Show(query)
         Using con As New SQLiteConnection(connectionString)
 
-                con.Open()
+            con.Open()
 
-                Using cmd As New SQLiteCommand(query, con)
+            Using cmd As New SQLiteCommand(query, con)
 
-                    Dim reader As SQLiteDataReader = cmd.ExecuteReader
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
 
 
-                    While (reader.Read())
+                While (reader.Read())
 
-                        Dim parking_id As Integer = reader.GetInt64(0)
-                        Dim member_id As String = reader.GetString(1)
-                        Dim firstname As String = reader.GetString(2)
-                        Dim lastname As String = reader.GetString(3)
-                        Dim promoname As String = reader.GetString(4)
-                        Dim location As String = reader.GetString(5)
-                        Dim timein As String = reader.GetString(6)
-                        Dim timeout As String = reader.GetString(7)
-                        Dim user_assign As String = reader.GetString(8)
-                        Dim promo_active As String = reader.GetString(9)
-                        Dim date_ As String = reader.GetString(10)
-                        tables.Rows.Add(parking_id.ToString, member_id.ToString, firstname, lastname,
+                    Dim parking_id As Integer = reader.GetInt64(0)
+                    Dim member_id As String = reader.GetString(1)
+                    Dim firstname As String = reader.GetString(2)
+                    Dim lastname As String = reader.GetString(3)
+                    Dim promoname As String = reader.GetString(4)
+                    Dim location As String = reader.GetString(5)
+                    Dim timein As String = reader.GetString(6)
+                    Dim timeout As String = reader.GetString(7)
+                    Dim user_assign As String = reader.GetString(8)
+                    Dim promo_active As String = reader.GetString(9)
+                    Dim date_ As String = reader.GetString(10)
+                    tables.Rows.Add(parking_id.ToString, member_id.ToString, firstname, lastname,
                                     promoname, location, timein, timeout, user_assign, promo_active, date_)
-                    End While
+                End While
 
-                End Using
-                con.Close()
             End Using
+            con.Close()
+        End Using
 
 
     End Sub
@@ -1573,33 +1573,33 @@ Public Class Server
         ' Try
         Using con As New SQLiteConnection(connectionString)
 
-                con.Open()
+            con.Open()
 
-                Using cmd As New SQLiteCommand(query, con)
+            Using cmd As New SQLiteCommand(query, con)
 
-                    Dim reader As SQLiteDataReader = cmd.ExecuteReader
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader
 
-                    While (reader.Read())
+                While (reader.Read())
 
-                        Dim id As String = reader.GetInt64(0).ToString
-                        Dim assign_user As String = reader.GetString(1)
-                        Dim profit_date As String = reader.GetString(2)
-                        Dim member_name As String = reader.GetString(3)
-                        Dim amount As String = reader.GetString(4)
+                    Dim id As String = reader.GetInt64(0).ToString
+                    Dim assign_user As String = reader.GetString(1)
+                    Dim profit_date As String = reader.GetString(2)
+                    Dim member_name As String = reader.GetString(3)
+                    Dim amount As String = reader.GetString(4)
 
-                        Try
-                            total += CInt(amount)
-                        Catch ex As Exception
+                    Try
+                        total += CInt(amount)
+                    Catch ex As Exception
 
-                        End Try
+                    End Try
 
-                        tables.Rows.Add(id, assign_user, profit_date, member_name, amount)
-                    End While
+                    tables.Rows.Add(id, assign_user, profit_date, member_name, amount)
+                End While
 
-                End Using
-                label.Text = total.ToString
-                con.Close()
             End Using
+            label.Text = total.ToString
+            con.Close()
+        End Using
         'Catch ex As Exception
 
         'MessageBox.Show("Invalid Query")
